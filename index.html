@@ -171,6 +171,137 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux环境搭建及基础操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-ssh连接操作"><a href="#一-ssh连接操作" class="headerlink" title="一, ssh连接操作"></a>一, ssh连接操作</h1><h2 id="1-1-PowerShell客户端"><a href="#1-1-PowerShell客户端" class="headerlink" title="1.1 PowerShell客户端"></a>1.1 PowerShell客户端</h2><p>在windows10上打开</p>
+<h2 id="1-2-ssh用户名-主机ip地址或名称"><a href="#1-2-ssh用户名-主机ip地址或名称" class="headerlink" title="1.2 ssh用户名@主机ip地址或名称"></a>1.2 ssh用户名@主机ip地址或名称</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@10.36.174.60</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-免密方式"><a href="#1-3-免密方式" class="headerlink" title="1.3 免密方式"></a>1.3 免密方式</h2><h3 id="1-3-1-生成公钥"><a href="#1-3-1-生成公钥" class="headerlink" title="1.3.1 生成公钥"></a>1.3.1 生成公钥</h3><p>在PowerShell(客户端)生成公钥和私钥文件,命令如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>根据提示一步步下一步即可</p>
+<h3 id="1-3-2-scp上传"><a href="#1-3-2-scp上传" class="headerlink" title="1.3.2 scp上传"></a>1.3.2 scp上传</h3><p>再通过scp命令将公钥文件(id_rsa.pub)上传到远程主机上(Linux主机:自己虚拟机,其他人机器,云主机)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp 文件名 root@host1:&#x2F;root&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-3-写入授权"><a href="#1-3-3-写入授权" class="headerlink" title="1.3.3 写入授权"></a>1.3.3 写入授权</h3><p>在远程主机上,将公钥写入授权文件(~/.ssh/authorized_keys)中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub  &gt;&gt; .ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h1 id="二-Linux中常用命令"><a href="#二-Linux中常用命令" class="headerlink" title="二, Linux中常用命令"></a>二, Linux中常用命令</h1><h2 id="2-1-文件操作"><a href="#2-1-文件操作" class="headerlink" title="2.1 文件操作"></a>2.1 文件操作</h2><h3 id="Linux中的目录结构"><a href="#Linux中的目录结构" class="headerlink" title="Linux中的目录结构"></a>Linux中的目录结构</h3><p>/ 根目录</p>
+<p>~ 当前用户的home(家)目录【非root为/home/{用户名}，root为/root】</p>
+<p>/etc 系统级别(服务)配置文件所在的根目录</p>
+<p>/home 非root用户所在的目录</p>
+<p>/opt 自定义应用资源的目录</p>
+<p>/bin 系统可执行文件所在的目录</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="ls-查看"><a href="#ls-查看" class="headerlink" title="ls 查看"></a>ls 查看</h3><p>ls -li  index</p>
+<p>ls -lt 时间排序</p>
+<p>ls -lS 文件大小排序</p>
+<h3 id="cd切换目录"><a href="#cd切换目录" class="headerlink" title="cd切换目录"></a>cd切换目录</h3><blockquote>
+<p>切换目录位置的命令</p>
+</blockquote>
+<p>cd /etc/ssh   切换至 /etc/ssh</p>
+<p>cd ~    切换至当前用户的家目录下</p>
+<p>cd /    切换到根目录下</p>
+<h3 id="切换路径"><a href="#切换路径" class="headerlink" title="切换路径"></a>切换路径</h3><p><code>pwd</code> 获取当前完整的绝对路径</p>
+<p><code>.</code>当前路径</p>
+<p><code>..</code>当前路径的父级目录</p>
+<p><code>cd ..</code>从当前目录切换到父级目录</p>
+<h3 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h3><blockquote>
+<p>创建文件目录(夹)</p>
+</blockquote>
+<p><code>mkdir ~/.ssh</code>创建单个目录</p>
+<p><code>mkdir -p ~/a/b/c/d</code>    创建分级目录</p>
+<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><blockquote>
+<p>删除</p>
+</blockquote>
+<p><code>rmdir</code>删除单个目录</p>
+<p><code>rmdir -p /a/b/c/d </code>删除多个联级文件</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><blockquote>
+<p>删除文件及目录</p>
+</blockquote>
+<p><code>rm -rf a</code>  删除一个不为空的目录(无问询)</p>
+<p><code>rm -f a.txt</code> 删除一个不为空的文件</p>
+<p><code>rm -f *.txt</code> 删除当前目录下所有的.txt文件</p>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><blockquote>
+<p>创建文件,如果文件存在,只更新修改时间</p>
+</blockquote>
+<p><code>touch a.txt</code> 创建a.txt文件</p>
+<h3 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h3><blockquote>
+<p>输出</p>
+</blockquote>
+<p><code>echo &quot;Hi, Linux&quot;</code> 打印输出 Hi, Linux</p>
+<p><code>echo &quot;print (188)&quot; &gt;&gt; code/a.py </code>  指定输出      (&gt; : w ,   &gt;&gt;:a+)</p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><blockquote>
+<p>查询</p>
+</blockquote>
+<p><code>find ./ -name &quot;*.py&quot;</code>  指定查找当前目录下的所有.py文件</p>
+<p><code>find |grep .py</code>    管道符过滤筛选, 文件名中出现.py的文件被筛选出来</p>
+<h2 id="2-2-文件权限"><a href="#2-2-文件权限" class="headerlink" title="2.2 文件权限"></a>2.2 文件权限</h2><h3 id="2-2-1-文件权限操作"><a href="#2-2-1-文件权限操作" class="headerlink" title="2.2.1 文件权限操作"></a>2.2.1 文件权限操作</h3><p>一个文件或目录的权限有山大部分组成,分别是用户权限 + 用户组权限 + 其他组权限.</p>
+<p>每部分的权限分为三个部分,分别是r(读),w(写),x(执行),代表的数值分别是 r:4, w:2,  x:1</p>
+<p>文件权限的部分是文件描述信息中从第二位开始,如下:</p>
+<p><code>-rw-r--r-- a.txt</code></p>
+<ol>
+<li><p>第一位是文件类型: <code>-</code>表示是文件, <code>d</code>表示是目录</p>
+</li>
+<li><p>当前用户: 读,写,不可执行</p>
+<p>当前用户组: 读, 不可写, 不可执行</p>
+<p>其他组: 读, 不可写, 不可执行</p>
+</li>
+</ol>
+<h3 id="2-2-2-chmod修改文件权限"><a href="#2-2-2-chmod修改文件权限" class="headerlink" title="2.2.2 chmod修改文件权限"></a>2.2.2 chmod修改文件权限</h3><blockquote>
+<p>格式: chmod [ugoa] &lt;+|-&gt; [r|w|x]</p>
+<p>u:user    g:group   o:other   a:all</p>
+</blockquote>
+<h4 id="2-2-2-1-字符权限"><a href="#2-2-2-1-字符权限" class="headerlink" title="2.2.2.1 字符权限"></a>2.2.2.1 字符权限</h4><p><code>chomd a+wr a.txt</code>   为所有用户改变权限为读写</p>
+<h4 id="2-2-2-2-数值权限"><a href="#2-2-2-2-数值权限" class="headerlink" title="2.2.2.2 数值权限"></a>2.2.2.2 数值权限</h4><p>r :4</p>
+<p>w:2</p>
+<p>x:1</p>
+<p>chomd 777: 所有用户都有所有权限</p>
+<p>chomd 640: 用户可读写,用户组可读,其他组无任何权限</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/12/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -224,26 +355,18 @@
 
 
   
-    <article id="post-回文串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-LeetCode记录困顿与成长" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="系列文章目录"><a href="#系列文章目录" class="headerlink" title="系列文章目录"></a>系列文章目录</h1><p><font color=#999AAA ><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54981564/article/details/114966574">1.判断回文数之基础篇</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54981564/article/details/115028518">2.Pyhton纯手工打造万年历</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54981564/article/details/115220340">3.LeetCode第一题：两数之和（twoSum）</a></p>
-<p><font color=#992 >                路漫漫其修远兮，吾将上下而求索。<br><font color=#999AAA ></p>
-<p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<hr>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><font color=#999AAA >众所周知：<font color=red> <strong>程序</strong></font> =<font color=red> <strong>算法</strong></font> + <font color=red><strong>数据结构</strong></font>。熟悉常见的算法和数据结构有助于我们优化代码，提高程序的效率、节省时间和内存空间。<br>本文以LeetCode第125题为例，来记录笔者在学习进阶时的疑惑与成长。</p>
+        <h1 id="系列文章目录"><a href="#系列文章目录" class="headerlink" title="系列文章目录"></a>系列文章目录</h1><p><font color=#992 >                路漫漫其修远兮，吾将上下而求索。<br><font color=#999AAA ></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><font color=#999AAA >众所周知：<font color=red> <strong>程序</strong></font> =<font color=red> <strong>算法</strong></font> + <font color=red><strong>数据结构</strong></font>。熟悉常见的算法和数据结构有助于我们优化代码，提高程序的效率、节省时间和内存空间。<br>本篇以LeetCode题目及解答，来记录笔者在学习进阶时的疑惑与成长。</p>
 <hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
 <p><font color=#999AAA >提示：以下是本篇文章正文内容，下面案例可供参考</p>
-<h1 id="一、LeetCode——125-验证回文串"><a href="#一、LeetCode——125-验证回文串" class="headerlink" title="一、LeetCode——125.验证回文串"></a>一、LeetCode——125.验证回文串</h1>
         
-          <a class="article-more-a" href="/2021/04/06/%E5%9B%9E%E6%96%87%E4%B8%B2/#more">more >></a>
+          <a class="article-more-a" href="/2021/04/06/LeetCode%E8%AE%B0%E5%BD%95%E5%9B%B0%E9%A1%BF%E4%B8%8E%E6%88%90%E9%95%BF/#more">more >></a>
         
       
 
@@ -256,82 +379,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/06/%E5%9B%9E%E6%96%87%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/06/hello-world/" class="archive-article-date">
-  	<time datetime="2021-04-06T12:42:19.606Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/06/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/04/06/LeetCode%E8%AE%B0%E5%BD%95%E5%9B%B0%E9%A1%BF%E4%B8%8E%E6%88%90%E9%95%BF/">展开全文 >></a>
         </p>
       
 

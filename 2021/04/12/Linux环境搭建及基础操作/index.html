@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hello World | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="一, ssh连接操作1.1 PowerShell客户端在windows10上打开 1.2 ssh用户名@主机ip地址或名称1ssh root@10.36.174.60  1.3 免密方式1.3.1 生成公钥在PowerShell(客户端)生成公钥和私钥文件,命令如下: 1ssh-keygen  根据提示一步步下一步即可 1.3.2 scp上传再通过scp命令将公钥文件(id_rsa.pub)上传到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2021/04/06/hello-world/index.html">
+<meta property="og:title" content="NaN">
+<meta property="og:url" content="http://example.com/2021/04/12/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="NaN">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="一, ssh连接操作1.1 PowerShell客户端在windows10上打开 1.2 ssh用户名@主机ip地址或名称1ssh root@10.36.174.60  1.3 免密方式1.3.1 生成公钥在PowerShell(客户端)生成公钥和私钥文件,命令如下: 1ssh-keygen  根据提示一步步下一步即可 1.3.2 scp上传再通过scp命令将公钥文件(id_rsa.pub)上传到">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-06T12:42:19.606Z">
-<meta property="article:modified_time" content="2021-04-06T12:42:19.606Z">
+<meta property="article:published_time" content="2021-04-12T11:52:58.107Z">
+<meta property="article:modified_time" content="2021-04-12T11:51:44.050Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -173,39 +173,95 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux环境搭建及基础操作" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Hello World
-    </h1>
-  
-
-        
-        <a href="/2021/04/06/hello-world/" class="archive-article-date">
-  	<time datetime="2021-04-06T12:42:19.606Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-06</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="一-ssh连接操作"><a href="#一-ssh连接操作" class="headerlink" title="一, ssh连接操作"></a>一, ssh连接操作</h1><h2 id="1-1-PowerShell客户端"><a href="#1-1-PowerShell客户端" class="headerlink" title="1.1 PowerShell客户端"></a>1.1 PowerShell客户端</h2><p>在windows10上打开</p>
+<h2 id="1-2-ssh用户名-主机ip地址或名称"><a href="#1-2-ssh用户名-主机ip地址或名称" class="headerlink" title="1.2 ssh用户名@主机ip地址或名称"></a>1.2 ssh用户名@主机ip地址或名称</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@10.36.174.60</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-免密方式"><a href="#1-3-免密方式" class="headerlink" title="1.3 免密方式"></a>1.3 免密方式</h2><h3 id="1-3-1-生成公钥"><a href="#1-3-1-生成公钥" class="headerlink" title="1.3.1 生成公钥"></a>1.3.1 生成公钥</h3><p>在PowerShell(客户端)生成公钥和私钥文件,命令如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>根据提示一步步下一步即可</p>
+<h3 id="1-3-2-scp上传"><a href="#1-3-2-scp上传" class="headerlink" title="1.3.2 scp上传"></a>1.3.2 scp上传</h3><p>再通过scp命令将公钥文件(id_rsa.pub)上传到远程主机上(Linux主机:自己虚拟机,其他人机器,云主机)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp 文件名 root@host1:&#x2F;root&#x2F;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-3-写入授权"><a href="#1-3-3-写入授权" class="headerlink" title="1.3.3 写入授权"></a>1.3.3 写入授权</h3><p>在远程主机上,将公钥写入授权文件(~/.ssh/authorized_keys)中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub  &gt;&gt; .ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h1 id="二-Linux中常用命令"><a href="#二-Linux中常用命令" class="headerlink" title="二, Linux中常用命令"></a>二, Linux中常用命令</h1><h2 id="2-1-文件操作"><a href="#2-1-文件操作" class="headerlink" title="2.1 文件操作"></a>2.1 文件操作</h2><h3 id="Linux中的目录结构"><a href="#Linux中的目录结构" class="headerlink" title="Linux中的目录结构"></a>Linux中的目录结构</h3><p>/ 根目录</p>
+<p>~ 当前用户的home(家)目录【非root为/home/{用户名}，root为/root】</p>
+<p>/etc 系统级别(服务)配置文件所在的根目录</p>
+<p>/home 非root用户所在的目录</p>
+<p>/opt 自定义应用资源的目录</p>
+<p>/bin 系统可执行文件所在的目录</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="ls-查看"><a href="#ls-查看" class="headerlink" title="ls 查看"></a>ls 查看</h3><p>ls -li  index</p>
+<p>ls -lt 时间排序</p>
+<p>ls -lS 文件大小排序</p>
+<h3 id="cd切换目录"><a href="#cd切换目录" class="headerlink" title="cd切换目录"></a>cd切换目录</h3><blockquote>
+<p>切换目录位置的命令</p>
+</blockquote>
+<p>cd /etc/ssh   切换至 /etc/ssh</p>
+<p>cd ~    切换至当前用户的家目录下</p>
+<p>cd /    切换到根目录下</p>
+<h3 id="切换路径"><a href="#切换路径" class="headerlink" title="切换路径"></a>切换路径</h3><p><code>pwd</code> 获取当前完整的绝对路径</p>
+<p><code>.</code>当前路径</p>
+<p><code>..</code>当前路径的父级目录</p>
+<p><code>cd ..</code>从当前目录切换到父级目录</p>
+<h3 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h3><blockquote>
+<p>创建文件目录(夹)</p>
+</blockquote>
+<p><code>mkdir ~/.ssh</code>创建单个目录</p>
+<p><code>mkdir -p ~/a/b/c/d</code>    创建分级目录</p>
+<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><blockquote>
+<p>删除</p>
+</blockquote>
+<p><code>rmdir</code>删除单个目录</p>
+<p><code>rmdir -p /a/b/c/d </code>删除多个联级文件</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><blockquote>
+<p>删除文件及目录</p>
+</blockquote>
+<p><code>rm -rf a</code>  删除一个不为空的目录(无问询)</p>
+<p><code>rm -f a.txt</code> 删除一个不为空的文件</p>
+<p><code>rm -f *.txt</code> 删除当前目录下所有的.txt文件</p>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><blockquote>
+<p>创建文件,如果文件存在,只更新修改时间</p>
+</blockquote>
+<p><code>touch a.txt</code> 创建a.txt文件</p>
+<h3 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h3><blockquote>
+<p>输出</p>
+</blockquote>
+<p><code>echo &quot;Hi, Linux&quot;</code> 打印输出 Hi, Linux</p>
+<p><code>echo &quot;print (188)&quot; &gt;&gt; code/a.py </code>  指定输出      (&gt; : w ,   &gt;&gt;:a+)</p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><blockquote>
+<p>查询</p>
+</blockquote>
+<p><code>find ./ -name &quot;*.py&quot;</code>  指定查找当前目录下的所有.py文件</p>
+<p><code>find |grep .py</code>    管道符过滤筛选, 文件名中出现.py的文件被筛选出来</p>
+<h2 id="2-2-文件权限"><a href="#2-2-文件权限" class="headerlink" title="2.2 文件权限"></a>2.2 文件权限</h2><h3 id="2-2-1-文件权限操作"><a href="#2-2-1-文件权限操作" class="headerlink" title="2.2.1 文件权限操作"></a>2.2.1 文件权限操作</h3><p>一个文件或目录的权限有山大部分组成,分别是用户权限 + 用户组权限 + 其他组权限.</p>
+<p>每部分的权限分为三个部分,分别是r(读),w(写),x(执行),代表的数值分别是 r:4, w:2,  x:1</p>
+<p>文件权限的部分是文件描述信息中从第二位开始,如下:</p>
+<p><code>-rw-r--r-- a.txt</code></p>
+<ol>
+<li><p>第一位是文件类型: <code>-</code>表示是文件, <code>d</code>表示是目录</p>
+</li>
+<li><p>当前用户: 读,写,不可执行</p>
+<p>当前用户组: 读, 不可写, 不可执行</p>
+<p>其他组: 读, 不可写, 不可执行</p>
+</li>
+</ol>
+<h3 id="2-2-2-chmod修改文件权限"><a href="#2-2-2-chmod修改文件权限" class="headerlink" title="2.2.2 chmod修改文件权限"></a>2.2.2 chmod修改文件权限</h3><blockquote>
+<p>格式: chmod [ugoa] &lt;+|-&gt; [r|w|x]</p>
+<p>u:user    g:group   o:other   a:all</p>
+</blockquote>
+<h4 id="2-2-2-1-字符权限"><a href="#2-2-2-1-字符权限" class="headerlink" title="2.2.2.1 字符权限"></a>2.2.2.1 字符权限</h4><p><code>chomd a+wr a.txt</code>   为所有用户改变权限为读写</p>
+<h4 id="2-2-2-2-数值权限"><a href="#2-2-2-2-数值权限" class="headerlink" title="2.2.2.2 数值权限"></a>2.2.2.2 数值权限</h4><p>r :4</p>
+<p>w:2</p>
+<p>x:1</p>
+<p>chomd 777: 所有用户都有所有权限</p>
+<p>chomd 640: 用户可读写,用户组可读,其他组无任何权限</p>
 
       
 
@@ -295,7 +351,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/06/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/12/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,15 +365,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/04/06/%E5%9B%9E%E6%96%87%E4%B8%B2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
+    <a href="/2021/04/09/Python%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -342,7 +394,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-ssh%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">一, ssh连接操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-PowerShell%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 PowerShell客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-ssh%E7%94%A8%E6%88%B7%E5%90%8D-%E4%B8%BB%E6%9C%BAip%E5%9C%B0%E5%9D%80%E6%88%96%E5%90%8D%E7%A7%B0"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 ssh用户名@主机ip地址或名称</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%85%8D%E5%AF%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 免密方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E7%94%9F%E6%88%90%E5%85%AC%E9%92%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 生成公钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-scp%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 scp上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-%E5%86%99%E5%85%A5%E6%8E%88%E6%9D%83"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 写入授权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-Linux%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">二, Linux中常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux%E4%B8%AD%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.1.</span> <span class="toc-text">Linux中的目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.1.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-%E6%9F%A5%E7%9C%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">ls 查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.4.</span> <span class="toc-text">cd切换目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E8%B7%AF%E5%BE%84"><span class="toc-number">2.1.5.</span> <span class="toc-text">切换路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.6.</span> <span class="toc-text">mkdir命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rmdir"><span class="toc-number">2.1.7.</span> <span class="toc-text">rmdir</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm"><span class="toc-number">2.1.8.</span> <span class="toc-text">rm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch"><span class="toc-number">2.1.9.</span> <span class="toc-text">touch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo"><span class="toc-number">2.1.10.</span> <span class="toc-text">echo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">2.1.11.</span> <span class="toc-text">find</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 文件权限操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-chmod%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 chmod修改文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-1-%E5%AD%97%E7%AC%A6%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">2.2.2.1 字符权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-2-%E6%95%B0%E5%80%BC%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">2.2.2.2 数值权限</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
