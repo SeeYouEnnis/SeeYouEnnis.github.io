@@ -179,92 +179,9 @@
         <p>##前言:</p>
 <p>Linux是一种自由和开放源码的操作系统，存在着许多不同的Linux版本，但它们都使用了Linux内核。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、台式计算机 等.</p>
 <p>本篇博客,记录学习Linux时的困顿与成长。</p>
-<p>&lt;/–more–&gt;</p>
-<h1 id="一-ssh连接操作"><a href="#一-ssh连接操作" class="headerlink" title="一, ssh连接操作"></a>一, ssh连接操作</h1><h2 id="1-1-PowerShell客户端"><a href="#1-1-PowerShell客户端" class="headerlink" title="1.1 PowerShell客户端"></a>1.1 PowerShell客户端</h2><p>在windows10上打开</p>
-<h2 id="1-2-ssh用户名-主机ip地址或名称"><a href="#1-2-ssh用户名-主机ip地址或名称" class="headerlink" title="1.2 ssh用户名@主机ip地址或名称"></a>1.2 ssh用户名@主机ip地址或名称</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@10.36.174.60</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-3-免密方式"><a href="#1-3-免密方式" class="headerlink" title="1.3 免密方式"></a>1.3 免密方式</h2><h3 id="1-3-1-生成公钥"><a href="#1-3-1-生成公钥" class="headerlink" title="1.3.1 生成公钥"></a>1.3.1 生成公钥</h3><p>在PowerShell(客户端)生成公钥和私钥文件,命令如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
-
-<p>根据提示一步步下一步即可</p>
-<h3 id="1-3-2-scp上传"><a href="#1-3-2-scp上传" class="headerlink" title="1.3.2 scp上传"></a>1.3.2 scp上传</h3><p>再通过scp命令将公钥文件(id_rsa.pub)上传到远程主机上(Linux主机:自己虚拟机,其他人机器,云主机)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp 文件名 root@host1:&#x2F;root&#x2F;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-3-写入授权"><a href="#1-3-3-写入授权" class="headerlink" title="1.3.3 写入授权"></a>1.3.3 写入授权</h3><p>在远程主机上,将公钥写入授权文件(~/.ssh/authorized_keys)中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub  &gt;&gt; .ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>
-
-<h1 id="二-Linux中常用命令"><a href="#二-Linux中常用命令" class="headerlink" title="二, Linux中常用命令"></a>二, Linux中常用命令</h1><h2 id="2-1-文件操作"><a href="#2-1-文件操作" class="headerlink" title="2.1 文件操作"></a>2.1 文件操作</h2><h3 id="Linux中的目录结构"><a href="#Linux中的目录结构" class="headerlink" title="Linux中的目录结构"></a>Linux中的目录结构</h3><p>/ 根目录</p>
-<p>~ 当前用户的home(家)目录【非root为/home/{用户名}，root为/root】</p>
-<p>/etc 系统级别(服务)配置文件所在的根目录</p>
-<p>/home 非root用户所在的目录</p>
-<p>/opt 自定义应用资源的目录</p>
-<p>/bin 系统可执行文件所在的目录</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="ls-查看"><a href="#ls-查看" class="headerlink" title="ls 查看"></a>ls 查看</h3><p>ls -li  index</p>
-<p>ls -lt 时间排序</p>
-<p>ls -lS 文件大小排序</p>
-<h3 id="cd切换目录"><a href="#cd切换目录" class="headerlink" title="cd切换目录"></a>cd切换目录</h3><blockquote>
-<p>切换目录位置的命令</p>
-</blockquote>
-<p>cd /etc/ssh   切换至 /etc/ssh</p>
-<p>cd ~    切换至当前用户的家目录下</p>
-<p>cd /    切换到根目录下</p>
-<h3 id="切换路径"><a href="#切换路径" class="headerlink" title="切换路径"></a>切换路径</h3><p><code>pwd</code> 获取当前完整的绝对路径</p>
-<p><code>.</code>当前路径</p>
-<p><code>..</code>当前路径的父级目录</p>
-<p><code>cd ..</code>从当前目录切换到父级目录</p>
-<h3 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h3><blockquote>
-<p>创建文件目录(夹)</p>
-</blockquote>
-<p><code>mkdir ~/.ssh</code>创建单个目录</p>
-<p><code>mkdir -p ~/a/b/c/d</code>    创建分级目录</p>
-<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><blockquote>
-<p>删除</p>
-</blockquote>
-<p><code>rmdir</code>删除单个目录</p>
-<p><code>rmdir -p /a/b/c/d </code>删除多个联级文件</p>
-<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><blockquote>
-<p>删除文件及目录</p>
-</blockquote>
-<p><code>rm -rf a</code>  删除一个不为空的目录(无问询)</p>
-<p><code>rm -f a.txt</code> 删除一个不为空的文件</p>
-<p><code>rm -f *.txt</code> 删除当前目录下所有的.txt文件</p>
-<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><blockquote>
-<p>创建文件,如果文件存在,只更新修改时间</p>
-</blockquote>
-<p><code>touch a.txt</code> 创建a.txt文件</p>
-<h3 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h3><blockquote>
-<p>输出</p>
-</blockquote>
-<p><code>echo &quot;Hi, Linux&quot;</code> 打印输出 Hi, Linux</p>
-<p><code>echo &quot;print (188)&quot; &gt;&gt; code/a.py </code>  指定输出      (&gt; : w ,   &gt;&gt;:a+)</p>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><blockquote>
-<p>查询</p>
-</blockquote>
-<p><code>find ./ -name &quot;*.py&quot;</code>  指定查找当前目录下的所有.py文件</p>
-<p><code>find |grep .py</code>    管道符过滤筛选, 文件名中出现.py的文件被筛选出来</p>
-<h2 id="2-2-文件权限"><a href="#2-2-文件权限" class="headerlink" title="2.2 文件权限"></a>2.2 文件权限</h2><h3 id="2-2-1-文件权限操作"><a href="#2-2-1-文件权限操作" class="headerlink" title="2.2.1 文件权限操作"></a>2.2.1 文件权限操作</h3><p>一个文件或目录的权限有山大部分组成,分别是用户权限 + 用户组权限 + 其他组权限.</p>
-<p>每部分的权限分为三个部分,分别是r(读),w(写),x(执行),代表的数值分别是 r:4, w:2,  x:1</p>
-<p>文件权限的部分是文件描述信息中从第二位开始,如下:</p>
-<p><code>-rw-r--r-- a.txt</code></p>
-<ol>
-<li><p>第一位是文件类型: <code>-</code>表示是文件, <code>d</code>表示是目录</p>
-</li>
-<li><p>当前用户: 读,写,不可执行</p>
-<p>当前用户组: 读, 不可写, 不可执行</p>
-<p>其他组: 读, 不可写, 不可执行</p>
-</li>
-</ol>
-<h3 id="2-2-2-chmod修改文件权限"><a href="#2-2-2-chmod修改文件权限" class="headerlink" title="2.2.2 chmod修改文件权限"></a>2.2.2 chmod修改文件权限</h3><blockquote>
-<p>格式: chmod [ugoa] &lt;+|-&gt; [r|w|x]</p>
-<p>u:user    g:group   o:other   a:all</p>
-</blockquote>
-<h4 id="2-2-2-1-字符权限"><a href="#2-2-2-1-字符权限" class="headerlink" title="2.2.2.1 字符权限"></a>2.2.2.1 字符权限</h4><p><code>chomd a+wr a.txt</code>   为所有用户改变权限为读写</p>
-<h4 id="2-2-2-2-数值权限"><a href="#2-2-2-2-数值权限" class="headerlink" title="2.2.2.2 数值权限"></a>2.2.2.2 数值权限</h4><p>r :4</p>
-<p>w:2</p>
-<p>x:1</p>
-<p>chomd 777: 所有用户都有所有权限</p>
-<p>chomd 640: 用户可读写,用户组可读,其他组无任何权限</p>
-
+        
+          <a class="article-more-a" href="/2021/04/12/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/#more">more >></a>
+        
       
 
       
