@@ -8,13 +8,19 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="基于docker的MySQL搭建及测试 1. 下载MySQL并创建容器 docker search mysql  搜索 docker pull mysql   下载 docker run -itd --name db1 -e MYSQL_ROOT_PASSWORD&#x3D;root -p 3306:3306 mysql:5.7创建mysql容器 docker ps [-a]docker logs db1">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2021/04/14/%E5%9F%BA%E4%BA%8Edocker%E9%83%A8%E7%BD%B2%E5%8F%8A%E6%B5%8B%E8%AF%95MySQL/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="基于docker的MySQL搭建及测试 1. 下载MySQL并创建容器 docker search mysql  搜索 docker pull mysql   下载 docker run -itd --name db1 -e MYSQL_ROOT_PASSWORD&#x3D;root -p 3306:3306 mysql:5.7创建mysql容器 docker ps [-a]docker logs db1">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/果然/Desktop/csdn/mysql_pycharm_plugin.png">
+<meta property="article:published_time" content="2021-04-14T14:55:27.144Z">
+<meta property="article:modified_time" content="2021-04-14T15:37:47.592Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/果然/Desktop/csdn/mysql_pycharm_plugin.png">
   
     <link rel="alternative" href="/atom.xml" title="NaN" type="application/atom+xml">
   
@@ -169,236 +175,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-MySQL索引、事务和视图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、MySQL索引"><a href="#一、MySQL索引" class="headerlink" title="一、MySQL索引"></a>一、MySQL索引</h2><blockquote>
-<p>MySQL索引是一种数据结构,在DQL语句的where条件中使用引用字段,则先从索引中查询。</p>
-<blockquote>
-<p>CLOB : 字符大对象 (Character Large Object) </p>
-<p>BLOB : 二进制大对象 （binary large object）</p>
-<p>TEXT ： 文本文件，对长度无限制【如markdown】</p>
-<p>float ： 单精度，长度为4</p>
-<p>double ： 双精度， 长度为8</p>
-<p>varchar ： 可变长度字符【长度255】,以时间换空间</p>
-<p>char : 不可变长度字符，以空间换取时间</p>
-<blockquote>
-<p>utf-8 : 一个汉字占三个字节</p>
-<p>gbk : 一个汉字占两个字节</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name</span><br><span class="line">    [USING index_type]</span><br><span class="line">    ON tbl_name (index_col_name,...)</span><br><span class="line"> </span><br><span class="line">index_col_name:</span><br><span class="line">    col_name [(length)] [ASC | DESC]</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-创建索引"><a href="#1-创建索引" class="headerlink" title="1. 创建索引"></a>1. 创建索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 基于alter table</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span></span><br><span class="line"><span class="keyword">ADD</span> INDEX [index_name] [index_type] (index_col_name,...)</span><br><span class="line"><span class="keyword">DROP</span> INDEX index_name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 基于create table</span></span><br><span class="line"><span class="keyword">CREATE</span> [TEMPORARY] <span class="keyword">TABLE</span> [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] tbl_name</span><br><span class="line"> <span class="operator">|</span> [<span class="keyword">CONSTRAINT</span> [symbol]] <span class="keyword">PRIMARY</span> KEY [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> KEY [index_name] [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> INDEX [index_name] [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> [<span class="keyword">CONSTRAINT</span> [symbol]] <span class="keyword">UNIQUE</span> [INDEX]</span><br><span class="line">        [index_name] [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> [FULLTEXT<span class="operator">|</span>SPATIAL] [INDEX] [index_name] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> [<span class="keyword">CONSTRAINT</span> [symbol]] <span class="keyword">FOREIGN</span> KEY</span><br><span class="line">        [index_name] (index_col_name,...) [reference_definition]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>1.1 创建通过表创建</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建 </span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-索引视图"><a href="#2-索引视图" class="headerlink" title="2. 索引视图"></a>2. 索引视图</h3><blockquote>
-<p>创建索引后，可以通过索引视图查询已经存在的索引</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 查询相关索引</span><br><span class="line">select a.name idx_name, b.name tb_name</span><br><span class="line">from information_schema.innodb_sys_indexes a</span><br><span class="line">join information_schema.innodb_sys_tables b</span><br><span class="line">on (a.table_id &#x3D; b.table_id);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3-删除索引"><a href="#3-删除索引" class="headerlink" title="3. 删除索引"></a>3. 删除索引</h3><p>3.1 删除主键及唯一约束索引</p>
-<h2 id="二、MySQL事务"><a href="#二、MySQL事务" class="headerlink" title="二、MySQL事务"></a>二、MySQL事务</h2><blockquote>
-<p>事务即发生某一事件,从开始到结束的整个过程</p>
-<p>在MySQL中,事务存在四个特性:当执行DML/DDL/DCL语句(事件),确保数据的完整性、一致性。</p>
-</blockquote>
-<h3 id="mysql关于事务的相关命令："><a href="#mysql关于事务的相关命令：" class="headerlink" title="mysql关于事务的相关命令："></a>mysql关于事务的相关命令：</h3><p>begin：开始事务</p>
-<p>rollback ： 回滚事务</p>
-<p>save &lt;还原点&gt;  保存事务的还原点</p>
-<p>rollback to &lt;还原点&gt;</p>
-<p>commit 提交</p>
-<h3 id="1-ACID【事务】的四个特性"><a href="#1-ACID【事务】的四个特性" class="headerlink" title="1.ACID【事务】的四个特性"></a>1.ACID【事务】的四个特性</h3><h4 id="1-1-原子性（Atomicity）"><a href="#1-1-原子性（Atomicity）" class="headerlink" title="1.1 原子性（Atomicity）"></a>1.1 原子性（Atomicity）</h4><blockquote>
-<p>事务中的所有操作，要么全部执行，要么都不执行</p>
-</blockquote>
-<h4 id="1-2-一致性-（Consistency）"><a href="#1-2-一致性-（Consistency）" class="headerlink" title="1.2 一致性 （Consistency）"></a>1.2 一致性 （Consistency）</h4><blockquote>
-<p>事务开始和结束后，数据库的完整性不会被破坏</p>
-</blockquote>
-<h4 id="1-3-隔离性-（Isolation）"><a href="#1-3-隔离性-（Isolation）" class="headerlink" title="1.3 隔离性 （Isolation）"></a>1.3 隔离性 （Isolation）</h4><blockquote>
-<p>事务之间互不影响，但不同的事务的隔离级别在不同程度上会有影响</p>
-</blockquote>
-<h4 id="1-4-持久性-（Durability）"><a href="#1-4-持久性-（Durability）" class="headerlink" title="1.4 持久性 （Durability）"></a>1.4 持久性 （Durability）</h4><blockquote>
-<p>事务提交以后，对数据的修改时永久性的，即使系统故障也不会丢失</p>
-</blockquote>
-<h3 id="2-事务的四个隔离特性"><a href="#2-事务的四个隔离特性" class="headerlink" title="2. 事务的四个隔离特性"></a>2. 事务的四个隔离特性</h3><h4 id="2-1-读未提交（read-uncommitted）"><a href="#2-1-读未提交（read-uncommitted）" class="headerlink" title="2.1 读未提交（read uncommitted）"></a>2.1 读未提交（read uncommitted）</h4><blockquote>
-<p><code>一个事务可以读取另一事务未提交的修改</code></p>
-<p>如：A事务对数据库数据做的修改，在A事务未提交时，事务B可以读到事务A对数据所做的操作</p>
-</blockquote>
-<p>【产生问题】</p>
-<ul>
-<li>脏读</li>
-<li>幻读</li>
-<li>不可重复读</li>
-</ul>
-<h4 id="2-2-读已提交（read-committed）"><a href="#2-2-读已提交（read-committed）" class="headerlink" title="2.2 读已提交（read committed）"></a>2.2 读已提交（read committed）</h4><h4 id="2-3-可重复读（repeatable-read）"><a href="#2-3-可重复读（repeatable-read）" class="headerlink" title="2.3 可重复读（repeatable read）"></a>2.3 可重复读（repeatable read）</h4><h4 id="2-4-串行化-（serializable）"><a href="#2-4-串行化-（serializable）" class="headerlink" title="2.4 串行化 （serializable）"></a>2.4 串行化 （serializable）</h4><h3 id="3、隔离级别的设置"><a href="#3、隔离级别的设置" class="headerlink" title="3、隔离级别的设置"></a>3、隔离级别的设置</h3><h4 id="3-1-查询当前级别"><a href="#3-1-查询当前级别" class="headerlink" title="3.1 查询当前级别"></a>3.1 查询当前级别</h4><p><code>show variables like &#39;%isolation%</code></p>
-<h4 id="3-2-设置级别"><a href="#3-2-设置级别" class="headerlink" title="3.2 设置级别"></a>3.2 设置级别</h4><p><code>set session transaction isolation level &lt;级别名称&gt;</code></p>
-<blockquote>
-<p>级别名称与四种级别一一对应</p>
-<p>read uncommitted    读未提交</p>
-<p>read </p>
-</blockquote>
-<h2 id="三、视图view"><a href="#三、视图view" class="headerlink" title="三、视图view"></a>三、视图view</h2><blockquote>
-<p>视图用于缓存复杂的sql语句,查询用法同表</p>
-<p>视图本质上是一张虚拟的表</p>
-</blockquote>
-<h3 id="1、语法"><a href="#1、语法" class="headerlink" title="1、语法"></a>1、语法</h3><p><code>create [or replace] view &lt;视图名&gt; as &lt;select  语句&gt;</code></p>
-<p>: 创建【或更新】数据</p>
-<h3 id="2、查看视图字典"><a href="#2、查看视图字典" class="headerlink" title="2、查看视图字典"></a>2、查看视图字典</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> table_schema,table_name </span><br><span class="line"><span class="keyword">from</span> information_schema.views </span><br><span class="line"><span class="keyword">where</span> table_schle_schema<span class="operator">=</span><span class="string">&#x27;bank&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/19/MySQL%E7%B4%A2%E5%BC%95%E3%80%81%E4%BA%8B%E5%8A%A1%E5%92%8C%E8%A7%86%E5%9B%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MySQL精选面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-使用MySQL的优点-面试题-："><a href="#1-使用MySQL的优点-面试题-：" class="headerlink" title="1.使用MySQL的优点[面试题]："></a>1.使用MySQL的优点[面试题]：</h3><ul>
-<li>MySQL 在6之前是开源的，6版本开始收费</li>
-<li>MySQL 支持大型的数据库。可以处理拥有上千万条记录的大型数据库。</li>
-<li>MySQL 使用标准的SQL数据语言形式。</li>
-<li>MySQL 可以运行于多个系统上，并且支持多种语言。这些编程语言包括C、C++、Python、Java、Perl、PHP、Eiffel、Ruby和Tcl等。</li>
-<li>MySQL 对PHP有很好的支持，PHP是目前最流行的Web开发语言。</li>
-<li>MySQL 支持大型数据库，支持5000万条记录的数据仓库，32位系统表文件最大可支持4GB，64位系统支持最大的表文件为8TB。</li>
-<li>MySQL 是可以定制的，采用了GPL协议，你可以修改源码来开发自己的 MySQL 系统</li>
-</ul>
-<h3 id="2-数据库结构-面试题"><a href="#2-数据库结构-面试题" class="headerlink" title="2.数据库结构[面试题]"></a>2.数据库结构[面试题]</h3><blockquote>
-<p>​    数据库服务器，只是在机器上安装了一个数据库管理程序，这个管理程序可以管理多个数据库，一般开发人员会针对每一个应用创建一个数据库</p>
-<p>​    为保存应用中实体的数据，一般会在数据库创建多个表，以保存程序中实体的数据</p>
-<p>具体结构如下:</p>
-<p>​    一个DBMS中可以维护多个数据库</p>
-<p>​    一个数据库由多张表组成</p>
-<p>​    一张表由多条记录组成</p>
-<p>​    一条记录由多个字段组成</p>
-<p>说明:</p>
-<p>​    数据库中的表相当于Python中的类,如:学生类Student—–&gt;学生表student</p>
-<p>​    数据库中的数据表中的记录相当于Python中通过类创建的对象,如:Student(“xiaoming”,18,66)——&gt;xiaoming 18  66</p>
-<p>​    数据库中的数据表中的字段相当于Python中定义的实例属性,如:name,age,score——&gt;name  varchar(20) ,age int,score int    </p>
-</blockquote>
-<h3 id="3-SQL分类-面试题"><a href="#3-SQL分类-面试题" class="headerlink" title="3.SQL分类[面试题]"></a>3.SQL分类[面试题]</h3><blockquote>
-<ul>
-<li><p>DDL：数据定义语言（Data Definition Language）</p>
-<p>作用:针对数据库,数据表进行创建,修改和删除的操作</p>
-<p>关键字:create   alter    drop</p>
-</li>
-<li><p>DML：数据操作语言（Data Manipulation Language）</p>
-<p>作用:针对数据表中的记录,字段进行增删改的操作</p>
-<p>关键字:insert   update    delete/truncate</p>
-</li>
-<li><p>DQL：数据查询语言（Data Query Language）</p>
-<p>作用:对数据库中的表,记录,字段进行查询</p>
-<p>关键字:select…from    where    like    order by    group by     having    limit   between..and    or    in 等</p>
-</li>
-<li><p>DCL：数据库控制语言（Data Control Language）</p>
-<p>作用:对数据库的安全级别和访问权限进行管理</p>
-<p>关键字:begin   commit     rollback</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="4-【面试题】group-by分组查询中where和having-的区别"><a href="#4-【面试题】group-by分组查询中where和having-的区别" class="headerlink" title="4.【面试题】group by分组查询中where和having 的区别"></a>4.【面试题】group by分组查询中where和having 的区别</h3><p>​    a.where表示在分组之前条件限制条件，having表示在分组之后添加限制条件</p>
-<p>​    b.where之后不能跟聚合函数，但是，having后可以使用聚合函数进行筛选</p>
-<blockquote>
-<p>DQL的书写顺序:</p>
-<p>​    select —-&gt;from—-&gt;where—-&gt;group by —-&gt;having—-&gt;order by —–&gt;limit</p>
-<p>DQL的执行顺序:</p>
-<p>​    from —-&gt;where—-&gt;group by —-&gt;having—-&gt;select—-&gt;order by—-&gt;limit</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/15/MySQL%E7%B2%BE%E9%80%89%E9%9D%A2%E8%AF%95%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于docker部署及测试MySQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-基于docker部署及测试MySQL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -470,6 +247,37 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -477,16 +285,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/14/%E5%9F%BA%E4%BA%8Edocker%E9%83%A8%E7%BD%B2%E5%8F%8A%E6%B5%8B%E8%AF%95MySQL/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/14/%E5%9F%BA%E4%BA%8Edocker%E9%83%A8%E7%BD%B2%E5%8F%8A%E6%B5%8B%E8%AF%95MySQL/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/04/15/MySQL%E7%B2%BE%E9%80%89%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/12/Linux%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -501,169 +377,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p> Linux是一种自由和开放源码的操作系统，存在着许多不同的Linux版本，但它们都使用了Linux内核。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、台式计算机 等.</p>
-<p><strong>仅以本篇博客,<font color=red>记录学习Linux</font>的点滴。</strong></p>
-        
-          <a class="article-more-a" href="/2021/04/12/Linux%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/12/Linux%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BDMySQL%E5%B9%B6%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">1. 下载MySQL并创建容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">2. 修改配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BF%9B%E5%85%A5MySQL%E4%BA%A4%E4%BA%92%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">3. 进入MySQL交互环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-pymysql%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.</span> <span class="toc-text">4. pymysql测试连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-PyCharm%E6%8F%92%E4%BB%B6%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">5. PyCharm插件测试连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">6. 数据库基础操作及常见命令</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
-    <article id="post-Python面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Python常见面试题汇总"><a href="#Python常见面试题汇总" class="headerlink" title="Python常见面试题汇总"></a>Python常见面试题汇总</h2><p><font color=#999AAA >众所周知：</p>
-<p>了解语言的<font color=red>底层原理</font>，熟悉语言的<font color=red>特点</font>，有助于我们更好地掌握和运用该门语言。底层原理，算法和数据结构及其相关的</p>
-<p>仅以本文来汇总<font color=red>Python面试题</font></p>
-<p>
-        
-          <a class="article-more-a" href="/2021/04/09/Python%E9%9D%A2%E8%AF%95%E9%A2%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/09/Python%E9%9D%A2%E8%AF%95%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
 
   
-    <article id="post-LeetCode记录困顿与成长" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="LeetCode解题汇总"><a href="#LeetCode解题汇总" class="headerlink" title="LeetCode解题汇总"></a>LeetCode解题汇总</h2><p><font color=#992 >                路漫漫其修远兮，吾将上下而求索。<br><font color=red> <strong>程序</strong></font> =<font color=red> <strong>算法</strong></font> + <font color=red><strong>数据结构</strong></font>。熟悉常见的算法和数据结构有助于我们优化代码，提高程序的效率、节省时间和内存空间。</p>
-<p>本篇以<font color=red>LeetCode</font>题目及解答，来记录笔者在学习进阶时的疑惑与成长。</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-        
-          <a class="article-more-a" href="/2021/04/06/LeetCode%E8%AE%B0%E5%BD%95%E5%9B%B0%E9%A1%BF%E4%B8%8E%E6%88%90%E9%95%BF/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/06/LeetCode%E8%AE%B0%E5%BD%95%E5%9B%B0%E9%A1%BF%E4%B8%8E%E6%88%90%E9%95%BF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -686,8 +425,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
