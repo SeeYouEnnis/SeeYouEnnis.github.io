@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="作业讲解 需求：已知数据库下有如些几个表，完成操作">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/2021/04/30/MySQL_2/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="作业讲解 需求：已知数据库下有如些几个表，完成操作">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-30T12:40:21.842Z">
+<meta property="article:modified_time" content="2021-04-30T12:49:32.814Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -169,235 +173,480 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL_2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="作业讲解"><a href="#作业讲解" class="headerlink" title="作业讲解"></a>作业讲解</h2><blockquote>
+<p>需求：已知数据库下有如些几个表，完成操作</p>
+</blockquote>
+ <span id="more"></span>
+
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">#建学生信息表student</span></span><br><span class="line">create table student(</span><br><span class="line">sno varchar(<span class="number">20</span>),</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">ssex varchar(<span class="number">20</span>),</span><br><span class="line">sbirthday datetime,</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">varchar</span>(<span class="params"><span class="number">20</span></span>)</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">#建立成绩表</span></span><br><span class="line">create table score</span><br><span class="line">(</span><br><span class="line">sno varchar(<span class="number">20</span>),</span><br><span class="line">cno varchar(<span class="number">20</span>),</span><br><span class="line">degree decimal</span><br><span class="line">);</span><br><span class="line"><span class="comment">#添加学生信息</span></span><br><span class="line">insert into student values(<span class="string">&#x27;108&#x27;</span>,<span class="string">&#x27;曾华&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;1977-09-01&#x27;</span>,<span class="string">&#x27;95033&#x27;</span>);</span><br><span class="line">insert into student values(<span class="string">&#x27;105&#x27;</span>,<span class="string">&#x27;匡明&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;1975-10-02&#x27;</span>,<span class="string">&#x27;95031&#x27;</span>);</span><br><span class="line">insert into student values(<span class="string">&#x27;107&#x27;</span>,<span class="string">&#x27;王丽&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="string">&#x27;1976-01-23&#x27;</span>,<span class="string">&#x27;95033&#x27;</span>);</span><br><span class="line">insert into student values(<span class="string">&#x27;101&#x27;</span>,<span class="string">&#x27;李军&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;1976-02-20&#x27;</span>,<span class="string">&#x27;95033&#x27;</span>);</span><br><span class="line">insert into student values(<span class="string">&#x27;109&#x27;</span>,<span class="string">&#x27;王芳&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="string">&#x27;1975-02-10&#x27;</span>,<span class="string">&#x27;95031&#x27;</span>);</span><br><span class="line">insert into student values(<span class="string">&#x27;103&#x27;</span>,<span class="string">&#x27;陆君&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;1974-06-03&#x27;</span>,<span class="string">&#x27;95031&#x27;</span>);</span><br><span class="line"><span class="comment">#添加成绩表</span></span><br><span class="line">insert into score values(<span class="string">&#x27;103&#x27;</span>,<span class="string">&#x27;3-245&#x27;</span>,<span class="string">&#x27;86&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;105&#x27;</span>,<span class="string">&#x27;3-245&#x27;</span>,<span class="string">&#x27;75&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;109&#x27;</span>,<span class="string">&#x27;3-245&#x27;</span>,<span class="string">&#x27;68&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;103&#x27;</span>,<span class="string">&#x27;3-105&#x27;</span>,<span class="string">&#x27;92&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;105&#x27;</span>,<span class="string">&#x27;3-105&#x27;</span>,<span class="string">&#x27;88&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;109&#x27;</span>,<span class="string">&#x27;3-105&#x27;</span>,<span class="string">&#x27;76&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;103&#x27;</span>,<span class="string">&#x27;3-105&#x27;</span>,<span class="string">&#x27;64&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;105&#x27;</span>,<span class="string">&#x27;3-105&#x27;</span>,<span class="string">&#x27;91&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;109&#x27;</span>,<span class="string">&#x27;3-105&#x27;</span>,<span class="string">&#x27;78&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;103&#x27;</span>,<span class="string">&#x27;6-166&#x27;</span>,<span class="string">&#x27;85&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;105&#x27;</span>,<span class="string">&#x27;6-166&#x27;</span>,<span class="string">&#x27;79&#x27;</span>);</span><br><span class="line">insert into score values(<span class="string">&#x27;109&#x27;</span>,<span class="string">&#x27;6-166&#x27;</span>,<span class="string">&#x27;81&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">#1、 查询Student表中的所有记录的Sname、Ssex和Class列</span></span><br><span class="line">select sname,ssex,class from student;</span><br><span class="line"></span><br><span class="line"><span class="comment">#2、 查询学生所有的班级即不重复的class列</span></span><br><span class="line">select distinct class from student;</span><br><span class="line"></span><br><span class="line"><span class="comment">#3、 查询Student表的所有记录</span></span><br><span class="line">select * <span class="keyword">from</span> student;</span><br><span class="line"></span><br><span class="line"><span class="comment">#4、查询Score表中成绩在60到80之间的所有记录</span></span><br><span class="line">select *  <span class="keyword">from</span> score where degree between <span class="number">60</span> <span class="keyword">and</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#5、 查询Score表中成绩为85，86或88的记录</span></span><br><span class="line">select *  <span class="keyword">from</span> score where degree <span class="keyword">in</span> (<span class="number">85</span>,<span class="number">86</span>,<span class="number">88</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">#6、 查询Student表中“95031”班或性别为“女”的同学记录</span></span><br><span class="line">select *  from student where class=&#x27;95031&#x27; or ssex=&#x27;女&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="comment">#7、 以Class降序查询Student表的所有记录</span></span><br><span class="line">select *  from student order by class desc;</span><br><span class="line"></span><br><span class="line"><span class="comment">#8、 以Cno升序、Degree降序查询Score表的所有记录</span></span><br><span class="line">select *  <span class="keyword">from</span> score order by cno asc,degree desc;</span><br><span class="line"></span><br><span class="line"><span class="comment">#9、 查询“95031”班的学生人数</span></span><br><span class="line">select count(*)  from student where class=&#x27;95031&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="comment">#10、查询Score表中的最高分的学生学号和课程号</span></span><br><span class="line"><span class="comment"># select sno,cno,max(degree)  from score;</span></span><br><span class="line">select sno,cno  <span class="keyword">from</span> score where degree=(select <span class="built_in">max</span>(degree)  <span class="keyword">from</span> score);</span><br><span class="line"></span><br><span class="line"><span class="comment">#11、查询每门课的平均成绩</span></span><br><span class="line">select cno,avg(degree)  <span class="keyword">from</span> score group by cno;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#12、查询Score表中至少有5名学生选修的并以3开头的课程的平均分数</span></span><br><span class="line">select cno,count(cno)  <span class="keyword">from</span> score group by cno;   <span class="comment"># 统计个数</span></span><br><span class="line">select cno,avg(degree)  <span class="keyword">from</span> score group by cno;   <span class="comment"># 计算平均值 </span></span><br><span class="line"></span><br><span class="line">select cno,avg(degree) <span class="keyword">from</span> score where cno like <span class="string">&quot;3%&quot;</span> group by cno having count(cno) &gt;= <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#13、查询分数大于70，小于90的sno列</span></span><br><span class="line">select sno <span class="keyword">from</span> score where degree&gt;<span class="number">70</span> <span class="keyword">and</span> degree&lt;<span class="number">90</span>;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="一、数据的完整性【约束】"><a href="#一、数据的完整性【约束】" class="headerlink" title="一、数据的完整性【约束】"></a>一、数据的完整性【约束】</h2><blockquote>
+<p>概念：对表中数据进行限定</p>
+<p>确保数据库完整性的实质就是在创建表时给表中数据添加约束</p>
+<p>约束分类：</p>
+<ol>
+<li>非空约束：not null</li>
+<li>唯一约束：unique</li>
+<li>主键约束：primary key</li>
+<li>外键约束：foreign key</li>
+<li>默认值约束：default </li>
+</ol>
+</blockquote>
+<h3 id="1-非空约束not-null"><a href="#1-非空约束not-null" class="headerlink" title="1.非空约束not null"></a>1.非空约束not null</h3><blockquote>
+<p>限定字段值不能为空</p>
+<p>创建表时，添加非空约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(字段名 字段类型 <span class="keyword">not</span> <span class="keyword">null</span>, 字段名 字段类型 [约束], ...);</span><br></pre></td></tr></table></figure>
+
+<p>创建表后，添加非空约束</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 modify 字段名 字段类型 <span class="keyword">not</span> null ;  </span><br></pre></td></tr></table></figure>
+
+<p>删除非空约束（设置字段允许有空值）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 modify 字段名 字段类型;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1,创建表的时候添加非空约束</span></span><br><span class="line">create table stu1(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span> <span class="keyword">not</span> null,</span><br><span class="line">sname varchar(<span class="number">20</span>) <span class="keyword">not</span> null,</span><br><span class="line">score <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into stu1 values(<span class="number">1</span>,<span class="string">&#x27;aaa&#x27;</span>,<span class="number">45</span>);</span><br><span class="line">-- insert into stu1 (sname,score) values(<span class="string">&#x27;bbbb&#x27;</span>,<span class="number">45</span>);  <span class="comment"># Field &#x27;id&#x27; doesn&#x27;t have a default value</span></span><br><span class="line">insert into stu1 values(<span class="number">2</span>,null,<span class="number">45</span>);    <span class="comment"># Column &#x27;sname&#x27; cannot be null</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.表创建完成,再添加非空约束</span></span><br><span class="line">create table stu2(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">score <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line">insert into stu2 values(<span class="number">1</span>,null,<span class="number">45</span>);</span><br><span class="line">insert into stu2 (sname,score) values(<span class="string">&#x27;bbbb&#x27;</span>,<span class="number">45</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意:如果表已经创建完成,并且向其中插入了数据,插入指定字段的数据为null,则再修改该字段为非空约束,无法操作</span></span><br><span class="line">alter table stu2 modify sname varchar(<span class="number">20</span>) <span class="keyword">not</span> null;</span><br><span class="line">delete <span class="keyword">from</span> stu2 where sname <span class="keyword">is</span> null;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2-默认值约束default"><a href="#2-默认值约束default" class="headerlink" title="2.默认值约束default"></a>2.默认值约束default</h3><blockquote>
+<p>创建表时，添加默认值约束</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(字段名 字段类型 default  xxxx, 字段名 字段类型 [约束], ...);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1,创建表的时候添加默认值约束</span></span><br><span class="line">create table stu3(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) default <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">);</span><br><span class="line">insert into stu3 (<span class="built_in">id</span>,sname)  values(<span class="number">1</span>,<span class="string">&quot;gaga&quot;</span>);</span><br><span class="line">insert into stu3 values(<span class="number">2</span>,<span class="string">&quot;gaga&quot;</span>,<span class="string">&#x27;xian&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.创建表后添加默认值约束</span></span><br><span class="line">create table stu4(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">alter table stu4 modify address varchar(<span class="number">30</span>) default <span class="string">&#x27;中国&#x27;</span>;</span><br><span class="line">insert into stu4 (<span class="built_in">id</span>,sname)  values(<span class="number">1</span>,<span class="string">&quot;gaga&quot;</span>);</span><br><span class="line">insert into stu4 values(<span class="number">2</span>,<span class="string">&quot;gaga&quot;</span>,<span class="string">&#x27;xian&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-唯一约束-unique"><a href="#3-唯一约束-unique" class="headerlink" title="3.唯一约束 unique"></a>3.唯一约束 unique</h3><blockquote>
+<p>作用：限定某一字段的字段值不能有重复，一般用于确保在非主键列中不输入重复的值</p>
+<p>创建表时，添加唯一约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(字段名 字段类型 <span class="keyword">unique</span>, 字段名 字段类型 [约束], ...);</span><br></pre></td></tr></table></figure>
+
+<p>创建表后，添加唯一约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 modify 字段名 字段类型 <span class="keyword">unique</span>;</span><br></pre></td></tr></table></figure>
+
+<p>删除唯一约束（设置字段允许有重复值）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span>  字段名;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建表的时候添加唯一约束</span></span><br><span class="line">create table stu5(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">cardid <span class="built_in">int</span> unique</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into stu5 values(<span class="number">1</span>,<span class="string">&#x27;aaa&#x27;</span>,<span class="number">45</span>);</span><br><span class="line"><span class="comment"># insert into stu5 values(3,&#x27;bbbb&#x27;,45);  #  Duplicate重复 entry &#x27;45&#x27; for key &#x27;cardid&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意:唯一约束只能限制非空数据</span></span><br><span class="line">insert into stu5 (<span class="built_in">id</span>,sname) values(<span class="number">1</span>,<span class="string">&#x27;aaa&#x27;</span>);</span><br><span class="line">insert into stu5 (<span class="built_in">id</span>,sname) values(<span class="number">3</span>,<span class="string">&#x27;ghhs&#x27;</span>);</span><br><span class="line">insert into stu5 values(<span class="number">6</span>,<span class="string">&#x27;bbb&#x27;</span>,null);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.表创建完毕,添加唯一约束</span></span><br><span class="line">create table stu6(</span><br><span class="line"><span class="built_in">id</span> <span class="built_in">int</span>,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">cardid <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line">insert into stu6 values(<span class="number">1</span>,<span class="string">&#x27;aaa&#x27;</span>,<span class="number">45</span>);</span><br><span class="line">insert into stu6 values(<span class="number">5</span>,<span class="string">&#x27;565&#x27;</span>,<span class="number">45</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># alter table stu6 modufy cardid int unique;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4-主键约束primary-key"><a href="#4-主键约束primary-key" class="headerlink" title="4.主键约束primary key"></a>4.主键约束primary key</h3><blockquote>
+<p>特点：</p>
+<ol>
+<li>非空且唯一</li>
+<li>一张表只能有一个字段是主键</li>
+<li>主键是表中记录的唯一标识</li>
+</ol>
+<p>创建表时，添加主键约束</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(字段名 字段类型 primary key, 字段名 字段类型 [约束], ...);</span><br><span class="line">create table 表名(字段名 字段类型 [约束], 字段名 字段类型 [约束], ... , primary key(主键字段));</span><br></pre></td></tr></table></figure>
+
+<p>创建表后，添加主键约束</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 modify 字段名 字段类型 primary key;</span><br></pre></td></tr></table></figure>
+
+<p>删除主键</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop primary key;</span><br><span class="line">注意：删除主键约束后，主键仍有非空约束</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建表的过程中添加主键约束</span></span><br><span class="line"><span class="comment"># a,</span></span><br><span class="line">create table stu7(</span><br><span class="line">sid <span class="built_in">int</span> primary key,   <span class="comment"># 非空,唯一</span></span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) <span class="keyword">not</span> null default <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment"># b</span></span><br><span class="line">create table stu8(</span><br><span class="line">sid <span class="built_in">int</span>,  </span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) <span class="keyword">not</span> null default <span class="string">&#x27;北京&#x27;</span>,</span><br><span class="line">primary key(sid)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.表创建完毕,添加主键约束</span></span><br><span class="line">create table stu9(</span><br><span class="line">sid <span class="built_in">int</span>,  </span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) <span class="keyword">not</span> null default <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">);</span><br><span class="line"><span class="comment"># alter table 表名 add constraint 约束名称 primary key(字段名称);</span></span><br><span class="line">alter table stu9 add constraint stu9_sid primary key(sid);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.删除主键,注意:在一张表中,主键只能添加给一个字段,删除的时候可以直接删除</span></span><br><span class="line">alter table stu9 drop primary key;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="主键自增长-自动增长列：【MySQL】"><a href="#主键自增长-自动增长列：【MySQL】" class="headerlink" title="主键自增长/自动增长列：【MySQL】"></a>主键自增长/自动增长列：【MySQL】</h4><blockquote>
+<p>概念：如果某个字段是数值类型的主键字段，可以使用 auto_increment 来实现主键自增长</p>
+<p>一般给主键添加自动增长的数值，列只能是整数类型，但是如果删除之前增长的序号，后面再添加的时候序号不会重新开始，而是接着被删除的那一列的序号</p>
+</blockquote>
+<blockquote>
+<p>创建表时，添加主键自增长</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(字段名 字段类型 <span class="keyword">primary</span> key auto_increment, 字段名 字段类型 [约束], ...);</span><br></pre></td></tr></table></figure>
+
+<p>创建表后，添加主键自增长</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 modify 主键字段 字段类型 auto_increment;</span><br></pre></td></tr></table></figure>
+
+<p>创建表后，添加主键约束的同时，设置自增长</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 modify 字段名 字段类型 <span class="keyword">primary</span> key auto_increment</span><br></pre></td></tr></table></figure>
+
+<p>删除自增长</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 modify 字段名 字段类型;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.创建表的时候,添加主键自增长</span></span><br><span class="line">create table stu10(</span><br><span class="line">sid <span class="built_in">int</span> primary key auto_increment,   </span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) <span class="keyword">not</span> null default <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into stu10  values(<span class="number">1</span>,<span class="string">&quot;fa&quot;</span>,<span class="string">&quot;西安&quot;</span>);</span><br><span class="line">insert into stu10 (sname,address) values(<span class="string">&quot;56&quot;</span>,<span class="string">&quot;gsh&quot;</span>);</span><br><span class="line">insert into stu10 (sname,address) values(<span class="string">&quot;56&quot;</span>,<span class="string">&quot;gsh&quot;</span>);</span><br><span class="line">insert into stu10 (sname,address) values(<span class="string">&quot;56&quot;</span>,<span class="string">&quot;gsh&quot;</span>);</span><br><span class="line">insert into stu10 (sname,address) values(<span class="string">&quot;56&quot;</span>,<span class="string">&quot;gsh&quot;</span>);</span><br><span class="line">insert into stu10 (sname,address) values(<span class="string">&quot;56&quot;</span>,<span class="string">&quot;gsh&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.表创建完成,添加主键自增长</span></span><br><span class="line">create table stu11(</span><br><span class="line">sid <span class="built_in">int</span> primary key,   </span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) <span class="keyword">not</span> null default <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">);</span><br><span class="line">alter table stu11 modify sid <span class="built_in">int</span> auto_increment;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.表创建完成,添加主键约束和主键自增长</span></span><br><span class="line">create table stu12(</span><br><span class="line">sid <span class="built_in">int</span>,   </span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">address varchar(<span class="number">30</span>) <span class="keyword">not</span> null default <span class="string">&#x27;北京&#x27;</span></span><br><span class="line">);</span><br><span class="line">alter table stu12 modify sid <span class="built_in">int</span> primary key auto_increment;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.删除</span></span><br><span class="line">alter table stu12 modify sid <span class="built_in">int</span> primary key;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">注意:</span><br><span class="line">	a.自增长的字段类型必须是数字类型</span><br><span class="line">	b.当添加记录的时候,如果不为该字段赋值或者赋值为null,该字段就会自增长</span><br><span class="line">	c.第一条记录的值需要给定</span><br><span class="line">	d.后面记录的值从已经存在的最大值+<span class="number">1</span></span><br><span class="line">	e.如果已经存在的最大值是小数,自增长的值是向上取整</span><br><span class="line">	f.只有主键可以自增长</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="5-外键约束foreign-key"><a href="#5-外键约束foreign-key" class="headerlink" title="5.外键约束foreign key"></a>5.外键约束foreign key</h3><blockquote>
+<p>外键约束可以使表与表之间产生关系</p>
+<p>创建表时，添加外键约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名 (字段名 字段类型 <span class="keyword">primary</span> key, 字段名 字段类型 [约束], ... , 外键字段 外键类型 ,[<span class="keyword">constraint</span> 外键名] <span class="keyword">foreign</span> key (外键字段) <span class="keyword">references</span> 主表名 (主表主键字段));</span><br></pre></td></tr></table></figure>
+
+<p>创建表后，添加外键约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">add</span> [<span class="keyword">constraint</span> 外键名] <span class="keyword">foreign</span> key (外键字段) <span class="keyword">references</span> 主表名 (主表主键字段));</span><br></pre></td></tr></table></figure>
+
+<p>删除外键约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="keyword">drop</span> <span class="keyword">foreign</span> key 外键名;   </span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>中间表的创建以及联合主键</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table 表名 (</span><br><span class="line">	外键字段<span class="number">1</span> 外键类型, 外键字段<span class="number">2</span> 外键类型, primary key (外键字段<span class="number">1</span>,外键字段<span class="number">2</span>), </span><br><span class="line">	foreign key (外键字段<span class="number">1</span>) references 主表<span class="number">1</span>(主键字段),</span><br><span class="line">	foreign key (外键字段<span class="number">2</span>) references 主表<span class="number">2</span>(主键字段),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面两张表本质上没有联系</span></span><br><span class="line"><span class="comment"># 如果需要两张表之间存在联系,则可以借助于外键约束</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.创建表的过程中添加外键约束</span></span><br><span class="line">create table student1(</span><br><span class="line">sno varchar(<span class="number">20</span>) primary key,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">ssex varchar(<span class="number">20</span>),</span><br><span class="line">sbirthday datetime,</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">varchar</span>(<span class="params"><span class="number">20</span></span>)</span></span><br><span class="line">);</span><br><span class="line">create table score1(</span><br><span class="line">sno varchar(<span class="number">20</span>),</span><br><span class="line">cno varchar(<span class="number">20</span>),</span><br><span class="line">degree decimal,</span><br><span class="line">constraint  stu_sco_sno foreign key(sno) references student1(sno)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- alter table student1 drop primary key;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.表创建完成,添加外键约束</span></span><br><span class="line">create table student2(</span><br><span class="line">sno varchar(<span class="number">20</span>) primary key,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">ssex varchar(<span class="number">20</span>),</span><br><span class="line">sbirthday datetime,</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">varchar</span>(<span class="params"><span class="number">20</span></span>)</span></span><br><span class="line">);</span><br><span class="line">create table score2(</span><br><span class="line">sno varchar(<span class="number">20</span>),</span><br><span class="line">cno varchar(<span class="number">20</span>),</span><br><span class="line">degree decimal</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">alter table score2 add constraint fk_sno foreign key(sno) references student2(sno);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.注意:在同一张表中,主键只能出现一个,外键可以出现多个</span></span><br><span class="line">create table student3(</span><br><span class="line">sno varchar(<span class="number">20</span>) primary key,</span><br><span class="line">sname varchar(<span class="number">20</span>),</span><br><span class="line">ssex varchar(<span class="number">20</span>),</span><br><span class="line">sbirthday datetime,</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">varchar</span>(<span class="params"><span class="number">20</span></span>)</span></span><br><span class="line">);</span><br><span class="line">create table course3(</span><br><span class="line">cno varchar(<span class="number">20</span>),</span><br><span class="line">tno varchar(<span class="number">20</span>)</span><br><span class="line">);</span><br><span class="line">create table score3(</span><br><span class="line">sno varchar(<span class="number">20</span>),</span><br><span class="line">cno varchar(<span class="number">20</span>),</span><br><span class="line">degree decimal</span><br><span class="line">);</span><br><span class="line"><span class="comment"># 设置cno为主键</span></span><br><span class="line">alter table course3 modify cno varchar(<span class="number">20</span>) primary key;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置score3中sno为外键,和student3中的sno关联</span></span><br><span class="line">alter table score3 add constraint fk_sno3 foreign key(sno) references student3(sno);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置score3中cno为外键,和course3中的cno关联</span></span><br><span class="line">alter table score3 add constraint fk_cno3 foreign key(cno) references course3(cno);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.删除主键约束和外键约束</span></span><br><span class="line"><span class="comment"># 注意1:一般情况下,添加外键都是和相关的主键关联</span></span><br><span class="line"><span class="comment"># 注意2:如果两张表之间有主外键关联,如果要删除主键,则先要删除外键</span></span><br><span class="line">alter table student3 drop primary key;</span><br><span class="line">alter table score3 drop foreign key fk_cno3;</span><br><span class="line">alter table score3 drop foreign key fk_sno3;</span><br><span class="line"></span><br><span class="line">alter table student3 modify sno varchar(<span class="number">20</span>) primary key;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="6-【sqlserver-Oracle】check检查约束"><a href="#6-【sqlserver-Oracle】check检查约束" class="headerlink" title="6.【sqlserver /Oracle】check检查约束"></a>6.【sqlserver /Oracle】check检查约束</h3><h2 id="二、多表"><a href="#二、多表" class="headerlink" title="二、多表"></a>二、多表</h2><h3 id="1-表与表之间的关系"><a href="#1-表与表之间的关系" class="headerlink" title="1.表与表之间的关系"></a>1.表与表之间的关系</h3><blockquote>
+<p>一对一:在a表中找到一条记录,在b表中也可以唯一的匹配到一条记录,同时在b表中找到一条记录,在a表中也可以唯一的匹配到一条记录</p>
+<p>一对多[多对一]:在a表中找到一条记录,在b表中可以匹配到多条记录</p>
+<p>多对多:在a表中的多条记录,在b中也可以匹配到多条记录</p>
+</blockquote>
+<h3 id="2-多表关系的实现"><a href="#2-多表关系的实现" class="headerlink" title="2.多表关系的实现"></a>2.多表关系的实现</h3><blockquote>
+<p>一对一:在任何一方添加外键指向另一方的主键</p>
+<p>一对多[多对一]:在多的一方添加外键,指向一的一方的主键</p>
+<p>多对多:</p>
+<p>​    需要借助第三张中间表</p>
+<p>​    中间 表至少包含两个字段,这两个字段都是外键,分别指向两张表的主键    </p>
+</blockquote>
+<h3 id="3-多表查询"><a href="#3-多表查询" class="headerlink" title="3.多表查询"></a>3.多表查询</h3><h4 id="3-1合并结果集"><a href="#3-1合并结果集" class="headerlink" title="3.1合并结果集"></a>3.1合并结果集</h4><blockquote>
+<p>作用：合并结果集就是把两个select语句的查询结果合并到一起</p>
+<p>合并结果集的两种方式：</p>
+<p>​    union：去除重复记录【相当于求并集】</p>
+<pre><code> union all：不去除重复记录
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.</span></span><br><span class="line">create table a(</span><br><span class="line">name varchar(<span class="number">10</span>),</span><br><span class="line">num <span class="built_in">int</span>);</span><br><span class="line"></span><br><span class="line">create table b(</span><br><span class="line">name varchar(<span class="number">10</span>),</span><br><span class="line">num <span class="built_in">int</span>);</span><br><span class="line"></span><br><span class="line">insert into a values(<span class="string">&#x27;a&#x27;</span>,<span class="number">10</span>),(<span class="string">&#x27;b&#x27;</span>,<span class="number">20</span>),(<span class="string">&#x27;c&#x27;</span>,<span class="number">30</span>);</span><br><span class="line">insert into b values(<span class="string">&#x27;a&#x27;</span>,<span class="number">10</span>),(<span class="string">&#x27;b&#x27;</span>,<span class="number">20</span>),(<span class="string">&#x27;d&#x27;</span>,<span class="number">40</span>);</span><br><span class="line"></span><br><span class="line">select * <span class="keyword">from</span> a;</span><br><span class="line">select * <span class="keyword">from</span> b;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并结果集</span></span><br><span class="line">select * <span class="keyword">from</span> a union select * <span class="keyword">from</span> b;   <span class="comment"># union;去除重复记录</span></span><br><span class="line">select * <span class="keyword">from</span> a union <span class="built_in">all</span> select * <span class="keyword">from</span> b;  <span class="comment"># union all:显示重复记录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.</span></span><br><span class="line">create table c(</span><br><span class="line">name varchar(<span class="number">10</span>),</span><br><span class="line">num <span class="built_in">int</span>,</span><br><span class="line">age <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line">insert into c values(<span class="string">&#x27;a&#x27;</span>,<span class="number">10</span>,<span class="number">11</span>),(<span class="string">&#x27;b&#x27;</span>,<span class="number">20</span>,<span class="number">22</span>),(<span class="string">&#x27;d&#x27;</span>,<span class="number">40</span>,<span class="number">33</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意:被合并的两张表查询的结果,列数必须相同</span></span><br><span class="line"><span class="comment"># select * from a union select * from c;  # The used SELECT statements have a different number of columns</span></span><br><span class="line">select * <span class="keyword">from</span> a union select name,num <span class="keyword">from</span> c;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3,注意:合并结果集的时候,所谓的重复记录指的是所有字段的值全部相同</span></span><br><span class="line">create table d(</span><br><span class="line">name varchar(<span class="number">10</span>),</span><br><span class="line">num <span class="built_in">int</span>);</span><br><span class="line"></span><br><span class="line">insert into d values(<span class="string">&#x27;a&#x27;</span>,<span class="number">10</span>),(<span class="string">&#x27;b&#x27;</span>,<span class="number">20</span>),(<span class="string">&#x27;d&#x27;</span>,<span class="number">30</span>);</span><br><span class="line">select * <span class="keyword">from</span> a union select * <span class="keyword">from</span> d;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="3-2连接查询"><a href="#3-2连接查询" class="headerlink" title="3.2连接查询"></a>3.2连接查询</h4><blockquote>
+<p>作用：求出多个表的乘积，例如t1连接t2，那么查询出的结果就是t1*t2</p>
+</blockquote>
+<h5 id="2-1内连接-inner-join-on"><a href="#2-1内连接-inner-join-on" class="headerlink" title="2.1内连接-inner join on"></a>2.1内连接-inner join on</h5><blockquote>
+<p>上面的连接语句就是内连接，但它不是SQL标准中的查询方式，可以理解为方言，SQL标准的内连接为：join on</p>
+<p>内连接的特点：查询结果必须满足条件</p>
+</blockquote>
+<h5 id="2-2外连接-outer-join-on"><a href="#2-2外连接-outer-join-on" class="headerlink" title="2.2外连接-outer join on"></a>2.2外连接-outer join on</h5><blockquote>
+<p>分类：</p>
+<p>左外连接：left [outer] join，左外连接是指定除内连接的数据之外，增加左边表中的其它的数据。即左表选择全部数据，右表选择交集（都存在的）的数据</p>
+<p>右外连接：right [outer] join，同左外连接相反，除内连接的数据之外，额外选择右表中的其它数据。</p>
+<p>全外连接（MySQL不支持）：full join，将内连接、左外连接、右外连接的全部数据选择出来，可以尝试使用union的合并查询关键字，将左外和右外查询的结果合并到一块，union查询，要求两个查询的列名保持一致。对于重复的行会自动去重</p>
+<p>特点：不管是左外连接还是右外连接，都是以其中一个表为参照连接另外一个表</p>
+</blockquote>
+<h5 id="2-3自然连接-natural-join"><a href="#2-3自然连接-natural-join" class="headerlink" title="2.3自然连接-natural join"></a>2.3自然连接-natural join</h5><blockquote>
+<p>连接查询会产生无用笛卡尔积，通常使用主外键关系等式来去除它，而自然连接无需你给出主外键等式，它会自动找到这一等式</p>
+<p>将两张连接的表中名称和类型完全一致的列作为条件，通过自然连接自动进行匹配</p>
+</blockquote>
+<h4 id="3-3子查询"><a href="#3-3子查询" class="headerlink" title="3.3子查询"></a>3.3子查询</h4><blockquote>
+<p>一个select语句中包含另一个完整的select语句【select语句嵌套】</p>
+<p>子查询就是嵌套查询，即select中包含select，如果一条sql语句中存在两个或者两个以上select，那么就是子查询语句了</p>
+<p>​    1&gt;子查询出现的位置：                    </p>
+<p>​        a.where后，作为条件的一部分被查询</p>
+<p>​        b.from后，作为表</p>
+<p>​    2&gt;当子查询出现在where后作为条件时，还可以使用关键字</p>
+<p>​        a.any</p>
+<p>​        b.all</p>
+<p>​    3&gt;子查询结果集的形式</p>
+<p>​        a.单行单列（用于条件）</p>
+<p>​        b.单行多列（用于条件）</p>
+<p>​        c.多行单列（用于条件）</p>
+<p>​        d.多行多列（用于表）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># emp表</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.查询和scott在同一个部门的员工信息</span></span><br><span class="line"><span class="comment"># a.查询scott的部门</span></span><br><span class="line">select deptno <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>;</span><br><span class="line"><span class="comment"># b.查询在20号部门的员工信息</span></span><br><span class="line">select * <span class="keyword">from</span> emp where deptno=<span class="number">20</span>;</span><br><span class="line"><span class="comment"># c.整合</span></span><br><span class="line">select * <span class="keyword">from</span> emp where deptno=(select deptno <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>) <span class="keyword">and</span> empname!=<span class="string">&#x27;scott&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.查看工资低于scott的员工信息</span></span><br><span class="line"><span class="comment"># a.查询scott的工资</span></span><br><span class="line">select salary <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>;</span><br><span class="line"><span class="comment"># b.查询工资低于3000的员工信息</span></span><br><span class="line">select * <span class="keyword">from</span> emp where salary&lt;<span class="number">3000</span>;</span><br><span class="line"><span class="comment"># c.整合</span></span><br><span class="line">select * <span class="keyword">from</span> emp where salary&lt;(select salary <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.查询工资高于10号部门所有员工的员工信息</span></span><br><span class="line"><span class="comment"># a.查询10号部门的最高工资</span></span><br><span class="line">select <span class="built_in">max</span>(salary) <span class="keyword">from</span> emp where deptno=<span class="number">10</span>;</span><br><span class="line"><span class="comment"># b.查询工资高于5000的员工的信息</span></span><br><span class="line">select * <span class="keyword">from</span> emp where salary&gt;<span class="number">5000</span>;</span><br><span class="line"><span class="comment"># c.整合</span></span><br><span class="line">select * <span class="keyword">from</span> emp where salary&gt;(select <span class="built_in">max</span>(salary) <span class="keyword">from</span> emp where deptno=<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.查询工资和工作都和scott相同的员工信息</span></span><br><span class="line"><span class="comment"># a.查询scott的工资</span></span><br><span class="line">select salary <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>;</span><br><span class="line"><span class="comment"># b.查询scott的工作</span></span><br><span class="line">select job <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>;</span><br><span class="line"><span class="comment"># c.查询工资为3000,工作为analyst的员工信息</span></span><br><span class="line">select * <span class="keyword">from</span> emp where salary=<span class="number">3000</span> <span class="keyword">and</span> job=<span class="string">&#x27;analyst&#x27;</span>;</span><br><span class="line"><span class="comment"># d.整合</span></span><br><span class="line">select * <span class="keyword">from</span> emp where empname!=<span class="string">&quot;scott&quot;</span> <span class="keyword">and</span> salary=(select salary <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>) <span class="keyword">and</span> job=(select job <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.查询各个部门工资最高的员工信息   *******</span></span><br><span class="line"><span class="comment"># a.查询各个部门的最高工资</span></span><br><span class="line">select deptno,<span class="built_in">max</span>(salary) <span class="keyword">from</span> emp group by deptno;</span><br><span class="line"><span class="comment"># b.查询工资为5000,3000.2975的员工信息</span></span><br><span class="line">select * <span class="keyword">from</span> emp where (salary=<span class="number">5000</span> <span class="keyword">and</span> deptno=<span class="number">10</span>) <span class="keyword">or</span> (salary=<span class="number">3000</span> <span class="keyword">and</span> deptno=<span class="number">20</span>)<span class="keyword">or</span> (salary=<span class="number">2975</span> <span class="keyword">and</span> deptno=<span class="number">30</span>);</span><br><span class="line"><span class="comment"># c.整合,有问题</span></span><br><span class="line"><span class="comment"># select * from emp where salary in(select max(salary) from emp group by deptno)</span></span><br><span class="line"><span class="comment"># 方式一</span></span><br><span class="line">select e1.*,e2.ms <span class="keyword">from</span>  emp <span class="keyword">as</span> e1 right join (select deptno,<span class="built_in">max</span>(salary) <span class="keyword">as</span> ms <span class="keyword">from</span> emp group by deptno) <span class="keyword">as</span> e2 on e1.deptno=e2.deptno <span class="keyword">and</span> e1.salary=e2.ms;</span><br><span class="line"><span class="comment"># 方式二</span></span><br><span class="line">create TEMPORARY TABLE tmp1  select deptno,<span class="built_in">max</span>(salary) salary <span class="keyword">from</span> emp group by deptno</span><br><span class="line">select a.* <span class="keyword">from</span> emp a,tmp1 b where a.deptno = b.deptno <span class="keyword">and</span> a.salary=b.salary</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.查询10号部门中工资高于30号部门中任意一人的员工信息</span></span><br><span class="line"><span class="comment"># any()</span></span><br><span class="line">select salary <span class="keyword">from</span> emp where deptno=<span class="number">30</span>;</span><br><span class="line">select * <span class="keyword">from</span> emp where deptno=<span class="number">10</span> <span class="keyword">and</span> salary&gt;<span class="built_in">any</span>(select salary <span class="keyword">from</span> emp where deptno=<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.查询10号部门中工资高于30号部门中所有人的员工信息</span></span><br><span class="line"><span class="comment"># all()</span></span><br><span class="line">select * <span class="keyword">from</span> emp where deptno=<span class="number">10</span> <span class="keyword">and</span> salary&gt;<span class="built_in">all</span>(select salary <span class="keyword">from</span> emp where deptno=<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="3-4自连接"><a href="#3-4自连接" class="headerlink" title="3.4自连接"></a>3.4自连接</h4><blockquote>
+<p>自连接：自己连接自己，相当于起别名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.查看工资高于scott的员工信息</span></span><br><span class="line"><span class="comment"># 子查询</span></span><br><span class="line">select *<span class="keyword">from</span> emp where salary&gt;(select salary <span class="keyword">from</span> emp where empname=<span class="string">&quot;scott&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自连接</span></span><br><span class="line">select e2.* <span class="keyword">from</span> emp <span class="keyword">as</span> e1,emp <span class="keyword">as</span> e2 where e1.empname=<span class="string">&quot;scott&quot;</span> <span class="keyword">and</span> e2.salary&gt;e1.salary;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.查询工资和工作都和scott相同的员工信息</span></span><br><span class="line"><span class="comment"># 子查询</span></span><br><span class="line">select * <span class="keyword">from</span> emp where empname!=<span class="string">&quot;scott&quot;</span> <span class="keyword">and</span> salary=(select salary <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>) <span class="keyword">and</span> job=(select job <span class="keyword">from</span> emp where empname=<span class="string">&#x27;scott&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自连接</span></span><br><span class="line">select e2.* <span class="keyword">from</span> emp <span class="keyword">as</span> e1,emp <span class="keyword">as</span> e2 where e2.empname!=<span class="string">&quot;scott&quot;</span> <span class="keyword">and</span> e1.empname=<span class="string">&quot;scott&quot;</span> <span class="keyword">and</span> e2.salary=e1.salary <span class="keyword">and</span> e2.job=e1.job;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="三、MySQL中的内置函数"><a href="#三、MySQL中的内置函数" class="headerlink" title="三、MySQL中的内置函数"></a>三、MySQL中的内置函数</h2><h3 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1.字符串函数"></a>1.字符串函数</h3><blockquote>
+<pre><code>concat(a, b) 将a和b拼接成一个字符串
+length(&quot;子符串&quot;) 计算字符串的字节长度
+char_length()  计算字符个数
+lower()  小写转换
+upper()  大写转换
+left(str, len) 从字符串str的左右截取len个字符
+right(str, len) 从字符串str的右边截取 len个字符
+substr(str,   start, len) 截取str的子字符串，从start位置开始，截取len个字符，start可以是负数，表示从右边开始
+replace(str, sub, replace_str) 替换子子符串
+trim() 同python的strip()函数，删除两连的空白
+instr(str, sub) 返回sub在str的首次出现的位置， 索引位置是从1开始
+lpad(str,len,sub)  如果str的长度不足时，在左边填充sub字符， 同Python的str对象的rjust()
+rpad(str, len, sub) 如果str的长度不足时，在右边填充sub字符, 同Python的str对象的ljust()
+
+char(N) 将AscII数值转成字符， N可以是一个字符，也可以是数值 【注意】在8.0中返回十六进制字符串。
+ord(str) 将ASCII字符转成数值
+
+format(n, 小数位长) 将n转成带千位符‘#，###.##’格式的字符串
+</code></pre>
+</blockquote>
+<h3 id="2-日期函数"><a href="#2-日期函数" class="headerlink" title="2.日期函数"></a>2.日期函数</h3><blockquote>
+<pre><code>current_date()/curdate()  当前日期
+current_timestamp()/now() 当前日期时间
+curerent_time()/curtime() 当前时间
+
+year()  获取日期中年
+month() 获取日期中的月
+day()   获取日期中的天, 一个月中第几天
+dayofweek()  获取星期几， 1是星期日， 7是星期六
+dayofyear()  获取一年中的第几天
+weekofyear() 获取一年中第几周
+hour()
+minute()
+second()
+
+datediff(now(), &quot;2019-10-11&quot;)  获取两个日期之间的间隔天数
+timediff(&quot;12:10:09&quot;, &quot;15:10:09&quot;) 获取两时间之间的问隔时间（时-分-秒）
+
+str_to_date(日期字符串， &quot;格式&quot;)  将字符串转成日期， 格式： %Y-%m-%d %H:%i:%s
+date_format(data, &quot;格式&quot;)  将时间转成字符串
+
+date_add(date, interval n 时间关键字) 某一时间添加 n的间隔（关键字）时长后的日期时间
+        时间关键字： year,month, day, hour, minute, second, week
+date_sub(data, interval n 时间关键字) 某一时间减少n的间隔（关键字）时长后的日期时间
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">案例</span><br><span class="line">create table Student(sid varchar(10), name varchar(10),age datetime,sex varchar(10))</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;01&#39; , &#39;赵雷&#39; , &#39;1990-01-01&#39; , &#39;男&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;02&#39; , &#39;钱电&#39; , &#39;1990-12-21&#39; , &#39;男&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;03&#39; , &#39;孙风&#39; , &#39;1990-05-20&#39; , &#39;男&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;04&#39; , &#39;李云&#39; , &#39;1990-08-06&#39; , &#39;男&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;05&#39; , &#39;周梅&#39; , &#39;1991-12-01&#39; , &#39;女&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;06&#39; , &#39;吴兰&#39; , &#39;1992-03-01&#39; , &#39;女&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;07&#39; , &#39;郑竹&#39; , &#39;1989-07-01&#39; , &#39;女&#39;)</span><br><span class="line"></span><br><span class="line">insert into Student values(&#39;08&#39; , &#39;王菊&#39; , &#39;1990-01-20&#39; , &#39;女&#39;)</span><br><span class="line"></span><br><span class="line">1、查询各学生的年龄</span><br><span class="line"></span><br><span class="line">2、查询本周过生日的学生</span><br><span class="line"></span><br><span class="line">3、查询下周过生日的学生</span><br><span class="line"></span><br><span class="line">4、查询本月过生日的学生</span><br><span class="line"></span><br><span class="line">5、查询下月过生日的学生</span><br></pre></td></tr></table></figure>
+</code></pre>
+</blockquote>
+<h3 id="3-数学函数"><a href="#3-数学函数" class="headerlink" title="3.数学函数"></a>3.数学函数</h3><blockquote>
+<pre><code>round(n, 小数位长)  四舍五入
+ceil(n) 上行取整，比n大的，最小的整数
+floor() 下行取整，比n小的，最大的整数
+pow(n, c) 计算n的c次方   
+mod(n1, n2) 计算两者的余数
+rand() 随机产生[0,1)之间数，如 ceil(rand()*15) + 1,生成[1,16]之间的数
+abs()  求绝对值
+sin()/asin()/cos()/acos()/tan()/atan()/con() 数学相关的三角函数
+</code></pre>
+</blockquote>
+<h3 id="4-条件函数"><a href="#4-条件函数" class="headerlink" title="4.条件函数"></a>4.条件函数</h3><blockquote>
+<pre><code>if(条件, 条件为真的结果， 条件为假的结果)
+case 分支语句
+</code></pre>
+</blockquote>
+<h2 id="四、数据库备份和恢复"><a href="#四、数据库备份和恢复" class="headerlink" title="四、数据库备份和恢复"></a>四、数据库备份和恢复</h2><blockquote>
+<pre><code>1.备份和还原数据库
+    备份数据库指的是将服务器里面的数据库备份成一个.sql文件，还原数据库指的是将.sql文件再还原到数据库
+    备份：mysqldump -u用户名 -p密码 --databases testdb &gt; 备份路径
+    还原：mysql -u用户名 -p密码 &lt; 还原路径 
+
+2.备份和还原数据库中的表
+    备份：mysqldump -u用户名 -p密码 数据库名称 表名称 &gt; 备份路径 
+    还原：mysql -u用户名 -p密码 要还原到的数据库名称 &lt; 还原路径
+</code></pre>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\zhangbingbing&gt;mysqldump -uroot -p  --databases mydb1 &gt; f:\test.sql</span><br><span class="line">Enter password: ****</span><br><span class="line"></span><br><span class="line">C:\Users\zhangbingbing&gt;mysql -uroot -proot &lt; f:\test.sql</span><br><span class="line"></span><br><span class="line">C:\Users\zhangbingbing&gt;mysqldump -uroot -p  mydb1 emp &gt; f:\emp.sql</span><br><span class="line">Enter password: ****</span><br><span class="line"></span><br><span class="line">C:\Users\zhangbingbing&gt;mysql -uroot -proot mydb2 &lt; f:\emp.sql</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="五、MySQL事务"><a href="#五、MySQL事务" class="headerlink" title="五、MySQL事务"></a>五、MySQL事务</h2><blockquote>
+<p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
+<p>事务： 处理某一件事件或功能的过程，在MySQL中处理事件的过程中，单独提供某一通道（Channel）,在事件处理之前可以开启事件点，处理完成后，在结束时关闭事件点。在关闭事件之前，可以回滚到事件起点。</p>
+<p>注意事项：</p>
+<ul>
+<li>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</li>
+<li>事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。</li>
+<li>事务用来管理 insert,update,delete 语句</li>
+</ul>
+</blockquote>
+<h3 id="1-事务性质"><a href="#1-事务性质" class="headerlink" title="1.事务性质"></a>1.事务性质</h3><blockquote>
+<pre><code>Atomicity(原子性）：事务中的所有操作要么都成功，要么都失败。[一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样]
+
+Consistency(一致性)：事务开始和结束的数据保持一致的（保持数据的完整性）[在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作]
+
+Isolation(隔离性): 事务之间互不影响[数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致]
+
+Durability(持久性）：数据存储之后，即使系统出现故障，数据也会持久保存。[事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。]
+</code></pre>
+</blockquote>
+<h3 id="2-事务的隔离级别"><a href="#2-事务的隔离级别" class="headerlink" title="2.事务的隔离级别"></a>2.事务的隔离级别</h3><blockquote>
+<pre><code>事务的四个隔离级别 isolation level:
+read uncommitted：读未提交，A事务可以读B事务未提交的修改数据。问题：【脏读】【不可重复读】【幻读】
+                          
+read committed：读已提交，A事务可以读取B事务已提交的数据。 【不可重复读】【幻读】
+
+repeatable read：可重复读【默认】， A事务修改数据时，会读取其它事务提交后数据，再进一步修改，保持数据的一致性。【幻读】
+                            
+serializable    序列化或串行化：  多个事务在修改同一条数据时，必须等待其他事务完成才能执行。
+</code></pre>
+</blockquote>
+<h3 id="3-事务处理"><a href="#3-事务处理" class="headerlink" title="3.事务处理"></a>3.事务处理</h3><blockquote>
+<p>BEGIN；显式地开启一个事务</p>
+<p>COMMIT：提交事务，并使已对数据库进行的所有修改成为永久性的</p>
+<p>ROLLBACK：回滚会结束用户的事务，并撤销正在进行的所有未提交的修改</p>
+</blockquote>
+<h2 id="六、索引和视图"><a href="#六、索引和视图" class="headerlink" title="六、索引和视图"></a>六、索引和视图</h2><h3 id="1-索引"><a href="#1-索引" class="headerlink" title="1.索引"></a>1.索引</h3><blockquote>
+<p>关键字: index ; </p>
+<p>主键约束【不可为空】会默认创建主键索引</p>
+<p>唯一索引【可为空】会默认索引唯一索引</p>
+<p>索引的作用：快速查询</p>
+<p>在数据库管理系统中，存在索引内存空间（数据结构——btree），在sql查询语句中，使用索引字段进行查询，可以快速定位记录的行号，提高查询速度。</p>
+</blockquote>
+<blockquote>
+<p>对MySQL数据表建立索引，优点：可以大大提高MySQL的检索速度，缺点：会降低表的更新速度，特别是在进行DML操作时，因为更新表，MySQL不仅要更新数据，还要更新索引，建立索引会占用磁盘的空间</p>
+</blockquote>
+<h3 id="2-视图"><a href="#2-视图" class="headerlink" title="2.视图"></a>2.视图</h3><blockquote>
+<p>视图:存储的查询语句,当调用的时候,产生结果集,视图充当的是虚拟表的角色.</p>
+<p>说明:    如果要对一张表或者多张表进行查询,可以通过写复杂的SQL语句来实现 ， 如果要这些SQL语句存储为视图,那么查询的时候,就直接查询这个视图就可以了</p>
+</blockquote>
+<h2 id="七、MySQL与Python的交互"><a href="#七、MySQL与Python的交互" class="headerlink" title="七、MySQL与Python的交互"></a>七、MySQL与Python的交互</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h3><blockquote>
+<p>为了实现MySQL和Python的交互，则需要使用第三方模块pymysql</p>
+<p>pymysql模块相当于从Python连接到mysql数据库服务器的接口，并包含了mysql的客户端</p>
+</blockquote>
+<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h3><blockquote>
+<p>a.安装pymysql:pip  intsall pymysql</p>
+<p>b.需要在pycharm中下载pymysql</p>
+<p>c.需要准备一个数据库，在数据库中创建一张表</p>
+<p>d.需要通过mysql的用户名和密码在python代码中连接服务器</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:42:30.805Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/30/MySQL_2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:44.816Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/30/MySQL_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_2/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_1/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E8%AE%B2%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">作业讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%E3%80%90%E7%BA%A6%E6%9D%9F%E3%80%91"><span class="toc-number">2.</span> <span class="toc-text">一、数据的完整性【约束】</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9Fnot-null"><span class="toc-number">2.1.</span> <span class="toc-text">1.非空约束not null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%BB%98%E8%AE%A4%E5%80%BC%E7%BA%A6%E6%9D%9Fdefault"><span class="toc-number">2.2.</span> <span class="toc-text">2.默认值约束default</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%94%AF%E4%B8%80%E7%BA%A6%E6%9D%9F-unique"><span class="toc-number">2.3.</span> <span class="toc-text">3.唯一约束 unique</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%BB%E9%94%AE%E7%BA%A6%E6%9D%9Fprimary-key"><span class="toc-number">2.4.</span> <span class="toc-text">4.主键约束primary key</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE%E8%87%AA%E5%A2%9E%E9%95%BF-%E8%87%AA%E5%8A%A8%E5%A2%9E%E9%95%BF%E5%88%97%EF%BC%9A%E3%80%90MySQL%E3%80%91"><span class="toc-number">2.4.1.</span> <span class="toc-text">主键自增长&#x2F;自动增长列：【MySQL】</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9Fforeign-key"><span class="toc-number">2.5.</span> <span class="toc-text">5.外键约束foreign key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E3%80%90sqlserver-Oracle%E3%80%91check%E6%A3%80%E6%9F%A5%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.6.</span> <span class="toc-text">6.【sqlserver &#x2F;Oracle】check检查约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%A4%9A%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">二、多表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A1%A8%E4%B8%8E%E8%A1%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.1.</span> <span class="toc-text">1.表与表之间的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.</span> <span class="toc-text">2.多表关系的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.3.</span> <span class="toc-text">3.多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1%E5%90%88%E5%B9%B6%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.1合并结果集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.2连接查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1%E5%86%85%E8%BF%9E%E6%8E%A5-inner-join-on"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">2.1内连接-inner join on</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2%E5%A4%96%E8%BF%9E%E6%8E%A5-outer-join-on"><span class="toc-number">3.3.2.2.</span> <span class="toc-text">2.2外连接-outer join on</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3%E8%87%AA%E7%84%B6%E8%BF%9E%E6%8E%A5-natural-join"><span class="toc-number">3.3.2.3.</span> <span class="toc-text">2.3自然连接-natural join</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.3.3.</span> <span class="toc-text">3.3子查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4%E8%87%AA%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.3.4.</span> <span class="toc-text">3.4自连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81MySQL%E4%B8%AD%E7%9A%84%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">三、MySQL中的内置函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">1.字符串函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">2.日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">3.数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9D%A1%E4%BB%B6%E5%87%BD%E6%95%B0"><span class="toc-number">4.4.</span> <span class="toc-text">4.条件函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D"><span class="toc-number">5.</span> <span class="toc-text">四、数据库备份和恢复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81MySQL%E4%BA%8B%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">五、MySQL事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%8B%E5%8A%A1%E6%80%A7%E8%B4%A8"><span class="toc-number">6.1.</span> <span class="toc-text">1.事务性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">6.2.</span> <span class="toc-text">2.事务的隔离级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">3.事务处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%B4%A2%E5%BC%95%E5%92%8C%E8%A7%86%E5%9B%BE"><span class="toc-number">7.</span> <span class="toc-text">六、索引和视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%B4%A2%E5%BC%95"><span class="toc-number">7.1.</span> <span class="toc-text">1.索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A7%86%E5%9B%BE"><span class="toc-number">7.2.</span> <span class="toc-text">2.视图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81MySQL%E4%B8%8EPython%E7%9A%84%E4%BA%A4%E4%BA%92"><span class="toc-number">8.</span> <span class="toc-text">七、MySQL与Python的交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.</span> <span class="toc-text">1.概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">8.2.</span> <span class="toc-text">2.准备工作</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:39:06.200Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:28:56.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" class="archive-article-date">
-  	<time datetime="2021-04-28T12:28:40.303Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2021-04-26T06:47:52.601Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -421,8 +670,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

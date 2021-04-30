@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="一、ssh连接操作1.1 Powershell客户端 在Window10上打开 PowerShell 命令窗口">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="一、ssh连接操作1.1 Powershell客户端 在Window10上打开 PowerShell 命令窗口">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-30T12:40:44.816Z">
+<meta property="article:modified_time" content="2021-04-30T12:47:42.089Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -169,235 +173,737 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Cenos7-Linux基本命令" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、ssh连接操作"><a href="#一、ssh连接操作" class="headerlink" title="一、ssh连接操作"></a>一、ssh连接操作</h1><h2 id="1-1-Powershell客户端"><a href="#1-1-Powershell客户端" class="headerlink" title="1.1 Powershell客户端"></a>1.1 Powershell客户端</h2><blockquote>
+<p>在Window10上打开 PowerShell 命令窗口</p>
+</blockquote>
+ <span id="more"></span>
+
+<h2 id="1-2-连接服务器"><a href="#1-2-连接服务器" class="headerlink" title="1.2 连接服务器"></a>1.2 连接服务器</h2><p>ssh 用户名@主机IP地址或名称  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@10.36.174.53</span><br></pre></td></tr></table></figure>
+
+<p>如果没有免密码的情况下，提示输入root用户的口令，如root.</p>
+<h2 id="1-3-免密方式"><a href="#1-3-免密方式" class="headerlink" title="1.3 免密方式"></a>1.3 免密方式</h2><h3 id="1-3-1-生成公钥"><a href="#1-3-1-生成公钥" class="headerlink" title="1.3.1 生成公钥"></a>1.3.1 生成公钥</h3><p>在powershell(客户端)生成公钥和私钥文件，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>根据提示，一步步向下回车即可。</p>
+<p>【注意】powershell中执行命令失败之后，可以尝试使用“以管理员身份运行”打开powershell终端。</p>
+<h3 id="1-3-2-scp上传"><a href="#1-3-2-scp上传" class="headerlink" title="1.3.2 scp上传"></a>1.3.2 scp上传</h3><p>再通过scp命令 将公钥文件（id_rsa.pub）上传到远程主机上（linux主机： 自己虚拟机、其他人机器、云主机）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp 文件名 root@host1:&#x2F;root&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-3-写入授权"><a href="#1-3-3-写入授权" class="headerlink" title="1.3.3 写入授权"></a>1.3.3 写入授权</h3><p>在远程主机上， 将公钥写入到授权文件(~/.ssh/authorized_keys)中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; .ssh&#x2F;authorized_keys</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="二、Linux中常用命令"><a href="#二、Linux中常用命令" class="headerlink" title="二、Linux中常用命令"></a>二、Linux中常用命令</h1><h2 id="2-1-文件操作"><a href="#2-1-文件操作" class="headerlink" title="2.1 文件操作"></a>2.1 文件操作</h2><blockquote>
+<p>Linux操作系统中的文件目录结构：</p>
+<p>/  根目录，（Window的根路径是各个盘符，如C, D，E）</p>
+<p>~  当前用户的home（家）目录 （非root用户是在/home/{用户名}， root用户的家目录是 /root）</p>
+<p>/usr 所有用户可执行及工具所在的目录</p>
+<p>/etc 系统级别（服务）配置文件所在的目录</p>
+<p>/home 非root用户所在的目录</p>
+<p>/opt  自定义应用资源的目录</p>
+<p>/bin  系统可执行文件所在的目录</p>
+</blockquote>
+<h3 id="2-1-1-ls命令"><a href="#2-1-1-ls命令" class="headerlink" title="2.1.1 ls命令"></a>2.1.1 ls命令</h3><blockquote>
+<p>查看当前路径下的文件及目录</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost usr]<span class="comment"># ls</span></span><br><span class="line">bin  games    lib    libexec  sbin   src</span><br><span class="line">etc  include  lib64  <span class="built_in">local</span>    share  tmp</span><br></pre></td></tr></table></figure>
+
+<p>【注】查看某一个命令的帮助信息： 命令    –help</p>
+<p>以列表的方式查看文件及目录，命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls -l</span></span><br><span class="line">总用量 48</span><br><span class="line">-rw-------. 1 root root 1266 10月 29 22:13 anaconda-ks.cfg</span><br><span class="line">-rw-r--r--. 1 root root  408 12月 22 18:37 hosts</span><br><span class="line">-rw-r--r--. 1 root root  404 4月  12 15:47 id_rsa.pub_disen</span><br><span class="line">-rw-r--r--. 1 root root  397 4月  12 15:47 id_rsa.pub_lq</span><br><span class="line">-rw-r--r--. 1 root root  401 4月  12 15:47 id_rsa.pub_LT</span><br><span class="line">-rw-r--r--. 1 root root  405 4月  12 15:47 id_rsa.pub_maosheng</span><br><span class="line">-rw-r--r--. 1 root root  405 4月  12 15:47 id_rsa.pub_ruby</span><br><span class="line">-rw-r--r--. 1 root root  408 12月 22 11:47 id_rsa.pub-slaver1</span><br><span class="line">-rw-r--r--. 1 root root  408 4月  12 16:09 id_rsa.pub_zhangkui</span><br><span class="line">-rw-------. 1 root root 1679 4月  12 16:00 ls</span><br><span class="line">-rw-r--r--. 1 root root  408 4月  12 16:00 ls.pub</span><br><span class="line">drwxr-xr-x. 3 root root   73 11月  7 15:09 mysql</span><br><span class="line">-rw-r--r--. 1 root root    3 11月  5 17:21 pwd_secure.sql</span><br><span class="line">drwxr-xr-x. 2 root root   28 11月  7 15:09 sql</span><br><span class="line">drwxr-xr-x. 2 root root   19 12月 22 15:47 test1</span><br><span class="line">drwxr-xr-x. 2 root root    6 11月  7 15:12 th_sql</span><br></pre></td></tr></table></figure>
+
+<p>查看文件的索引编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -li</span><br></pre></td></tr></table></figure>
+
+<p>查看文件，并以大小来排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lS</span><br></pre></td></tr></table></figure>
+
+<p>查看文件，并以最后修改时间排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lt</span><br></pre></td></tr></table></figure>
+
+<p>查看 /etc目录下的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls &#x2F;etc -lS</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-2-cd命令"><a href="#2-1-2-cd命令" class="headerlink" title="2.1.2 cd命令"></a>2.1.2 cd命令</h3><blockquote>
+<p>切换目录位置的命令</p>
+</blockquote>
+<p>切换到 /etc/ssh 目录，命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;ssh</span><br></pre></td></tr></table></figure>
+
+<p>如果当前路径在 /etc/sysconfig/network-scripts， 回到当前用户的home目录，命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure>
+
+<p>假如当前用户名是 <code>disen</code>, <code>~</code>代表的目录位置是<code>/home/disen</code></p>
+<h3 id="2-1-3-pwd命令"><a href="#2-1-3-pwd命令" class="headerlink" title="2.1.3 pwd命令"></a>2.1.3 pwd命令</h3><blockquote>
+<p>显示当前完整的绝对路径</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost network-scripts]<span class="comment"># pwd</span></span><br><span class="line">/etc/sysconfig/network-scripts</span><br></pre></td></tr></table></figure>
+
+<p>【重要】相对路径</p>
+<p><code>.</code>当前路径</p>
+<p><code>..</code> 当前路径的父级目录</p>
+<p>从当前路径切换到父级目录，命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-4-mkdir命令"><a href="#2-1-4-mkdir命令" class="headerlink" title="2.1.4 mkdir命令"></a>2.1.4 mkdir命令</h3><blockquote>
+<p>创建文件目录（夹）</p>
+</blockquote>
+<p>创建单个目录，命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~&#x2F;.ssh</span><br></pre></td></tr></table></figure>
+
+<p>代表，在当前用户的home目录下，创建<code>.ssh</code>目录。</p>
+<p>创建多级目录，命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p  ~&#x2F;a&#x2F;b&#x2F;c&#x2F;d&#x2F;e&#x2F;f</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-5-rmdir-命令"><a href="#2-1-5-rmdir-命令" class="headerlink" title="2.1.5 rmdir 命令"></a>2.1.5 rmdir 命令</h3><blockquote>
+<p>删除空目录</p>
+</blockquote>
+<p>删除单个目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir 目录位置</span><br></pre></td></tr></table></figure>
+
+<p>删除多个级联目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir -p 父级目录&#x2F;子集目录</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-6-rm命令"><a href="#2-1-6-rm命令" class="headerlink" title="2.1.6 rm命令"></a>2.1.6 rm命令</h3><blockquote>
+<p>删除文件及目录</p>
+</blockquote>
+<p>删除一个不为空的目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf 文件目录位置</span><br></pre></td></tr></table></figure>
+
+<p>删除一个不为空的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f 文件路径</span><br></pre></td></tr></table></figure>
+
+<p>删除code目录下所有的.txt文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf *.txt</span><br></pre></td></tr></table></figure>
+
+<p>【扩展】删除文件时，可以使用<code>*</code>通配符，<code>*</code>表示任意多个字符</p>
+<h3 id="2-1-7-touch命令"><a href="#2-1-7-touch命令" class="headerlink" title="2.1.7 touch命令"></a>2.1.7 touch命令</h3><blockquote>
+<p>创建新的文件，若文件存在，则只更新它的修改时间。</p>
+</blockquote>
+<p>创建a.txt空文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch a.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-8-echo命令"><a href="#2-1-8-echo命令" class="headerlink" title="2.1.8 echo命令"></a>2.1.8 echo命令</h3><blockquote>
+<p>打印文本的命令</p>
+</blockquote>
+<p>打印输出一个<code>Hi,Linux</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;Hi, Linux&quot;</span><br></pre></td></tr></table></figure>
+
+<p>【扩展】将输出的内容输入到文件中，可以使用<code>&gt;</code>或<code>&gt;&gt;</code>流重定向</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;print(188)&quot;</span> &gt; code/a.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-9-find命令"><a href="#2-1-9-find命令" class="headerlink" title="2.1.9 find命令"></a>2.1.9 find命令</h3><blockquote>
+<p>查找文件或目录</p>
+</blockquote>
+<p>格式： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find 指定查找的目录  -name &quot;*.py&quot; </span><br></pre></td></tr></table></figure>
+
+<p>从当前目录查找所有 python文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./  -name &quot;*.py&quot; </span><br></pre></td></tr></table></figure>
+
+<p>【扩展】grep方式过滤文本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . |grep .py</span><br></pre></td></tr></table></figure>
+
+<p><code>|</code>管道符号，表示将find命令查找到的所有内容，按行进行过滤，只保留包含查找的内容。</p>
+<h3 id="2-1-10-cp命令"><a href="#2-1-10-cp命令" class="headerlink" title="2.1.10 cp命令"></a>2.1.10 cp命令</h3><blockquote>
+<p>复制文件</p>
+</blockquote>
+<p>复制一个文本文件（备份）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp [-u] /etc/ssh/sshd_config  /etc/ssh/sshd_config.bak</span><br></pre></td></tr></table></figure>
+
+<p>【注意】如果目标文件已存在，则提示是否二次覆盖，输入 <code>y</code>即可。</p>
+<p>【练习】</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">mkdir code</span><br><span class="line"><span class="built_in">cd</span> code</span><br><span class="line">touch a</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hi&quot;</span> &gt; a</span><br><span class="line">cat a</span><br><span class="line">cp a a.bak</span><br><span class="line">cat a.bak</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;good&quot;</span> &gt;&gt; a</span><br><span class="line">cat a</span><br><span class="line">cp -u a a.bak</span><br><span class="line">cat a.bak</span><br></pre></td></tr></table></figure>
+
+<p>可以将以上的所有内容，复制或写入到一个.sh文件中，并将此文件权限修改为可执行，然后<code>./xx.sh</code>.</p>
+<p>复制一个目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r &lt;源目录&gt; &lt;目标位置&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-11-mv命令"><a href="#2-1-11-mv命令" class="headerlink" title="2.1.11 mv命令"></a>2.1.11 mv命令</h3><blockquote>
+<p>移动文件或目录， 具有重命名的功能</p>
+</blockquote>
+<p>移动文件位置，如 将/root/code/a文件 移动到 /opt目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv &#x2F;root&#x2F;code&#x2F;a  &#x2F;opt</span><br></pre></td></tr></table></figure>
+
+<p>移动目录的位置, 如 将/root/code 移动到 /opt目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv &#x2F;root&#x2F;code &#x2F;opt&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>重命名文件或目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/code</span><br><span class="line">mv a.bak a.backup</span><br></pre></td></tr></table></figure>
+
+<p>【注】如果文件在移动时，是同一目录，则结果是文件重命名的效果。</p>
+<h2 id="2-2-文件权限操作"><a href="#2-2-文件权限操作" class="headerlink" title="2.2 文件权限操作"></a>2.2 文件权限操作</h2><h3 id="2-2-1-文件权限组成"><a href="#2-2-1-文件权限组成" class="headerlink" title="2.2.1 文件权限组成"></a>2.2.1 文件权限组成</h3><p>一个文件或目录的权限由三大部分组成的，分别是用户权限+用户组权限+其它组权限。每部分的权限又分为三小部分，分别是 r(读), w（写）, x （执行），代表的数值分别是 r: 4,   w:2,  x: 1,如果权限值为0时，使用 <code>-</code>表示。</p>
+<p>文件权限的部分是文件描述信息中从第二位开始，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--  a.txt</span><br></pre></td></tr></table></figure>
+
+<p> 第一位是文件类型：  <code>-</code>表示是文件，  <code>d</code>表示目录。</p>
+<p>第一部分权限：<code>rw-</code> 表示用户对此文件具有<code>读写</code>权限</p>
+<p>第二部分： <code>r--</code>表示用户所在组的其他用户具有<code>读</code>的权限</p>
+<p>第三部分： <code>r--</code>表示其他组的用户具有<code>读</code>的权限</p>
+<h3 id="2-2-2-修改文件权限"><a href="#2-2-2-修改文件权限" class="headerlink" title="2.2.2 修改文件权限"></a>2.2.2 修改文件权限</h3><blockquote>
+<p>使用chmod 命令</p>
+</blockquote>
+<h4 id="2-2-2-1-字符权限"><a href="#2-2-2-1-字符权限" class="headerlink" title="2.2.2.1 字符权限"></a>2.2.2.1 字符权限</h4><p>格式： <code>chmod  [ugoa] &lt;+|-&gt; [r|w|x] </code></p>
+<p>修改a.py文件的用户权限为 <code>rwx</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+rwx a.py</span><br></pre></td></tr></table></figure>
+
+<p>为a.py文件增加其他组用户的执行权限</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod o+x a.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-2-2-数值权限"><a href="#2-2-2-2-数值权限" class="headerlink" title="2.2.2.2 数值权限"></a>2.2.2.2 数值权限</h4><p>r：  4</p>
+<p>w:   2</p>
+<p>x:    1</p>
+<p>所有权限位上的数值相加为 7,</p>
+<p>777 :  代表所有用户都具有所有权限（rwxrwxrwx）</p>
+<p>666:   代表所有用户都具有读写权限（rw-rw-rw-）</p>
+<p>400:  代表只有用户具有读权限 （r——–）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 a.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-服务操作"><a href="#2-3-服务操作" class="headerlink" title="2.3 服务操作"></a>2.3 服务操作</h2><blockquote>
+<p>服务： 后台运行的程序（没有界面），在Window中通过 Win+R输入services.msc可以打开服务管理器。在Linux中可以执行 top命令查看正在运行的服务。这些服务提供了客户端程序，通过客户端程序和服务进行交互。</p>
+</blockquote>
+<h3 id="2-3-1-systemctl命令"><a href="#2-3-1-systemctl命令" class="headerlink" title="2.3.1 systemctl命令"></a>2.3.1 systemctl命令</h3><blockquote>
+<p>服务的启动、停止、重启以及启用（禁用）都需要使用systemctl命令</p>
+</blockquote>
+<p>命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl &lt;start|stop|restart|enable|disable|status&gt; &lt;服务名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>常用的服务名：  <code>network</code>(网络服务)、<code>sshd</code>（远程连接服务）</p>
+<ul>
+<li>start 启动服务</li>
+<li>stop 停止服务</li>
+<li>restart 重新启动服务， 由于其服务的配置文件被更改，则需要重新加载配置文件。</li>
+<li>enable 启用服务（第一次使用时），启用服务之后，系统重启之后，则自动启动服务</li>
+<li>disable 禁用服务，系统不会自动启动服务。</li>
+<li>status 查看服务状态</li>
+</ul>
+<p>重启网卡服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+
+<p>启动sshd服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start sshd</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-2-service命令"><a href="#2-3-2-service命令" class="headerlink" title="2.3.2 service命令"></a>2.3.2 service命令</h3><blockquote>
+<p>同systemctl一样，是管理服务，不同是命令在服务名的后面。</p>
+</blockquote>
+<p>格式：  service  &lt;服务名&gt;  <code>&lt;start|restart|stop|status&gt;</code></p>
+<p>查看sshd命令状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd status</span><br></pre></td></tr></table></figure>
+
+<p>重启sshd服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+
+<p>【注意】service最终重启服务还是使用（重定向）systemctl。<font color="red">两者之间区别正在service执行后有相应响应信息（执行结果或提示信息），而systemctl只有存在错误时，再反馈信息。</font></p>
+<h3 id="2-3-3-netstat命令"><a href="#2-3-3-netstat命令" class="headerlink" title="2.3.3 netstat命令"></a>2.3.3 netstat命令</h3><blockquote>
+<p>监测到网络数据流的工具， 默认情况，Centos没有安装，需要手动安装。</p>
+</blockquote>
+<p>安装 net-tools 工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-tools -y</span><br></pre></td></tr></table></figure>
+
+<p><code>install</code> 安装</p>
+<p><code>uninstall</code> 卸载</p>
+<p><code>search</code> 搜索</p>
+<p>【提示】如果yum提示被占用，则等待之前的yum执行完成。或者已确定无人使用yum,但还是被占用，则重启Centos操作系统（reboot  或  init 0）。</p>
+<p>查看网络的统计信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -s</span><br></pre></td></tr></table></figure>
+
+<p>查看所有tcp协议的程序及端口号</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]<span class="comment"># netstat -ltpn</span></span><br><span class="line">Active Internet connections (only servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      15134/sshd      </span><br><span class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      22104/master    </span><br><span class="line">tcp6       0      0 :::22                   :::*                    LISTEN      15134/sshd      </span><br><span class="line">tcp6       0      0 ::1:25                  :::*                    LISTEN      22104/master </span><br></pre></td></tr></table></figure>
+
+<p>查询 22端口是否被占用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ltpn |grep 22</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>l</code> 显示Listen监听进程</li>
+<li><code>t</code> 代表tcp协议</li>
+<li><code>u</code>代表 udp协议</li>
+<li><code>a</code>代表所有已连接进程，包含listen和established</li>
+<li><code>p</code>代表进程的PID和程序名</li>
+<li><code>s</code> 统计数据包相关数据</li>
+<li><code>n</code>不显示名称，显示的是索引（用户）或端口号（服务）</li>
+<li><code>e</code> 显示扩展信息（extend）,显示用户和INode索引节点。</li>
+</ul>
+<h3 id="2-3-4-ps命令"><a href="#2-3-4-ps命令" class="headerlink" title="2.3.4 ps命令"></a>2.3.4 ps命令</h3><blockquote>
+<p>ps用于查看当前运行的进程</p>
+</blockquote>
+<p>查看所有当前运行的进程信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps -ef</span></span><br><span class="line">UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">root         1     0  0 11:07 ?        00:00:00 /usr/lib/systemd/systemd --switched-root --system --</span><br><span class="line">root         2     0  0 11:07 ?        00:00:00 [kthreadd]</span><br><span class="line">root         3     2  0 11:07 ?        00:00:00 [ksoftirqd/0]</span><br></pre></td></tr></table></figure>
+
+<p>结果说明：</p>
+<ul>
+<li>UID 用户名</li>
+<li>PID  进程ID</li>
+<li>PPID 父进程ID</li>
+<li>TTY   运行终端的描述符， <code>?</code>表示后台服务</li>
+<li>CMD  进程执行的命令</li>
+</ul>
+<p>查看某一进程是否运行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps -ef|grep sshd</span></span><br><span class="line">root      2098     1  0 11:13 ?        00:00:00 /usr/sbin/sshd -D</span><br><span class="line">root      2101  2098  0 11:13 ?        00:00:00 sshd: root@pts/0</span><br><span class="line">root      2120  2098  0 11:13 ?        00:00:00 sshd: root@pts/1</span><br><span class="line">root      2161  2098  0 11:16 ?        00:00:00 sshd: root@pts/2</span><br><span class="line">root      2206  2098  0 11:20 ?        00:00:00 sshd: root@pts/3</span><br><span class="line">root      2228  2098  0 11:21 ?        00:00:00 sshd: root@pts/4</span><br><span class="line">root      2295  2098  0 11:27 ?        00:00:00 sshd: root@pts/5</span><br><span class="line">root      2342  2105  0 11:30 pts/0    00:00:00 grep --color=auto sshd</span><br><span class="line">[root@localhost ~]<span class="comment"># who</span></span><br><span class="line">root     tty1         2021-04-13 11:08</span><br><span class="line">root     pts/0        2021-04-13 11:13 (10.36.174.51)</span><br><span class="line">root     pts/1        2021-04-13 11:13 (10.36.174.43)</span><br><span class="line">root     pts/2        2021-04-13 11:16 (10.36.174.39)</span><br><span class="line">root     pts/3        2021-04-13 11:20 (10.36.174.37)</span><br><span class="line">root     pts/4        2021-04-13 11:21 (10.36.174.66)</span><br><span class="line">root     pts/5        2021-04-13 11:27 (10.36.174.61)</span><br></pre></td></tr></table></figure>
+
+<p>从所有正在运行的进程中只定位 sshd相关的进程。</p>
+<p>如果查看某进程时，不显示最后一行的grep信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep dbus | grep -v grep</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-5-kill命令"><a href="#2-3-5-kill命令" class="headerlink" title="2.3.5 kill命令"></a>2.3.5 kill命令</h3><blockquote>
+<p>杀掉某一进程</p>
+</blockquote>
+<p>命令格式： 　kill  -&lt;数字信号&gt;  &lt;进程ID&gt;</p>
+<p>数字信号： 9 代表强制杀掉</p>
+<p>如，强制杀掉 2295 进程</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 2295</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-4-yum安装命令"><a href="#2-4-yum安装命令" class="headerlink" title="2.4 yum安装命令"></a>2.4 yum安装命令</h2><blockquote>
+<p>yum是Centos的包管理器，用于管理第三方工具的安装、卸载和搜索等。类似于python的pip命令。</p>
+<p>第一次使用yum时，需要更新（yum update）。</p>
+<p>如果yum下载工具的速度较慢，可以配置国内的镜像（源）仓库。</p>
+</blockquote>
+<h3 id="2-4-1-更新与配置源"><a href="#2-4-1-更新与配置源" class="headerlink" title="2.4.1 更新与配置源"></a>2.4.1 更新与配置源</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update -y</span><br></pre></td></tr></table></figure>
+
+<p><code>-y</code>表示遇到询问时，默认输入 <code>y</code>。</p>
+<h3 id="2-4-2-安装git"><a href="#2-4-2-安装git" class="headerlink" title="2.4.2 安装git"></a>2.4.2 安装git</h3><blockquote>
+<p>git是项目代码的版本管理工具，git同svn一样都是版本管理，但git是基于分布式的。</p>
+<p>远程仓库平台： <a target="_blank" rel="noopener" href="https://gitee.com/">https://gitee.com</a>  (注册用户)</p>
+</blockquote>
+<p>尝试搜索git安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum search git</span><br></pre></td></tr></table></figure>
+
+<p>查匹配(matched)结果，找到<code>git.x86_64</code>，如果存在，则执行以下安装命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git -y</span><br></pre></td></tr></table></figure>
+
+<p>安装完成之后，可以尝试使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/project1</span><br><span class="line"><span class="built_in">cd</span> /opt/project1</span><br><span class="line">git init</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;print(&#x27;hello&#x27;)&quot;</span>  &gt; test.py</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;本次提交版本的信息&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>git init</code> 初始化本地仓库， 初始化成功之后 ，自动创建<code>.git</code>目录（以<code>.</code>开头的文件或目录是隐藏状态，需要使用<code>ls  -a</code> 方式显示）。</p>
+<p><code>git add .</code> 将当前目录中所有文件及目录添加到缓存中（跟踪状态）。可以使用<code>git status</code>查看文件状态。</p>
+<p><code>git commit</code> 提交缓存中的文件，即提交到本地仓库。</p>
+<p><code>git push</code>上传代码，将本地仓库的代码上传到远程仓库。</p>
+<p><code>git pull</code> 下载代码，将远程仓库的代码下载到本地仓库。</p>
+<p><code>git log</code> 查看之前提交的日志信息</p>
+<p><code>git rm --cached &lt;file&gt;</code> 在提交之前，可以将缓存的文件删除。仅仅是改文件在本地仓库的状态。</p>
+<p>【注意】如果将本地仓库的版本代码上传到远程仓库时，需要配置用户名和邮箱：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;disenQF&quot;</span><br><span class="line">git config --global user.email &quot;610039018&quot;</span><br></pre></td></tr></table></figure>
+
+<p>配置成功之后，可以通过<code>git config -l</code>查看。</p>
+<p>【练习】修改代码并提交一个新的版本，然后回退第一次提交的版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/project1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;a,b = 100, 50&quot;</span> &gt;&gt; test.py</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;print(a+b)&quot;</span> &gt;&gt; test.py</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;第二次修改了test.py&quot;</span></span><br><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p>根据版本提示的信息（日志），查找到版本号 <code>commit 7e5bf0e...</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 7e5bf0e</span><br></pre></td></tr></table></figure>
+
+<p>【提示】检出时，版本只需要前几位即可（前提是所有版本号中唯一的部分），只是临时切入指定的版本。可以通过<code>git branch</code>查看分支信息。</p>
+<p>如果彻底回退之前的版本，意味删除某一版本之后修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git reset --hard &lt;版本号&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>master</code>代表主分支。</p>
+<h3 id="2-4-3-安装python3-7"><a href="#2-4-3-安装python3-7" class="headerlink" title="2.4.3 安装python3.7"></a>2.4.3 安装python3.7</h3><blockquote>
+<p>centos7系统中，默认安装了python2.7.x版本。</p>
+<p>参考： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/anxminise/p/9650206.html">https://www.cnblogs.com/anxminise/p/9650206.html</a></p>
+</blockquote>
+<p>先安装wget工具（网络下载工具）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget -y</span><br></pre></td></tr></table></figure>
+
+<p>通过wget工具下载python3.7的安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;www.python.org&#x2F;ftp&#x2F;python&#x2F;3.7.0&#x2F;Python-3.7.0.tar.xz</span><br></pre></td></tr></table></figure>
+
+<p>下载之后的文件在 /opt/project1/python3.7.tar.xz, 从 67主机上下载到自己的主机中：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@10.36.174.67:/opt/project1/python3.7.tar.xz  /opt/</span><br></pre></td></tr></table></figure>
+
+<p>Python3.7环境压缩包准备好之后，开始解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf python3.7.tar.xz </span><br></pre></td></tr></table></figure>
+
+<p>默认解压到当前目录。解压之后，需要编译（编译之前必须安装相关的依赖工具： make/gcc）：</p>
+<p>在 67主机上的/opt/code/libs.txt, 内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br><span class="line">yum install libffi-devel -y</span><br></pre></td></tr></table></figure>
+
+<p>安装的命令：  bash libs.txt</p>
+<p>安装完依赖工具之后， 尝试进行配置检查：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.7.0</span><br><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;python3</span><br></pre></td></tr></table></figure>
+
+<p><code>/usr/local/python3</code>是安装目录</p>
+<p>如果检测没有出现<font color="red">Error</font>,则尝试编译和安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>时间较长，当出现以下内容，表示安装成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Successfully installed pip-10.0.1 setuptools-39.0.1</span><br></pre></td></tr></table></figure>
+
+<p>设置python3.7的环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure>
+
+<p>最后一行的下面添加内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PYTHON_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;python3</span><br><span class="line">export PATH&#x3D;$PATH:$PYTHON_HOME&#x2F;bin</span><br></pre></td></tr></table></figure>
+
+<p>环境变量生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure>
+
+<p>测试Python3的环境：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -V</span><br><span class="line">pip3 -V</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="【练习-扩展】实现socket之Client-Server通信"><a href="#【练习-扩展】实现socket之Client-Server通信" class="headerlink" title="【练习-扩展】实现socket之Client/Server通信"></a>【练习-扩展】实现socket之Client/Server通信</h3><p>server.py文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在启动Server...&#x27;</span>)</span><br><span class="line"></span><br><span class="line">server = socket()</span><br><span class="line">server.bind((<span class="string">&#x27;10.36.174.53&#x27;</span>, <span class="number">9000</span>))</span><br><span class="line">server.listen(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收客户端的连接</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    client,address = server.accept() <span class="comment"># 阻塞的方法，等待客户端连接</span></span><br><span class="line">    <span class="built_in">print</span>(address, <span class="string">&#x27;conntected&#x27;</span>)</span><br><span class="line">    client.send(<span class="string">b&#x27;ok&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>client.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在连接服务器...&#x27;</span>)</span><br><span class="line">client = socket()</span><br><span class="line">client.connect((<span class="string">&#x27;10.36.174.53&#x27;</span>, <span class="number">9000</span>))</span><br><span class="line">msg = client.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;received content:&#x27;</span>, msg)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-4-安装-docker"><a href="#2-4-4-安装-docker" class="headerlink" title="2.4.4 安装 docker"></a>2.4.4 安装 docker</h3><blockquote>
+<p>Docker是虚拟化的容器服务。</p>
+</blockquote>
+<p>Centos中安装docker需要先配置docker的仓库源，借助yum-utils工具集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install yum-utils -y</span><br></pre></td></tr></table></figure>
+
+<p>yum-utils安装成功之后， 可以通过<code>which yum-config-manager</code>命令检查yum配置管理命令是否可用。如果存在，则执行以下命令来添加docker的repo仓库：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<p>docker-ce.repo默认添加到 <code>/etc/yum.repos.d/</code>目录下。</p>
+<p>安装docker服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<p>安装之后，启动docker服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
+
+<p>检查docker是否安装成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost opt]<span class="comment"># docker version</span></span><br><span class="line">Client: Docker Engine - Community</span><br><span class="line"> Version:           20.10.6</span><br><span class="line"> API version:       1.41</span><br><span class="line"> Go version:        go1.13.15</span><br><span class="line"> Git commit:        370c289</span><br><span class="line"> Built:             Fri Apr  9 22:45:33 2021</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"> Experimental:      <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          20.10.6</span><br><span class="line">  API version:      1.41 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.13.15</span><br><span class="line">  Git commit:       8728dd2</span><br><span class="line">  Built:            Fri Apr  9 22:43:57 2021</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     <span class="literal">false</span></span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.4.4</span><br><span class="line">  GitCommit:        05f951a3781f4f2c1911b05e61c160e9c30eaa8e</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.0.0-rc93</span><br><span class="line">  GitCommit:        12644e614e25b05da6fd08a38ffa0cfe1903fdec</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:        de40ad0</span><br></pre></td></tr></table></figure>
+
+<p>【注意】docker的client和server是基于socket的unix家庭协议进行进程间通信的。</p>
+<p>配置docker仓库的源</p>
+<p>vi /etc/docker/daemon.json文件，内容如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://oj1asep7.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存之后，重启以下服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+
+
+<p>【重点】docker的常用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker images  # 查看本地所有镜像</span><br><span class="line">docker search &lt;镜像名&gt;   # 搜索相关的镜像资源</span><br><span class="line">docker pull &lt;镜像名&gt;[:版本号]  # 从远程镜像仓库中下载到本地</span><br><span class="line">docker run [-d -i -t] [-itd] [-v &lt;宿主机的文件目录&gt;:&lt;容器的文件目录&gt; ...] [-p &lt;宿主机的端口&gt;:&lt;容器的端口&gt; ...] --name &lt;容器名&gt; &lt;镜像名或ID&gt;[:版本号]  # 运行</span><br><span class="line">docker ps  # 查看docker中正在运行的容器（子进程）</span><br><span class="line">docker stop|start|restart &lt;容器名或ID&gt;</span><br><span class="line">docker logs &lt;容器名或ID&gt;  # 查看容器的日志</span><br><span class="line">docker cp &lt;宿主机文件位置&gt;  &lt;容器名或ID&gt;:&lt;容器文件位置&gt; # 宿主机和容器之间相互复制文件</span><br><span class="line">docker exec [-it] &lt;容器名或ID&gt; &lt;容器内部的命令&gt;  # 执行容器内部的命令(完整的)</span><br><span class="line">docker rmi &lt;镜像名或ID&gt; # 删除镜像</span><br><span class="line">docker rm &lt;容器名&gt;      # 删除容器</span><br></pre></td></tr></table></figure>
+
+
+
+<p>基于docker搜索并下载mysql镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker search mysql</span><br><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
+
+<p>【扩展】镜像的保存与加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker save -o &lt;文件名&gt;  &lt;镜像名或ID&gt;[:版本号]  # 版本号默认为 latest 即为最新版本</span><br><span class="line">docker load -i &lt;文件名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如文件名为 /opt/mysql5.7.tar</p>
+<p>【练习】mysql服务的部署</p>
+<p>创建mysql容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name db1 -e MYSQL_ROOT_PASSWORD&#x3D;root -p 3306:3306 mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<p>查看mysql容器运行的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps [-a]</span><br><span class="line">docker logs db1</span><br></pre></td></tr></table></figure>
+
+<p>从db1的容器中复制mysql的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp db1:&#x2F;etc&#x2F;mysql &#x2F;opt&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>修改/opt/mysql/mysql.conf.d/mysqld.cnf, 主的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server &#x3D; utf8</span><br></pre></td></tr></table></figure>
+
+<p>再修改 /opt/mysql/conf.d/mysql.cnf, 内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysql]</span><br><span class="line">default-character-set &#x3D; utf8</span><br></pre></td></tr></table></figure>
+
+<p>两个关于字符集的配置修改完成后， 将宿主机下的mysql目录复制到db1容器中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp &#x2F;opt&#x2F;mysql db1:&#x2F;etc&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>重启 db1容器，目的是重新加载配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart db1</span><br></pre></td></tr></table></figure>
+
+<p>进入到db1容器的mysql交互环境中</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it db1 mysql -uroot -proot</span><br><span class="line">...</span><br><span class="line">mysql&gt; show variables like <span class="string">&#x27;%character%&#x27;</span>;</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">| Variable_name            | Value                      |</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">| character_set_client     | utf8                       |</span><br><span class="line">| character_set_connection | utf8                       |</span><br><span class="line">| character_set_database   | utf8                       |</span><br><span class="line">| character_set_filesystem | binary                     |</span><br><span class="line">| character_set_results    | utf8                       |</span><br><span class="line">| character_set_server     | utf8                       |</span><br><span class="line">| character_set_system     | utf8                       |</span><br><span class="line">| character_sets_dir       | /usr/share/mysql/charsets/ |</span><br><span class="line">+--------------------------+----------------------------+</span><br><span class="line">8 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-5-pymysql测试连接"><a href="#2-4-5-pymysql测试连接" class="headerlink" title="2.4.5 pymysql测试连接"></a>2.4.5 pymysql测试连接</h3><p>pip安装pymysql库</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql -i https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+
+<p>编写connect_mysql.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pymysql <span class="keyword">import</span> Connect</span><br><span class="line"></span><br><span class="line">conn = Connect(host=<span class="string">&#x27;10.36.174.67&#x27;</span>,</span><br><span class="line">               port=<span class="number">3306</span>,</span><br><span class="line">               user=<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">               passwd=<span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">               db=<span class="string">&#x27;mysql&#x27;</span>,</span><br><span class="line">               charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;--connect OK--&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> c:</span><br><span class="line">    c.execute(<span class="string">&#x27;select user,host from user&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> c.fetchall():</span><br><span class="line">        <span class="built_in">print</span>(row)</span><br></pre></td></tr></table></figure>
+
+<p>执行测试脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python connect_mysql.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="【分享】基于socket的进程间通信"><a href="#【分享】基于socket的进程间通信" class="headerlink" title="【分享】基于socket的进程间通信"></a>【分享】基于socket的进程间通信</h3><blockquote>
+<p>进程和进程之间相互独立（内存空间）</p>
+<p>socket在Linux中支持unix的sock文件方式实现进程间通信</p>
+</blockquote>
+<p>server2.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在启动Server...&#x27;</span>)</span><br><span class="line"></span><br><span class="line">server = socket.socket(socket.AF_UNIX)</span><br><span class="line">server.bind(<span class="string">&#x27;/var/disen.socket&#x27;</span>)</span><br><span class="line">server.listen(<span class="number">0</span>)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>以后台进程启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup .&#x2F;server2.py &amp;</span><br></pre></td></tr></table></figure>
+
+<p>执行成功之后，按 <code>ctrl+c</code>中断输出 ，<code>cat nohup.out</code>查看server2.py运行的日志。</p>
+<p>client2.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;正在连接服务器...&#x27;</span>)</span><br><span class="line">client = socket.socket(socket.AF_UNIX)</span><br><span class="line">client.connect(<span class="string">&#x27;/var/disen.socket&#x27;</span>)</span><br><span class="line">msg = client.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;received content:&#x27;</span>, msg)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-5-Vi编辑器"><a href="#2-5-Vi编辑器" class="headerlink" title="2.5 Vi编辑器"></a>2.5 Vi编辑器</h2><blockquote>
+<p>Linux强大的文本编辑器</p>
+</blockquote>
+<h3 id="2-5-1-模式切换"><a href="#2-5-1-模式切换" class="headerlink" title="2.5.1 模式切换"></a>2.5.1 模式切换</h3><blockquote>
+<p>存在三种模式： 选择（默认）模式、编辑模式、命令模式</p>
+</blockquote>
+<p>从选择模式 切换 到编辑模式：   按 <code>i</code>键</p>
+<p>从编辑模式 切换 到 选择模式：  ESC键</p>
+<p>从选择模式 切换 到 命令模式：   Shift + :</p>
+<h3 id="2-5-2-编辑模式"><a href="#2-5-2-编辑模式" class="headerlink" title="2.5.2 编辑模式"></a>2.5.2 编辑模式</h3><p>从选择模式中:</p>
+<ul>
+<li>按 <code>i</code>插入, </li>
+<li>按 <code>o</code>当前行下插入新行</li>
+<li>按<code>O</code>(shift + o) 当前行的上方插入一行</li>
+<li> 按<code>I</code> 移动光标到当前行的行首</li>
+<li>按<code>A</code>移动光标到当前行的行尾</li>
+</ul>
+<p>退出并保存：先进入到选择模式， 按 <code>Shift+:</code>输入 <code>wq</code>或<code>x</code>,如果编辑后，不保存且强制退出 <code>q!</code> </p>
+<h3 id="2-5-3-命令行模式"><a href="#2-5-3-命令行模式" class="headerlink" title="2.5.3 命令行模式"></a>2.5.3 命令行模式</h3><ul>
+<li>/查询的内容</li>
+<li>set number  显示行号</li>
+<li>行号   跳转到指定行号的行首</li>
+<li>w 写入，不退出</li>
+<li>q 退出，前提没有修改文件（正常退出）</li>
+<li>q! 强制退出， 不保存</li>
+<li>%s/查找的内容/替换的内容/g         查找并替换全部</li>
+</ul>
+<h2 id="2-6-用户及组命令"><a href="#2-6-用户及组命令" class="headerlink" title="2.6 用户及组命令"></a>2.6 用户及组命令</h2><blockquote>
+<p>useradd、usermod、passwd 、chown 命令</p>
+</blockquote>
+<h2 id="2-7-mysql创建用户和数据库"><a href="#2-7-mysql创建用户和数据库" class="headerlink" title="2.7 mysql创建用户和数据库"></a>2.7 mysql创建用户和数据库</h2><h3 id="2-7-1-查看数据库"><a href="#2-7-1-查看数据库" class="headerlink" title="2.7.1 查看数据库"></a>2.7.1 查看数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">show</span> databases;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> databases;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="operator">|</span> Database           <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="operator">|</span> information_schema <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> mysql              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> performance_schema <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> sys                <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-2-打开数据库"><a href="#2-7-2-打开数据库" class="headerlink" title="2.7.2 打开数据库"></a>2.7.2 打开数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use databases;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-3-创建数据库"><a href="#2-7-3-创建数据库" class="headerlink" title="2.7.3 创建数据库"></a>2.7.3 创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database stu charset utf8;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-4-创建用户"><a href="#2-7-4-创建用户" class="headerlink" title="2.7.4 创建用户"></a>2.7.4 创建用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#39;disen&#39;@&#39;%&#39; identified by &#39;disen&#39;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-5-授权"><a href="#2-7-5-授权" class="headerlink" title="2.7.5 授权"></a>2.7.5 授权</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on stu.* to &#39;disen&#39;@&#39;%&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>如果授权之后，无法使用数据库，可以尝试去刷新：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-8-mysql多容器"><a href="#2-8-mysql多容器" class="headerlink" title="2.8 mysql多容器"></a>2.8 mysql多容器</h2><blockquote>
+<p>13人团队，  主机 10.36.174.66</p>
+<p>组1： ６人，序号： 01-06， mysql容器名+序号</p>
+<p>组2：7人  ,    序号：07-013</p>
+</blockquote>
+<h3 id="2-8-1-组1容器"><a href="#2-8-1-组1容器" class="headerlink" title="2.8.1 组1容器"></a>2.8.1 组1容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name db001 -p 3307:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db002 -p 3308:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db003 -p 3309:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db004 -p 3310:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db005 -p 3311:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db006 -p 3312:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-2-组2容器"><a href="#2-8-2-组2容器" class="headerlink" title="2.8.2 组2容器"></a>2.8.2 组2容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name db007 -p 3313:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db008 -p 3314:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db009 -p 3315:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db010 -p 3316:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db011 -p 3317:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db012 -p 3318:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br><span class="line"></span><br><span class="line">docker run -itd --name db013 -p 3319:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -v &#x2F;opt&#x2F;mysql:&#x2F;etc&#x2F;mysql mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+<p>建议不关闭，否则 docker -p 不可使用。</p>
+<p>【注意】设置不同的端口号之后，必须通过firewalld防火墙</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3307/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果mysql的远程连接不成功时，可以先ssh连接，再通过docker exec 命令进入mysql交互环境中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it db001 mysql -uroot -proot</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-3-同一个容器，多个数据库"><a href="#2-8-3-同一个容器，多个数据库" class="headerlink" title="2.8.3 同一个容器，多个数据库"></a>2.8.3 同一个容器，多个数据库</h3><p>编写一个sql脚本（create.sql）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database stu1 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu2 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu3 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu4 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu5 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu6 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu7 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu8 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu9 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu10 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu11 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu12 charset utf8;</span><br><span class="line"><span class="keyword">create</span> database stu13 charset utf8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user01&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user02&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user03&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user04&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user05&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user06&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user07&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user08&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user09&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user10&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user11&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user12&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user13&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;user123&#x27;</span>;</span><br><span class="line"></span><br><span class="line">use mysql;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu1.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user01&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu2.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user02&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu3.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user03&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu4.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user04&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu5.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user05&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu6.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user06&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu7.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user07&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu8.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user08&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu9.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user09&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu10.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user10&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu11.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user11&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu12.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user12&#x27;</span>;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> stu13.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user13&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>通过root管理员进入到mysql交互环境, 通过 source命令来执行sql语句</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it db001 mysql -uroot -proot</span><br><span class="line">mysql&gt; <span class="built_in">source</span> /etc/mysql/sql/create.sql</span><br></pre></td></tr></table></figure>
+
+
+
+<p>【注意】设置不同的端口号之后，必须通过firewalld防火墙</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3307/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:42:30.805Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:44.816Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_2/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_1/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81ssh%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">一、ssh连接操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Powershell%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Powershell客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 连接服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%85%8D%E5%AF%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 免密方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E7%94%9F%E6%88%90%E5%85%AC%E9%92%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 生成公钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-scp%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 scp上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-%E5%86%99%E5%85%A5%E6%8E%88%E6%9D%83"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 写入授权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Linux%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">二、Linux中常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-ls%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.1.</span> <span class="toc-text">2.1.1 ls命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-cd%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.1.2 cd命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-pwd%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.3.</span> <span class="toc-text">2.1.3 pwd命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-mkdir%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.4.</span> <span class="toc-text">2.1.4 mkdir命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-5-rmdir-%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.5.</span> <span class="toc-text">2.1.5 rmdir 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-6-rm%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.6.</span> <span class="toc-text">2.1.6 rm命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-7-touch%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.7.</span> <span class="toc-text">2.1.7 touch命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-8-echo%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.8.</span> <span class="toc-text">2.1.8 echo命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-9-find%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.9.</span> <span class="toc-text">2.1.9 find命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-10-cp%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.10.</span> <span class="toc-text">2.1.10 cp命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-11-mv%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.11.</span> <span class="toc-text">2.1.11 mv命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 文件权限操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%BB%84%E6%88%90"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 文件权限组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 修改文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-1-%E5%AD%97%E7%AC%A6%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">2.2.2.1 字符权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-2-%E6%95%B0%E5%80%BC%E6%9D%83%E9%99%90"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">2.2.2.2 数值权限</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%9C%8D%E5%8A%A1%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 服务操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-systemctl%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 systemctl命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-service%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 service命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-netstat%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3 netstat命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-ps%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.3.4 ps命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-kill%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.5.</span> <span class="toc-text">2.3.5 kill命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-yum%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 yum安装命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-%E6%9B%B4%E6%96%B0%E4%B8%8E%E9%85%8D%E7%BD%AE%E6%BA%90"><span class="toc-number">2.4.1.</span> <span class="toc-text">2.4.1 更新与配置源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-%E5%AE%89%E8%A3%85git"><span class="toc-number">2.4.2.</span> <span class="toc-text">2.4.2 安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-3-%E5%AE%89%E8%A3%85python3-7"><span class="toc-number">2.4.3.</span> <span class="toc-text">2.4.3 安装python3.7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90%E7%BB%83%E4%B9%A0-%E6%89%A9%E5%B1%95%E3%80%91%E5%AE%9E%E7%8E%B0socket%E4%B9%8BClient-Server%E9%80%9A%E4%BF%A1"><span class="toc-number">2.4.4.</span> <span class="toc-text">【练习-扩展】实现socket之Client&#x2F;Server通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-4-%E5%AE%89%E8%A3%85-docker"><span class="toc-number">2.4.5.</span> <span class="toc-text">2.4.4 安装 docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-5-pymysql%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.4.6.</span> <span class="toc-text">2.4.5 pymysql测试连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90%E5%88%86%E4%BA%AB%E3%80%91%E5%9F%BA%E4%BA%8Esocket%E7%9A%84%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-number">2.4.7.</span> <span class="toc-text">【分享】基于socket的进程间通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-Vi%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 Vi编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-1-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2"><span class="toc-number">2.5.1.</span> <span class="toc-text">2.5.1 模式切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-2-%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.5.2.</span> <span class="toc-text">2.5.2 编辑模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-3-%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.5.3.</span> <span class="toc-text">2.5.3 命令行模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E7%94%A8%E6%88%B7%E5%8F%8A%E7%BB%84%E5%91%BD%E4%BB%A4"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 用户及组命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-mysql%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 mysql创建用户和数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-1-%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.7.1.</span> <span class="toc-text">2.7.1 查看数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-2-%E6%89%93%E5%BC%80%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.7.2.</span> <span class="toc-text">2.7.2 打开数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-3-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.7.3.</span> <span class="toc-text">2.7.3 创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-4-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-number">2.7.4.</span> <span class="toc-text">2.7.4 创建用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-5-%E6%8E%88%E6%9D%83"><span class="toc-number">2.7.5.</span> <span class="toc-text">2.7.5 授权</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-mysql%E5%A4%9A%E5%AE%B9%E5%99%A8"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 mysql多容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-1-%E7%BB%841%E5%AE%B9%E5%99%A8"><span class="toc-number">2.8.1.</span> <span class="toc-text">2.8.1 组1容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-2-%E7%BB%842%E5%AE%B9%E5%99%A8"><span class="toc-number">2.8.2.</span> <span class="toc-text">2.8.2 组2容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-3-%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8%EF%BC%8C%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.8.3.</span> <span class="toc-text">2.8.3 同一个容器，多个数据库</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:39:06.200Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:28:56.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" class="archive-article-date">
-  	<time datetime="2021-04-28T12:28:40.303Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2021-04-26T06:47:52.601Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -421,8 +927,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

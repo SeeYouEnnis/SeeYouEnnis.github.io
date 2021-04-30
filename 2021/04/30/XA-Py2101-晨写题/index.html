@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="第21天 晨写题一、写出str对象的相关方法">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="第21天 晨写题一、写出str对象的相关方法">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-30T01:28:56.340Z">
+<meta property="article:modified_time" content="2021-04-30T12:29:42.248Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -169,235 +173,380 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-XA-Py2101-晨写题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第21天-晨写题"><a href="#第21天-晨写题" class="headerlink" title="第21天 晨写题"></a>第21天 晨写题</h1><h2 id="一、写出str对象的相关方法"><a href="#一、写出str对象的相关方法" class="headerlink" title="一、写出str对象的相关方法"></a>一、写出str对象的相关方法</h2> <span id="more"></span>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- str 是一种数据类型，也是一个类 type(&#39;&#39;)  &#x3D;&gt;  &lt;class str&gt;</span><br><span class="line">- str对象是字符串， 它的方法特别是多， 可以通过dir(str) 查找到它的相关的方法</span><br><span class="line">- 主要的str对象的方法：</span><br><span class="line">   - .format()</span><br><span class="line">   - .find()&#x2F;rfind()&#x2F;index()&#x2F;rindex()</span><br><span class="line">   - .replace()</span><br><span class="line">   - .strip()</span><br><span class="line">   - .split()  指定字符分隔内容，转为list列表</span><br><span class="line">   - .lower()&#x2F;upper()</span><br><span class="line">   - .isalpha()&#x2F;isalnum()&#x2F;istitle()..</span><br><span class="line">   - .startswith()&#x2F;endswith()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、写出-open-函数的相关参数及注意事项"><a href="#二、写出-open-函数的相关参数及注意事项" class="headerlink" title="二、写出 open()函数的相关参数及注意事项"></a>二、写出 open()函数的相关参数及注意事项</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- 第一个参数 是 文件路径或文件名</span><br><span class="line">- 第二个参数 是 打开模式 mode</span><br><span class="line">   - 文本操作（默认 t）： r， w,　r+, w+, a, a+</span><br><span class="line">   - 字节操作(b): rb, wb, r+b, w+b, ab, a+b</span><br><span class="line">- 其它参数：</span><br><span class="line">   - encoding 只针对文本操作，代表对字节数据进行解码时字符集（GBK&#x2F;UTF-8&#x2F;GB2312）</span><br><span class="line">              【注】如果模式是b字节操作，则不能指定此参数，否则抛出异常。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、写出关于函数形参的定义和用法"><a href="#三、写出关于函数形参的定义和用法" class="headerlink" title="三、写出关于函数形参的定义和用法"></a>三、写出关于函数形参的定义和用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- 定义： 根据函数的功能来描述参数</span><br><span class="line">   - 形参的形式：  </span><br><span class="line">       - 位置参数  def sum(a, b): pass</span><br><span class="line">       - 默认值参数 def pow(x, n&#x3D;2): pass   </span><br><span class="line">       - 不定长参数  </span><br><span class="line">           -  *args   tuple</span><br><span class="line">               def sum(a, b, *args):pass    sum(1, 2) sum(1,2,3,4,5,6)</span><br><span class="line">           -  **kwargs  dict</span><br><span class="line">               def connect(host, port&#x3D;3306, **kwargs):pass</span><br><span class="line">               </span><br><span class="line">               connect(&#39;10.36.174.51&#39;, port&#x3D;1152, user&#x3D;&#39;root&#39;, passwd&#x3D;&quot;root&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四、写出面向对象中类方法、实例方法的区别"><a href="#四、写出面向对象中类方法、实例方法的区别" class="headerlink" title="四、写出面向对象中类方法、实例方法的区别"></a>四、写出面向对象中类方法、实例方法的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- 类方法，属于类对象的，属于所有类实例对象的</span><br><span class="line">  在类的定义中， 使用@classmethod装饰器 装饰的方法, 方法的第一个参数是cls</span><br><span class="line">  class A:</span><br><span class="line">      @classmethod</span><br><span class="line">      def abc(cls, *args, **kwargs):pass</span><br><span class="line">      </span><br><span class="line">   A.abc()</span><br><span class="line">   </span><br><span class="line">- 在实例的方法： 类实例化之后对象的方法</span><br><span class="line">  实例化： aa &#x3D; A()   # 1: instance&#x3D; A.__new__() 2: instance.__init__()</span><br><span class="line">  实例对象可以调用类的方法和实例方法</span><br><span class="line">  实例方法：第一个参数必须是self</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">a</span>):</span></span><br><span class="line">   f.a += a</span><br><span class="line">   <span class="built_in">print</span>(f.a)</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">f.a = <span class="number">100</span></span><br><span class="line">f(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ahhqdyh">https://blog.csdn.net/ahhqdyh</a></p>
+<h1 id="第22天-晨写题"><a href="#第22天-晨写题" class="headerlink" title="第22天 晨写题"></a>第22天 晨写题</h1><h2 id="一、scp和ssh两个命令的功能"><a href="#一、scp和ssh两个命令的功能" class="headerlink" title="一、scp和ssh两个命令的功能"></a>一、<code>scp</code>和<code>ssh</code>两个命令的功能</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scp ： 基于ssh协议, 用于上传本地的文件到远程主机上， </span><br><span class="line">      命令格式： scp [-r] &lt;文件&gt; 用户名@ip&#x2F;hostname:远程主机的文件位置</span><br><span class="line">      </span><br><span class="line">ssh:  用于远程主机登录</span><br><span class="line">      命令格式：  ssh 用户名@ip&#x2F;hostname</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、rm和rmdir的区别"><a href="#二、rm和rmdir的区别" class="headerlink" title="二、rm和rmdir的区别"></a>二、<code>rm</code>和<code>rmdir</code>的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm:  删除文件及目录</span><br><span class="line">     命令： rm -rf &lt;文件或目录&gt;</span><br><span class="line">rmdir: 删除空目录， 相比较rm来说，比较安全。</span><br><span class="line">     命令：  rmdir -p &lt;目录&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、写出以下文件权限的数值和含义"><a href="#三、写出以下文件权限的数值和含义" class="headerlink" title="三、写出以下文件权限的数值和含义"></a>三、写出以下文件权限的数值和含义</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>数值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-w-r----x</code></td>
+<td>241</td>
+<td>用户具有写、组用户只读、其他用户可执行</td>
+</tr>
+<tr>
+<td><code>rwxr-xr--</code></td>
+<td>754</td>
+<td>用户具有读写可执行、组用户读和执行、其用户用户只读</td>
+</tr>
+<tr>
+<td><code>r--r--r--</code></td>
+<td>444</td>
+<td>所有用户只读</td>
+</tr>
+<tr>
+<td><code>rw-r-xr-x</code></td>
+<td>655</td>
+<td>用户读写、组用户和其他组用户是读和执行</td>
+</tr>
+<tr>
+<td><code>r-xrwx--x</code></td>
+<td>571</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="四、以不同方式为a-py添加所有用户的执行权限"><a href="#四、以不同方式为a-py添加所有用户的执行权限" class="headerlink" title="四、以不同方式为a.py添加所有用户的执行权限"></a>四、以不同方式为<code>a.py</code>添加所有用户的执行权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- chmod命令修改文件的权限</span><br><span class="line">- 方式一：  chmod a+x a.py</span><br><span class="line">- 方式二：  chmod 555 a.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第23天-晨写题"><a href="#第23天-晨写题" class="headerlink" title="第23天 晨写题"></a>第23天 晨写题</h1><h2 id="一、停止sshd服务命令"><a href="#一、停止sshd服务命令" class="headerlink" title="一、停止sshd服务命令"></a>一、停止sshd服务命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- systemctl stop sshd</span><br><span class="line">- service sshd stop</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、安装git服务的命令"><a href="#二、安装git服务的命令" class="headerlink" title="二、安装git服务的命令"></a>二、安装git服务的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git -y</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove git -y</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、git相关的命令"><a href="#三、git相关的命令" class="headerlink" title="三、git相关的命令"></a>三、git相关的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;消息&quot;</span><br><span class="line">git status</span><br><span class="line">git config --global user.name &quot;&quot;</span><br><span class="line">git config --global user.email &quot;&quot;</span><br><span class="line">git log</span><br><span class="line">git checkout &lt;COMMIT ID&gt;</span><br><span class="line">git branch</span><br><span class="line">git reset --hard &lt;COMMIT ID&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、vi文本编辑器的三种模式切换"><a href="#四、vi文本编辑器的三种模式切换" class="headerlink" title="四、vi文本编辑器的三种模式切换"></a>四、vi文本编辑器的三种模式切换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- vi 打开文件时的默认模式是 选择模式</span><br><span class="line">- 选择模式 -&gt; 编辑模式：  按 i&#x2F;o&#x2F;O&#x2F;A&#x2F;I 键</span><br><span class="line">- 编辑模式 -&gt; 选择模式：  按 ESC 键</span><br><span class="line">- 选择模式 -&gt; 命令行模式:  按 Shift + : 组合键 </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第26天-晨写题"><a href="#第26天-晨写题" class="headerlink" title="第26天 晨写题"></a>第26天 晨写题</h1><h2 id="一、写出mysql相关的约束"><a href="#一、写出mysql相关的约束" class="headerlink" title="一、写出mysql相关的约束"></a>一、写出mysql相关的约束</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">primary key 主键</span><br><span class="line">foreign key 外键</span><br><span class="line">not null 非空</span><br><span class="line">unique  唯一</span><br><span class="line">default 默认值</span><br><span class="line">【mysql】auto_increment 自增</span><br><span class="line">【sqlserver&#x2F;oracle】check 检查约束</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、写出两表以上关联查询的方式"><a href="#二、写出两表以上关联查询的方式" class="headerlink" title="二、写出两表以上关联查询的方式"></a>二、写出两表以上关联查询的方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. where 等值条件</span><br><span class="line">2. join on 方式</span><br></pre></td></tr></table></figure>
+
+<p>【注意】关联查询和是否存在主外键约束没有任何关系。</p>
+<h2 id="三、写出mysql的索引作用"><a href="#三、写出mysql的索引作用" class="headerlink" title="三、写出mysql的索引作用"></a>三、写出mysql的索引作用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 索引的关键是 index, 主键约束默认会创建主键索引 （含有唯一索引的特点）</span><br><span class="line">- 唯一约束，默认也会创建 唯一索引</span><br><span class="line">- 索引的作用： 快速查询，在数据库管理系统中，存在索引内存空间（数据结构－btree）。在SQL查询语句， 使用索引字段进行查询，可以快速定位记录的行号，提高的查询记录的速度。</span><br></pre></td></tr></table></figure>
+
+<p>【中文文档】<a target="_blank" rel="noopener" href="https://www.mysqlzh.com/doc/124.html">https://www.mysqlzh.com/doc/124.html</a></p>
+<p>【官方英文文档】<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/">https://dev.mysql.com/doc/</a></p>
+<h2 id="四、写出Linux查看某一端口占用情况的命令"><a href="#四、写出Linux查看某一端口占用情况的命令" class="headerlink" title="四、写出Linux查看某一端口占用情况的命令"></a>四、写出Linux查看某一端口占用情况的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat  -lntp | grep 3306|22|25|6379|1520|1433</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第27天-晨写题"><a href="#第27天-晨写题" class="headerlink" title="第27天 晨写题"></a>第27天 晨写题</h1><h2 id="一、查看bank库下所有表的索引的SQL语句"><a href="#一、查看bank库下所有表的索引的SQL语句" class="headerlink" title="一、查看bank库下所有表的索引的SQL语句"></a>一、查看bank库下所有表的索引的SQL语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.name idx_name,a.type, b.name tb_name</span><br><span class="line"><span class="keyword">from</span> information_schema.innodb_sys_indexes a</span><br><span class="line"><span class="keyword">join</span> information_schema.innodb_sys_tables b </span><br><span class="line"><span class="keyword">on</span> (a.table_id <span class="operator">=</span> b.table_id)</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、事务的ACID以及四个隔离级别"><a href="#二、事务的ACID以及四个隔离级别" class="headerlink" title="二、事务的ACID以及四个隔离级别"></a>二、事务的ACID以及四个隔离级别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ACID是事务的四个特性（功能）：</span><br><span class="line">- Atomicity （原子性）</span><br><span class="line">- Consistency (一致性)</span><br><span class="line">- Isolation (隔离性)</span><br><span class="line">- Durability (持久化)</span><br><span class="line"></span><br><span class="line">四个隔离级别是隔离性的：</span><br><span class="line">- 读未提交，【脏读】【不重复读】【幻读】</span><br><span class="line">- 读已提交，【不重复读】【幻读】</span><br><span class="line">- 可重复读，【幻读】</span><br><span class="line">- 串行化</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、创建视图的SQL语法"><a href="#三、创建视图的SQL语法" class="headerlink" title="三、创建视图的SQL语法"></a>三、创建视图的SQL语法</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> [<span class="keyword">or</span> replace] <span class="keyword">view</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span> <span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> 查询语句</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、HTTP协议的请求和响应报文第一行"><a href="#四、HTTP协议的请求和响应报文第一行" class="headerlink" title="四、HTTP协议的请求和响应报文第一行"></a>四、HTTP协议的请求和响应报文第一行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请求报文的第一行</span><br><span class="line">GET &#x2F; HTTPS&#x2F;1.1</span><br><span class="line"></span><br><span class="line">响应报文的第一行</span><br><span class="line">HTTPS&#x2F;1.1  200 OK</span><br></pre></td></tr></table></figure>
+
+<p>【扩展】请求对象 request,   响应对象 response</p>
+<h1 id="第28天-晨写题"><a href="#第28天-晨写题" class="headerlink" title="第28天 晨写题"></a>第28天 晨写题</h1><h2 id="一、常用的HTML标签"><a href="#一、常用的HTML标签" class="headerlink" title="一、常用的HTML标签"></a>一、常用的HTML标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt; 普通的文本标签</span><br><span class="line">&lt;p&gt;  段落标签， 内部可以包含其它标签</span><br><span class="line">&lt;div&gt; 层级标签（块级）， 可以包含其它标签</span><br><span class="line">&lt;table&gt;</span><br><span class="line">&lt;form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">&lt;link&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;meta&gt;</span><br><span class="line">&lt;title&gt;</span><br><span class="line">&lt;h1&gt; -- &lt;h6&gt;</span><br><span class="line">&lt;input&gt;</span><br><span class="line">&lt;label&gt;</span><br><span class="line">&lt;audio&gt;</span><br><span class="line">&lt;video&gt;</span><br><span class="line">&lt;source&gt;  必须要在&lt;audio&gt;或&lt;video&gt;内部使用</span><br><span class="line">&lt;b&gt;</span><br><span class="line">&lt;i&gt;</span><br><span class="line">&lt;del&gt;</span><br><span class="line">&lt;br&gt;  换行</span><br><span class="line">&lt;hr&gt;  水平线</span><br><span class="line">&lt;!-- 注释信息 --&gt;</span><br><span class="line">&lt;a&gt;</span><br><span class="line">&lt;img&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、form标签的属性及作用"><a href="#二、form标签的属性及作用" class="headerlink" title="二、form标签的属性及作用"></a>二、form标签的属性及作用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- action 表示提交表单的URL, 即接收表单数据的后端接口</span><br><span class="line">- method 请求方法， 只能选择get或post</span><br><span class="line">- enctype 表单数据编码类型， 默认是 application&#x2F;x-www-form-urlencoded, 如果表单数据中包含file文件字段时，类型必须指定 multipart&#x2F;form-data</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、td和tr之间关系及td标签的属性"><a href="#三、td和tr之间关系及td标签的属性" class="headerlink" title="三、td和tr之间关系及td标签的属性"></a>三、td和tr之间关系及td标签的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">td标签必须在tr标签中， 即 td一般是tr标签的子标签</span><br><span class="line">td标签的属性：　</span><br><span class="line">- colspan  跨列的个数</span><br><span class="line">- rowspan  跨行的个数</span><br><span class="line">- align    水平方向的内容对齐,  可选 left, center, right</span><br><span class="line">- valign   垂直方向的内容对齐， 可选 top, middle, bottom</span><br><span class="line">- width    指定列的宽度</span><br><span class="line">- height   指定列的高度</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、HBuildx工具的常用的快捷键"><a href="#四、HBuildx工具的常用的快捷键" class="headerlink" title="四、HBuildx工具的常用的快捷键"></a>四、HBuildx工具的常用的快捷键</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctrl+n :   打开 新建面板（对话框）</span><br><span class="line">alt + &#x2F;:   提示可选属性</span><br><span class="line">ctrl+k :   自动排版</span><br><span class="line">alt + q:   打开或关闭项目资源面板</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第29天-晨写题"><a href="#第29天-晨写题" class="headerlink" title="第29天 晨写题"></a>第29天 晨写题</h1><h2 id="一、盒子模型中常用的样式"><a href="#一、盒子模型中常用的样式" class="headerlink" title="一、盒子模型中常用的样式"></a>一、盒子模型中常用的样式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">width</span><br><span class="line">height</span><br><span class="line">padding</span><br><span class="line">  - padding-top</span><br><span class="line">  - padding-left</span><br><span class="line">  - padding-right</span><br><span class="line">  - padding-bottom</span><br><span class="line"> </span><br><span class="line">margin</span><br><span class="line">   - margin-top</span><br><span class="line">   - margin-right</span><br><span class="line">   - margin-bottom</span><br><span class="line">   - margin-left</span><br><span class="line">   </span><br><span class="line">border</span><br><span class="line">	- border-width</span><br><span class="line">	- border-style:   solid|dotted|dashed|double|none</span><br><span class="line">	- border-color</span><br><span class="line">text-align:   文本内容的对齐方式</span><br><span class="line">line-height:  行高</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、样式选择的优先级"><a href="#二、样式选择的优先级" class="headerlink" title="二、样式选择的优先级"></a>二、样式选择的优先级</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 标签内样式 &gt; 页内样式 &gt; 外部引入样式  </span><br><span class="line">- #id &gt; .class &gt; 标签[属性&#x3D;&quot;属性值&quot;] &gt; 标签</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、清除浮动布局样式"><a href="#三、清除浮动布局样式" class="headerlink" title="三、清除浮动布局样式"></a>三、清除浮动布局样式</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:     主要在父标签内最后一个标签上增加些样式即可．也可以通过<code>父标签::after &#123;  &#125;</code>结构来实现.</p>
+<h2 id="四、弹性盒子常用的样式"><a href="#四、弹性盒子常用的样式" class="headerlink" title="四、弹性盒子常用的样式"></a>四、弹性盒子常用的样式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">display: flex</span><br><span class="line">flex-flow: &lt;flex-direction&gt;  &lt;flex-wrap&gt;</span><br><span class="line">  - flex-direction:  row | column</span><br><span class="line">  - flex-wrap:   nowrap | auto</span><br><span class="line">justify-content:  flex-start | flext-end | center | space-between | space-around</span><br><span class="line">align-items:  baseline | center | ...</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第30天-晨写题"><a href="#第30天-晨写题" class="headerlink" title="第30天 晨写题"></a>第30天 晨写题</h1><h2 id="一、animation动画属性的组成部分"><a href="#一、animation动画属性的组成部分" class="headerlink" title="一、animation动画属性的组成部分"></a>一、animation动画属性的组成部分</h2><p>Python:   Iterable/Iterator/generator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">animation:  @keyframes name | duration | timing-function | delay | iteration-count | direction | play-state</span><br><span class="line"></span><br><span class="line">-  timing-function:   ease | ease-in | ease-in-out | linear</span><br><span class="line">-  iteration-count:   数值 | infinite</span><br><span class="line">-  direction:  reverse | alternate</span><br><span class="line">-  play-state:  paused | running</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、缩放的过渡动画"><a href="#二、缩放的过渡动画" class="headerlink" title="二、缩放的过渡动画"></a>二、缩放的过渡动画</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- transform:  scale(1.5, 1.5)</span><br><span class="line">- transition: transform 3s linear 0.1s</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、js-JavaScript-的三大模块"><a href="#三、js-JavaScript-的三大模块" class="headerlink" title="三、js(JavaScript)的三大模块"></a>三、js(JavaScript)的三大模块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- ECMAScript 核心语言</span><br><span class="line">- DOM 文档节点操作</span><br><span class="line">- BOM 浏览器操作</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、js数组的迭代方式"><a href="#四、js数组的迭代方式" class="headerlink" title="四、js数组的迭代方式"></a>四、js数组的迭代方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- 第一种 for循环</span><br><span class="line">  for(let i &#x3D; 0; i&lt; xxx.length;  i++)&#123;</span><br><span class="line">       console.info(xxx[i])</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">- 第二种数组对象的方法forEach()</span><br><span class="line">  xxx.forEach((item, index) &#x3D;&gt; &#123;</span><br><span class="line">       console.info(item)</span><br><span class="line">  &#125;)</span><br><span class="line">  </span><br><span class="line">- 第三种 for-in循环  (增强性循环)</span><br><span class="line"> for(let index in xxx)&#123;</span><br><span class="line">    console.info(xxx[index])</span><br><span class="line"> &#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="第31天-晨写题"><a href="#第31天-晨写题" class="headerlink" title="第31天 晨写题"></a>第31天 晨写题</h1><h2 id="一、创建和取消定时器的函数"><a href="#一、创建和取消定时器的函数" class="headerlink" title="一、创建和取消定时器的函数"></a>一、创建和取消定时器的函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- setInterval(callback, interval)  间隔性定时器， 返回Interval_ID</span><br><span class="line">- setTimeout(callback,  delay) 延迟定时器, 返回Timeout_ID</span><br><span class="line"></span><br><span class="line">- clearInterval(Interval_ID)</span><br><span class="line">- clearTimeout(Timeout_ID)</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、为div动态添加和删除属性class"><a href="#二、为div动态添加和删除属性class" class="headerlink" title="二、为div动态添加和删除属性class"></a>二、为div动态添加和删除属性class</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- div.setAttribute(&#39;class&#39;, &#39;main&#39;)  添加</span><br><span class="line">- div.removeAttribute(&#39;class&#39;)  删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、fetch-是作用及用法"><a href="#三、fetch-是作用及用法" class="headerlink" title="三、fetch()是作用及用法"></a>三、fetch()是作用及用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- 作用： 前端页面的异步请求方法，是一种响应式用法， 基于Promise类实现的。</span><br><span class="line">        【参与】https:&#x2F;&#x2F;www.runoob.com&#x2F;js&#x2F;js-promise.html</span><br><span class="line">- 用法</span><br><span class="line">     可以发起get和post请求， 也可以发起RESTful的其它请求方法。</span><br><span class="line">     fetch(url|config,  data)</span><br><span class="line">     fetch(&#123;</span><br><span class="line">        &#39;url&#39;: &#39;&#39;,</span><br><span class="line">        &#39;method&#39;: &#39;POST&#39;,</span><br><span class="line">        &#39;body&#39;: &#39;&#39;,</span><br><span class="line">        &#39;headers&#39;: &#123;</span><br><span class="line">             </span><br><span class="line">        &#125;</span><br><span class="line">     &#125;)</span><br><span class="line">     </span><br><span class="line">     fetch(&#39;url&#39;) 直接请求 GET&#x2F;DELETE 方法</span><br><span class="line">     fetch(url,  &#123;</span><br><span class="line">        method:  &#39;POST|PUT|PATCH&#39;,</span><br><span class="line">        body: &#39;&#39;,</span><br><span class="line">        headers: &#123;</span><br><span class="line">           &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded&#39;</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、json对象与json字符串有什么区别"><a href="#四、json对象与json字符串有什么区别" class="headerlink" title="四、json对象与json字符串有什么区别"></a>四、json对象与json字符串有什么区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 1. json对象是由 JSON.parse()函数将json字符串转化的</span><br><span class="line">- 2. json字符串由 JSON.stringify()函数 将json对象转化的</span><br><span class="line">- 3. json字符串有两种类型的格式：  json数组 [],   json对象 &#123; &#125;, 它们之间可以相互包含。</span><br><span class="line">- 4. 在json字符串， 字符串必须是双引号，不能出现单引号。</span><br><span class="line">- 5. 对象 -&gt; 字符串 :  序列化；    字符串 -&gt;对象 ： 反序列化</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第32天-晨写题"><a href="#第32天-晨写题" class="headerlink" title="第32天 晨写题"></a>第32天 晨写题</h1><h2 id="一-jQuery对象与Dom对象如何转化"><a href="#一-jQuery对象与Dom对象如何转化" class="headerlink" title="一.  jQuery对象与Dom对象如何转化"></a>一.  jQuery对象与Dom对象如何转化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- Dom对象转化为jQuery对象</span><br><span class="line">	- $(Dom对象)</span><br><span class="line">	- jQuery(Dom对象)</span><br><span class="line">	</span><br><span class="line">	[扩展] $ &#x3D; jQuery()  &#x2F;&#x2F;提升$</span><br><span class="line">- jQuery对象转化为Dom对象</span><br><span class="line">  - jQuery[index]</span><br><span class="line">  - jQuery.get(index)</span><br><span class="line">  - jQuery.each((index, dom) &#x3D;&gt; &#123; &#125; )</span><br></pre></td></tr></table></figure>
+
+<h2 id="二-jQuery查找元素的方式"><a href="#二-jQuery查找元素的方式" class="headerlink" title="二.  jQuery查找元素的方式"></a>二.  jQuery查找元素的方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">-- 样式选择器的方式</span><br><span class="line">#id</span><br><span class="line">.classname</span><br><span class="line">标签</span><br><span class="line">:input</span><br><span class="line">:text</span><br><span class="line">:password</span><br><span class="line">:radio</span><br><span class="line">:checkbox</span><br><span class="line">:image   图片按钮标签</span><br><span class="line">:button</span><br><span class="line">:submit</span><br><span class="line">:reset</span><br><span class="line">:file</span><br><span class="line">:selected</span><br><span class="line">:checked</span><br><span class="line">:enabled</span><br><span class="line">:disabled</span><br><span class="line">:first</span><br><span class="line">:last</span><br><span class="line">:lt(index)</span><br><span class="line">:gt(index)</span><br><span class="line">:eq(index)</span><br><span class="line">:odd</span><br><span class="line">:even</span><br><span class="line">:first-child</span><br><span class="line">:last-child</span><br><span class="line">:nth-child(index)</span><br><span class="line">:nth-last-child(index)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- jQuery对象的方式</span><br><span class="line">jQuery.next()|nextAll()|prev()|prevAll()|find(&#39;后代标签名&#39;)|children(&#39;后代标签名&#39;).siblings()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三-bootstrap是什么-它的栅格系统中将屏幕分成几种尺寸等级"><a href="#三-bootstrap是什么-它的栅格系统中将屏幕分成几种尺寸等级" class="headerlink" title="三.  bootstrap是什么?它的栅格系统中将屏幕分成几种尺寸等级?"></a>三.  bootstrap是什么?它的栅格系统中将屏幕分成几种尺寸等级?</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- bootstrap 是CSS样式集,提供了丰富的标签样式,并且实现响应式布局(自适应屏幕大小).</span><br><span class="line">- 栅格系统的屏幕分成4个等级尺寸,  每一行分成12个等份(列), 行的样式类名为 row</span><br><span class="line">   - 超小屏 &lt; 768    col-xs-n </span><br><span class="line">   - 小屏 &lt; 992      col-sm-n</span><br><span class="line">   - 中屏 &lt; 1200     col-md-n</span><br><span class="line">   - 大屏 &gt; 1200     col-lg-n</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-python中with关键字的作用"><a href="#四-python中with关键字的作用" class="headerlink" title="四.  python中with关键字的作用"></a>四.  python中with关键字的作用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- with的作用:  将obj对象 交由上下文管理器处理, 处理流程:</span><br><span class="line">  - 当obj进入上下文时,  调用obj.__enter__()返回并使用 as 关键字 将函数返回的对象 指定一个引用名称.</span><br><span class="line">  - 当obj退出上下文时, 调用obj.__exit__()函数, 返回的值为bool类型</span><br><span class="line">  	  - 如果返回是True时,表示 在with语句块中,出现异常之后, 不会抛出到解释器中,即不会中断程序</span><br><span class="line">  	  - 如果返回是False时, 表示 with语句块中,出现异常之后,会抛出到解释器(intercepter), 程序中断.</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第33天-晨写题"><a href="#第33天-晨写题" class="headerlink" title="第33天 晨写题"></a>第33天 晨写题</h1><h2 id="一、WSGI和ASGI的区别"><a href="#一、WSGI和ASGI的区别" class="headerlink" title="一、WSGI和ASGI的区别"></a>一、WSGI和ASGI的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WSGI:  Web server gateway Interface  Web服务网关接口</span><br><span class="line">ASGI:  Asynchronous Server gateway Interface  异步服务网关接口</span><br><span class="line">WSGI和ASGI的区别：</span><br><span class="line">- WSGI 是基于多线程方式实现多请求响应的</span><br><span class="line">- ASGI 是基于协程方式实现多请求响应的</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、RESTful规范中URI谓词"><a href="#二、RESTful规范中URI谓词" class="headerlink" title="二、RESTful规范中URI谓词"></a>二、RESTful规范中URI谓词</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET 查询查询</span><br><span class="line">POST 添加或新增数据</span><br><span class="line">PUT  修改或更新数据</span><br><span class="line">DELETE 删除数据</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、fastapi模块下的Path、Query、Form、Body等类的作用"><a href="#三、fastapi模块下的Path、Query、Form、Body等类的作用" class="headerlink" title="三、fastapi模块下的Path、Query、Form、Body等类的作用"></a>三、fastapi模块下的Path、Query、Form、Body等类的作用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 这些类用于声明请求参数的位置(location)</span><br><span class="line">- Path：路径上的参数</span><br><span class="line">- Query: 路径上的查询参数</span><br><span class="line">- Form:  表单上的参数</span><br><span class="line">- Body:  上传的请求体的json数据</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、git常用的命令"><a href="#四、git常用的命令" class="headerlink" title="四、git常用的命令"></a>四、git常用的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;&quot;</span><br><span class="line">git status</span><br><span class="line">git checkout &lt;COMMIT ID&gt; 或 &lt;分支名称&gt;</span><br><span class="line">git branch</span><br><span class="line">git reset --hard &lt;COMMIT ID&gt;  回退到之前的版本</span><br><span class="line">git push&#x2F;pull</span><br><span class="line">git config --global user.name &quot;&quot;</span><br><span class="line">git config --global user.email</span><br><span class="line">git config -l </span><br><span class="line">git log </span><br><span class="line">git rm --cached &lt;文件或目录&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如： 下载远程仓库的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;gitee.com&#x2F;mirrors&#x2F;FastAPI.git</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第34天-晨写题"><a href="#第34天-晨写题" class="headerlink" title="第34天 晨写题"></a>第34天 晨写题</h1><h2 id="一、fastapi的请求参数位置包含哪些"><a href="#一、fastapi的请求参数位置包含哪些" class="headerlink" title="一、fastapi的请求参数位置包含哪些"></a>一、fastapi的请求参数位置包含哪些</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- Path 路径参数</span><br><span class="line">- Query 查询参数</span><br><span class="line">- Body 请求体数据</span><br><span class="line">- Form 表单参数,   enctype|content-type|mime_type|media_type &#x3D; application&#x2F;x-www-form-urlencoded</span><br><span class="line">- File 表单的文件字段参数 enctype|content-type  &#x3D;  multipart&#x2F;form-data</span><br><span class="line">- Header 请求头的参数</span><br><span class="line">- Cookie 请求头中的Cookie的参数</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、fastapi的中间件的作用及添加方式"><a href="#二、fastapi的中间件的作用及添加方式" class="headerlink" title="二、fastapi的中间件的作用及添加方式"></a>二、fastapi的中间件的作用及添加方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- 中间件的作用</span><br><span class="line">	1. 可以拦截相关的请求，实现数据的存储、权限验证和资源的重定向以及日志收集。</span><br><span class="line">	2. 可以处理异常的响应</span><br><span class="line">	3. 监测及优化响应的速度 </span><br><span class="line">- 添加方式</span><br><span class="line">    1.  @app.middleware(&#39;http&#39;) async def xxxx(request:Request, next_call)</span><br><span class="line">        fastapi.requests.Request</span><br><span class="line">        	- .url -&gt; URL</span><br><span class="line">        			 	- path</span><br><span class="line">            - .base_url</span><br><span class="line">        fastapi.responses.Response|JSONResponse|StreamingResponse</span><br><span class="line">    2.  app.add_middleware(中间件类,  类初始化的参数)</span><br><span class="line">        - 中间件类：  fastapi.middlewares.CorsMiddleware</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、fastapi的异常处理方式"><a href="#三、fastapi的异常处理方式" class="headerlink" title="三、fastapi的异常处理方式"></a>三、fastapi的异常处理方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. @app.exception_handler(异常类或响应状态码) async def xxxx(request,  exc)</span><br><span class="line">	- exc 实例的类：  </span><br><span class="line">		1. 自定义类的Exception类</span><br><span class="line">		2. fastapi内置的Exception类： RequestValidationError</span><br><span class="line">2. 在view处理函数的内部使用 raise HTTPException(status_code, error_msg)</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Linux中查看端口占用情况的命令"><a href="#四、Linux中查看端口占用情况的命令" class="headerlink" title="四、Linux中查看端口占用情况的命令"></a>四、Linux中查看端口占用情况的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lntp|grep 8000</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第35天-晨写题"><a href="#第35天-晨写题" class="headerlink" title="第35天 晨写题"></a>第35天 晨写题</h1><h2 id="一-fastapi的提供哪些response类"><a href="#一-fastapi的提供哪些response类" class="headerlink" title="一.  fastapi的提供哪些response类"></a>一.  fastapi的提供哪些response类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- Response   普通的响应类</span><br><span class="line">- PlainTextResponse 文本数据的响应类</span><br><span class="line">- HTMLResponse    html内容的响应类</span><br><span class="line">- JSONResponse    json数据的响应类</span><br><span class="line">- FileResponse    下载文件时使用响应类</span><br><span class="line">- RedirectResponse  重定向响应的类</span><br><span class="line">- StreamingResponse IO流数据的响应类</span><br></pre></td></tr></table></figure>
+
+<h2 id="二-动态图片下载的方式"><a href="#二-动态图片下载的方式" class="headerlink" title="二. 动态图片下载的方式"></a>二. 动态图片下载的方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- FileResponse 实现, 浏览器直接下载到客户端,以filename作为文件名存储</span><br><span class="line">- Response+Base64 实现动态响应图片的文本数据</span><br><span class="line">	- Response(content&#x3D;&quot;图片base64的文本&quot;, media_type&#x3D;&quot;图片的格式&quot;)</span><br><span class="line">	- 图片的base64文本</span><br><span class="line">	   - open(&#39;图片文件路径&#39;, &#39;rb&#39;) </span><br><span class="line">       - base64.b64encode(bytes).decode() </span><br><span class="line">       - 图片数据前辍   &quot;data: image&#x2F;png;base64, &quot;</span><br><span class="line">       </span><br><span class="line">    - 图片的格式</span><br><span class="line">    	- image&#x2F;png</span><br><span class="line">    	- image&#x2F;jpeg</span><br><span class="line">    	- image&#x2F;gif</span><br><span class="line">    	- image&#x2F;webp</span><br></pre></td></tr></table></figure>
+
+<h2 id="三-PIL库的核心类和方法"><a href="#三-PIL库的核心类和方法" class="headerlink" title="三. PIL库的核心类和方法"></a>三. PIL库的核心类和方法</h2><blockquote>
+<p>from PIL import Image,  ImageDraw, ImageFont</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- Image</span><br><span class="line">	- new(&#39;RGB&#39;, (width, height), color)</span><br><span class="line">- ImageDraw</span><br><span class="line">	- Draw(img, mode&#x3D;&quot;RGB&quot;)</span><br><span class="line">    - text((x, y), text, color, font)  画文本</span><br><span class="line">    - point((x, y), color) 画点</span><br><span class="line">    - line((xy...), color) 画线</span><br><span class="line">- ImageFont</span><br><span class="line">	- truetype(font&#x3D;&quot;ttf字体文件位置&quot;, size&#x3D;10)  加载字体</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-docker常用命令"><a href="#四-docker常用命令" class="headerlink" title="四. docker常用命令"></a>四. docker常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run</span><br><span class="line">docker exec </span><br><span class="line">docker stop|restart|start &lt;容器名或ID&gt;</span><br><span class="line">docker cp </span><br><span class="line">docker rm</span><br><span class="line">docker rmi</span><br><span class="line">docker search </span><br><span class="line">docker kill &lt;容器名或ID&gt;</span><br><span class="line">docker log</span><br><span class="line">docker save </span><br><span class="line">docker load</span><br><span class="line">docker pull</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第36天-晨写"><a href="#第36天-晨写" class="headerlink" title="第36天 晨写"></a>第36天 晨写</h1><h2 id="一-pymysql中cursor游标对象常用方法"><a href="#一-pymysql中cursor游标对象常用方法" class="headerlink" title="一. pymysql中cursor游标对象常用方法"></a>一. pymysql中cursor游标对象常用方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- cursor &#x3D; pymysql.Connect().cursor()  获取游标对象</span><br><span class="line">- cursor.execute(sql, args)  </span><br><span class="line">	- sql 是字符串类型的, 表示操作数据库的语句</span><br><span class="line">	- args 是sql中的占位符的替换值, 两种类型: tuple, dict</span><br><span class="line">		- tuple  对应sql的 %s占位符</span><br><span class="line">		- dict  对应sql的 %(name)s 占位符</span><br><span class="line">- cursor.fetchall()  获取查询结果, 返回是list类型</span><br><span class="line">- cursor.fetchone()  从查询结果中获取第一条记录</span><br><span class="line">- cursor.rowcount  获取执行DML语句之后的影响记录结果 (insert&#x2F;update&#x2F;delete)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="二-md5加密时使用步骤"><a href="#二-md5加密时使用步骤" class="headerlink" title="二. md5加密时使用步骤"></a>二. md5加密时使用步骤</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- md5_ &#x3D; hashlib.md5(b&#39;明文字节数据&#39;)</span><br><span class="line">- md5_.update(b&#39;密钥字符串&#39;)   加密明文, 可以多次使用.</span><br><span class="line">- md5_.hexdigest()  返回加密后的字符串</span><br></pre></td></tr></table></figure>
+
+<h2 id="三-redis的常用方法"><a href="#三-redis的常用方法" class="headerlink" title="三. redis的常用方法"></a>三. redis的常用方法</h2><blockquote>
+<p>redis 是 高可用,高并发的, 高速IO的 缓存服务.也可以做为消息队列(订阅/发布)使用.</p>
+<p>消息队列服务:   Kafka ,   RabbitMQ(Message Queue)   ,  解决高并发问题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- rd &#x3D; redis.Redis(host&#x3D;&quot;&quot;, port&#x3D;6379, db&#x3D;0, charset&#x3D;&quot;utf-8&quot;, decode_responses&#x3D;True)</span><br><span class="line">- rd.set(name, value, ex&#x3D;10)</span><br><span class="line">- rd.get(name)</span><br><span class="line">- rd.delete(name, ...)</span><br><span class="line">- rd.flushdb()  清空</span><br><span class="line">- rd.keys(&#39;*&#39;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-str对象的查询方法find-和index-的区别"><a href="#四-str对象的查询方法find-和index-的区别" class="headerlink" title="四.  str对象的查询方法find()和index()的区别"></a>四.  str对象的查询方法find()和index()的区别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- find() 未找到时, 返回 -1</span><br><span class="line">- index() 未找到时, 抛出异常</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:42:30.805Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:44.816Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_2/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_1/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC21%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">第21天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%86%99%E5%87%BAstr%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">一、写出str对象的相关方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%86%99%E5%87%BA-open-%E5%87%BD%E6%95%B0%E7%9A%84%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.2.</span> <span class="toc-text">二、写出 open()函数的相关参数及注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%86%99%E5%87%BA%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E5%BD%A2%E5%8F%82%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">三、写出关于函数形参的定义和用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%86%99%E5%87%BA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%B1%BB%E6%96%B9%E6%B3%95%E3%80%81%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.4.</span> <span class="toc-text">四、写出面向对象中类方法、实例方法的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC22%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">第22天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81scp%E5%92%8Cssh%E4%B8%A4%E4%B8%AA%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">2.1.</span> <span class="toc-text">一、scp和ssh两个命令的功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81rm%E5%92%8Crmdir%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.2.</span> <span class="toc-text">二、rm和rmdir的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%86%99%E5%87%BA%E4%BB%A5%E4%B8%8B%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E6%95%B0%E5%80%BC%E5%92%8C%E5%90%AB%E4%B9%89"><span class="toc-number">2.3.</span> <span class="toc-text">三、写出以下文件权限的数值和含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A5%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E4%B8%BAa-py%E6%B7%BB%E5%8A%A0%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">2.4.</span> <span class="toc-text">四、以不同方式为a.py添加所有用户的执行权限</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC23%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">第23天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%81%9C%E6%AD%A2sshd%E6%9C%8D%E5%8A%A1%E5%91%BD%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">一、停止sshd服务命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85git%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">二、安装git服务的命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81git%E7%9B%B8%E5%85%B3%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">三、git相关的命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81vi%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2"><span class="toc-number">3.4.</span> <span class="toc-text">四、vi文本编辑器的三种模式切换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC26%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">第26天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%86%99%E5%87%BAmysql%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BA%A6%E6%9D%9F"><span class="toc-number">4.1.</span> <span class="toc-text">一、写出mysql相关的约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%86%99%E5%87%BA%E4%B8%A4%E8%A1%A8%E4%BB%A5%E4%B8%8A%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">4.2.</span> <span class="toc-text">二、写出两表以上关联查询的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%86%99%E5%87%BAmysql%E7%9A%84%E7%B4%A2%E5%BC%95%E4%BD%9C%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">三、写出mysql的索引作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%86%99%E5%87%BALinux%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%80%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">4.4.</span> <span class="toc-text">四、写出Linux查看某一端口占用情况的命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC27%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">第27天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9F%A5%E7%9C%8Bbank%E5%BA%93%E4%B8%8B%E6%89%80%E6%9C%89%E8%A1%A8%E7%9A%84%E7%B4%A2%E5%BC%95%E7%9A%84SQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">5.1.</span> <span class="toc-text">一、查看bank库下所有表的索引的SQL语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8B%E5%8A%A1%E7%9A%84ACID%E4%BB%A5%E5%8F%8A%E5%9B%9B%E4%B8%AA%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">5.2.</span> <span class="toc-text">二、事务的ACID以及四个隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE%E7%9A%84SQL%E8%AF%AD%E6%B3%95"><span class="toc-number">5.3.</span> <span class="toc-text">三、创建视图的SQL语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%AC%AC%E4%B8%80%E8%A1%8C"><span class="toc-number">5.4.</span> <span class="toc-text">四、HTTP协议的请求和响应报文第一行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC28%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">第28天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B8%B8%E7%94%A8%E7%9A%84HTML%E6%A0%87%E7%AD%BE"><span class="toc-number">6.1.</span> <span class="toc-text">一、常用的HTML标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81form%E6%A0%87%E7%AD%BE%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8F%8A%E4%BD%9C%E7%94%A8"><span class="toc-number">6.2.</span> <span class="toc-text">二、form标签的属性及作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81td%E5%92%8Ctr%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB%E5%8F%8Atd%E6%A0%87%E7%AD%BE%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">6.3.</span> <span class="toc-text">三、td和tr之间关系及td标签的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81HBuildx%E5%B7%A5%E5%85%B7%E7%9A%84%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">6.4.</span> <span class="toc-text">四、HBuildx工具的常用的快捷键</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC29%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">第29天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text">一、盒子模型中常用的样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B7%E5%BC%8F%E9%80%89%E6%8B%A9%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">7.2.</span> <span class="toc-text">二、样式选择的优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80%E6%A0%B7%E5%BC%8F"><span class="toc-number">7.3.</span> <span class="toc-text">三、清除浮动布局样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="toc-number">7.4.</span> <span class="toc-text">四、弹性盒子常用的样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC30%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">第30天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81animation%E5%8A%A8%E7%94%BB%E5%B1%9E%E6%80%A7%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">8.1.</span> <span class="toc-text">一、animation动画属性的组成部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BC%A9%E6%94%BE%E7%9A%84%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB"><span class="toc-number">8.2.</span> <span class="toc-text">二、缩放的过渡动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81js-JavaScript-%E7%9A%84%E4%B8%89%E5%A4%A7%E6%A8%A1%E5%9D%97"><span class="toc-number">8.3.</span> <span class="toc-text">三、js(JavaScript)的三大模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81js%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E6%96%B9%E5%BC%8F"><span class="toc-number">8.4.</span> <span class="toc-text">四、js数组的迭代方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC31%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">9.</span> <span class="toc-text">第31天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8F%96%E6%B6%88%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">9.1.</span> <span class="toc-text">一、创建和取消定时器的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BAdiv%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E5%92%8C%E5%88%A0%E9%99%A4%E5%B1%9E%E6%80%A7class"><span class="toc-number">9.2.</span> <span class="toc-text">二、为div动态添加和删除属性class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81fetch-%E6%98%AF%E4%BD%9C%E7%94%A8%E5%8F%8A%E7%94%A8%E6%B3%95"><span class="toc-number">9.3.</span> <span class="toc-text">三、fetch()是作用及用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81json%E5%AF%B9%E8%B1%A1%E4%B8%8Ejson%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">9.4.</span> <span class="toc-text">四、json对象与json字符串有什么区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC32%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">10.</span> <span class="toc-text">第32天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-jQuery%E5%AF%B9%E8%B1%A1%E4%B8%8EDom%E5%AF%B9%E8%B1%A1%E5%A6%82%E4%BD%95%E8%BD%AC%E5%8C%96"><span class="toc-number">10.1.</span> <span class="toc-text">一.  jQuery对象与Dom对象如何转化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-jQuery%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">10.2.</span> <span class="toc-text">二.  jQuery查找元素的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-bootstrap%E6%98%AF%E4%BB%80%E4%B9%88-%E5%AE%83%E7%9A%84%E6%A0%85%E6%A0%BC%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%B0%86%E5%B1%8F%E5%B9%95%E5%88%86%E6%88%90%E5%87%A0%E7%A7%8D%E5%B0%BA%E5%AF%B8%E7%AD%89%E7%BA%A7"><span class="toc-number">10.3.</span> <span class="toc-text">三.  bootstrap是什么?它的栅格系统中将屏幕分成几种尺寸等级?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-python%E4%B8%ADwith%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">10.4.</span> <span class="toc-text">四.  python中with关键字的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC33%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">11.</span> <span class="toc-text">第33天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81WSGI%E5%92%8CASGI%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">11.1.</span> <span class="toc-text">一、WSGI和ASGI的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81RESTful%E8%A7%84%E8%8C%83%E4%B8%ADURI%E8%B0%93%E8%AF%8D"><span class="toc-number">11.2.</span> <span class="toc-text">二、RESTful规范中URI谓词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81fastapi%E6%A8%A1%E5%9D%97%E4%B8%8B%E7%9A%84Path%E3%80%81Query%E3%80%81Form%E3%80%81Body%E7%AD%89%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">11.3.</span> <span class="toc-text">三、fastapi模块下的Path、Query、Form、Body等类的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81git%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">11.4.</span> <span class="toc-text">四、git常用的命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC34%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">12.</span> <span class="toc-text">第34天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81fastapi%E7%9A%84%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E4%BD%8D%E7%BD%AE%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B"><span class="toc-number">12.1.</span> <span class="toc-text">一、fastapi的请求参数位置包含哪些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81fastapi%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E6%B7%BB%E5%8A%A0%E6%96%B9%E5%BC%8F"><span class="toc-number">12.2.</span> <span class="toc-text">二、fastapi的中间件的作用及添加方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81fastapi%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">12.3.</span> <span class="toc-text">三、fastapi的异常处理方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Linux%E4%B8%AD%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">12.4.</span> <span class="toc-text">四、Linux中查看端口占用情况的命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC35%E5%A4%A9-%E6%99%A8%E5%86%99%E9%A2%98"><span class="toc-number">13.</span> <span class="toc-text">第35天 晨写题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-fastapi%E7%9A%84%E6%8F%90%E4%BE%9B%E5%93%AA%E4%BA%9Bresponse%E7%B1%BB"><span class="toc-number">13.1.</span> <span class="toc-text">一.  fastapi的提供哪些response类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%8A%A8%E6%80%81%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">13.2.</span> <span class="toc-text">二. 动态图片下载的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-PIL%E5%BA%93%E7%9A%84%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">13.3.</span> <span class="toc-text">三. PIL库的核心类和方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">13.4.</span> <span class="toc-text">四. docker常用命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC36%E5%A4%A9-%E6%99%A8%E5%86%99"><span class="toc-number">14.</span> <span class="toc-text">第36天 晨写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-pymysql%E4%B8%ADcursor%E6%B8%B8%E6%A0%87%E5%AF%B9%E8%B1%A1%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">14.1.</span> <span class="toc-text">一. pymysql中cursor游标对象常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-md5%E5%8A%A0%E5%AF%86%E6%97%B6%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">14.2.</span> <span class="toc-text">二. md5加密时使用步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-redis%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">14.3.</span> <span class="toc-text">三. redis的常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-str%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95find-%E5%92%8Cindex-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">14.4.</span> <span class="toc-text">四.  str对象的查询方法find()和index()的区别</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:39:06.200Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:28:56.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" class="archive-article-date">
-  	<time datetime="2021-04-28T12:28:40.303Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2021-04-26T06:47:52.601Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -421,8 +570,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

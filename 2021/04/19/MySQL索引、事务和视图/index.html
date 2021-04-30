@@ -16,7 +16,7 @@
 <meta property="og:description" content="一、MySQL索引 MySQL索引是一种数据结构,在DQL语句的where条件中使用引用字段,则先从索引中查询。  CLOB : 字符大对象 (Character Large Object)  BLOB : 二进制大对象 （binary large object） TEXT ： 文本文件，对长度无限制【如markdown】 float ： 单精度，长度为4 double ： 双精度， 长度为8 v">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-19T07:44:15.328Z">
-<meta property="article:modified_time" content="2021-04-19T07:44:15.328Z">
+<meta property="article:modified_time" content="2021-04-30T12:50:15.059Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -194,7 +194,11 @@
 </blockquote>
 </blockquote>
 </blockquote>
+<span id="more"></span>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name</span><br><span class="line">    [USING index_type]</span><br><span class="line">    ON tbl_name (index_col_name,...)</span><br><span class="line"> </span><br><span class="line">index_col_name:</span><br><span class="line">    col_name [(length)] [ASC | DESC]</span><br></pre></td></tr></table></figure>
+
+
 
 <h3 id="1-创建索引"><a href="#1-创建索引" class="headerlink" title="1. 创建索引"></a>1. 创建索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 基于alter table</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span></span><br><span class="line"><span class="keyword">ADD</span> INDEX [index_name] [index_type] (index_col_name,...)</span><br><span class="line"><span class="keyword">DROP</span> INDEX index_name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 基于create table</span></span><br><span class="line"><span class="keyword">CREATE</span> [TEMPORARY] <span class="keyword">TABLE</span> [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] tbl_name</span><br><span class="line"> <span class="operator">|</span> [<span class="keyword">CONSTRAINT</span> [symbol]] <span class="keyword">PRIMARY</span> KEY [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> KEY [index_name] [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> INDEX [index_name] [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> [<span class="keyword">CONSTRAINT</span> [symbol]] <span class="keyword">UNIQUE</span> [INDEX]</span><br><span class="line">        [index_name] [index_type] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> [FULLTEXT<span class="operator">|</span>SPATIAL] [INDEX] [index_name] (index_col_name,...)</span><br><span class="line"> <span class="operator">|</span> [<span class="keyword">CONSTRAINT</span> [symbol]] <span class="keyword">FOREIGN</span> KEY</span><br><span class="line">        [index_name] (index_col_name,...) [reference_definition]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -363,6 +367,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/04/25/Web%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2021/04/15/MySQL%E7%B2%BE%E9%80%89%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">

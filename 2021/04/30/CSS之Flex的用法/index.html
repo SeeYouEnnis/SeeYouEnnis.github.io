@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="CSS之Flex的用法Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="CSS之Flex的用法Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-30T12:39:06.200Z">
+<meta property="article:modified_time" content="2021-04-30T12:47:50.651Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -169,235 +173,273 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CSS之Flex的用法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS之Flex的用法"><a href="#CSS之Flex的用法" class="headerlink" title="CSS之Flex的用法"></a>CSS之Flex的用法</h1><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。<br>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+ <span id="more"></span>
+
+<h2 id="一、父元素属性"><a href="#一、父元素属性" class="headerlink" title="一、父元素属性"></a>一、父元素属性</h2><h3 id="1-1-display"><a href="#1-1-display" class="headerlink" title="1.1 display"></a>1.1 display</h3><p>一个容器设置了display:flex;属性就定义了一个flex容器，它的直接子元素会接受这个flex环境</p>
+<h3 id="1-2-flex-direction"><a href="#1-2-flex-direction" class="headerlink" title="1.2 flex-direction"></a>1.2 flex-direction</h3><p>决定主轴的方向（即项目的排列方向）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">  flex-direction: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以设置四个值：</p>
+<ul>
+<li> <strong>row:</strong> 默认值，水平从左到右</li>
+<li> **colunm:**垂直从上到下</li>
+<li> **row-reverse:**水平从右到左</li>
+<li> <strong>column-reverse：</strong>垂直从下到上</li>
+</ul>
+<h3 id="1-3-flex-wrap"><a href="#1-3-flex-wrap" class="headerlink" title="1.3 flex-wrap"></a>1.3 flex-wrap</h3><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">  flex-wrap: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以设置三个值：</p>
+<ul>
+<li> <strong>nowrap：</strong>默认值，不换行</li>
+<li> <strong>wrap：</strong>换行</li>
+<li> <strong>wrap-reverse：</strong>换行，且颠倒行顺序，第一行在下方</li>
+</ul>
+<h3 id="1-4-flex-flow"><a href="#1-4-flex-flow" class="headerlink" title="1.4 flex-flow"></a>1.4 flex-flow</h3><p>flex-flow 属性是 <code>flex-direction</code> 属性和 <code>flex-wrap</code> 属性的简写形式，默认值为<code>row nowrap</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">  flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-justify-content"><a href="#1-5-justify-content" class="headerlink" title="1.5 justify-content"></a>1.5 justify-content</h3><p>设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式，当弹性盒里一行上的所有子元素都不能伸缩或已经达到其最大值时，这一属性可协助对多余的空间进行分配。当元素溢出某行时，这一属性同样会在对齐上进行控制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">  justify-content: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以设置5个值：</p>
+<ul>
+<li> <strong>flex-start：</strong> 默认值、弹性盒子元素将向行起始位置对齐</li>
+<li> <strong>flex-end：</strong> 弹性盒子元素将向行结束位置对齐</li>
+<li> <strong>center：</strong>弹性盒子元素将向行中间位置对齐。该行的子元素将相互对齐并在行中居中对齐</li>
+<li> <strong>space-between：</strong> 弹性盒子元素会平均地分布在行里</li>
+<li> <strong>space-around ：</strong>弹性盒子元素会平均地分布在行里，两端保留子元素与子元素之间间距大小的一半</li>
+</ul>
+<h3 id="1-6-align-items"><a href="#1-6-align-items" class="headerlink" title="1.6 align-items"></a>1.6 align-items</h3><p>设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">  align-items: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以设置5个值：</p>
+<ul>
+<li><strong>flex-start：</strong> 弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。</li>
+<li><strong>flex-end：</strong>  弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。</li>
+<li><strong>center：</strong>  弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。</li>
+<li><strong>baseline：</strong>  如弹性盒子元素的行内轴与侧轴为同一条，则该值与flex-start等效。其它情况下，该值将参与基线对齐。</li>
+<li><strong>stretch：</strong>  如果指定侧轴大小的属性值为’auto’，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照’min/max-width/height’属性的限制。</li>
+</ul>
+<h3 id="1-7-align-content"><a href="#1-7-align-content" class="headerlink" title="1.7. align-content"></a>1.7. align-content</h3><p>设置或检索弹性盒堆叠伸缩行的对齐方式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以设置6个值：</p>
+<ul>
+<li><strong>flex-start：</strong> 各行向弹性盒容器的起始位置堆叠。弹性盒容器中第一行的侧轴起始边界紧靠住该弹性盒容器的侧轴起始边界，之后的每一行都紧靠住前面一行。</li>
+<li><strong>flex-end：</strong> 各行向弹性盒容器的结束位置堆叠。弹性盒容器中最后一行的侧轴起结束界紧靠住该弹性盒容器的侧轴结束边界，之后的每一行都紧靠住前面一行。</li>
+<li><strong>center：</strong> 各行向弹性盒容器的中间位置堆叠。各行两两紧靠住同时在弹性盒容器中居中对齐，保持弹性盒容器的侧轴起始内容边界和第一行之间的距离与该容器的侧轴结束内容边界与第最后一行之间的距离相等。</li>
+<li><strong>space-between：</strong> 各行在弹性盒容器中平均分布。第一行的侧轴起始边界紧靠住弹性盒容器的侧轴起始内容边界，最后一行的侧轴结束边界紧靠住弹性盒容器的侧轴结束内容边界，剩余的行则按一定方式在弹性盒窗口中排列，以保持两两之间的空间相等。</li>
+<li><strong>space-around：</strong> 各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。各行会按一定方式在弹性盒容器中排列，以保持两两之间的空间相等，同时第一行前面及最后一行后面的空间是其他空间的一半。</li>
+<li><strong>stretch：</strong> 各行将会伸展以占用剩余的空间。剩余空间被所有行平分，以扩大它们的侧轴尺寸。</li>
+</ul>
+<h2 id="二、子元素属性"><a href="#二、子元素属性" class="headerlink" title="二、子元素属性"></a>二、子元素属性</h2><h3 id="2-1-order"><a href="#2-1-order" class="headerlink" title="2.1  order"></a>2.1  order</h3><p>默认情况下flex order会按照书写顺训呈现，可以通过order属性改变，数值小的在前面，还可以是负数。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-flex-grow"><a href="#2-2-flex-grow" class="headerlink" title="2.2 flex-grow"></a>2.2 flex-grow</h3><p>设置或检索弹性盒的扩展比率,根据弹性盒子元素所设置的扩展因子作为比率来分配剩余空间</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设容器的宽度为400px, 子项1的占用的基础空间(flex-basis)为50px，子项2占用的基础空间是70px，子项3占用基础空间是100px，剩余空间为 400-50-70-100 = 180px。 </p>
+<p>其中子项1的<code>flex-grow: 0</code>(未设置默认为0)， 子项2 <code>flex-grow: 2</code>，子项3 <code>flex-grow: 1</code>，剩余空间分成3份，子项2占2份(120px)，子项3占1份(60px)。所以 子项1真实的占用空间为: 50+0 = 50px， 子项2真实的占用空间为: 70+120 = 190px， 子项3真实的占用空间为: 100+60 = 160px。</p>
+<h3 id="2-3-flex-shrink"><a href="#2-3-flex-shrink" class="headerlink" title="2.3 flex-shrink"></a>2.3 flex-shrink</h3><p>设置或检索弹性盒的收缩比率,根据弹性盒子元素所设置的收缩因子作为比率来收缩空间</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设容器的宽度为400px, 子项1的占用的基准空间(flex-basis)为250px，子项2占用的基准空间是150px，子项3占用基准空间是100px，总基准空间为 250+150+100=500px。容器放不下，多出来的空间需要被每个子项根据自己设置的flex-shrink 进行吸收。 </p>
+<ul>
+<li><p>子项1的flex-shrink: 1(未设置默认为1)， 子项2 flex-shrink: 2，子项3 flex-shrink: 2;</p>
+</li>
+<li><p>子项1需要吸收的的空间为 (250<em>1)/(250</em>1+150<em>2+100</em>2)* 100 = 33.33px，子项1真实的空间为:  </p>
+<p>250-33.33 = 216.67px; </p>
+</li>
+<li><p>同理子项2吸收的空间为(150<em>2)/(250</em>1+150<em>2+100</em>2)* 100=40px，子项2真实空间为 150-40 = 110px; </p>
+</li>
+<li><p>子项3吸收的空间为(100<em>2)/(250</em>1+150<em>2+100</em>2) * 100 = 26.67px，真实的空间为100-26.67=73.33px; </p>
+</li>
+</ul>
+<h3 id="2-4-flex-basis"><a href="#2-4-flex-basis" class="headerlink" title="2.4 flex-basis"></a>2.4 flex-basis</h3><p>设置或检索弹性盒伸缩基准值，如果所有子元素的基准值之和大于剩余空间，则会根据每项设置的基准值，按比率伸缩剩余空间</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>flex-basis 用于设置子项的占用空间。如果设置了值，则子项占用的空间为设置的值；如果没设置或者为 auto，那子项的空间为width/height 的值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>222<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">  .box &#123;</span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">50px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: <span class="number">#eee</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  .item &#123;</span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">50px</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.item</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">background</span>: red;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.item</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">70px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">flex-basis</span>: auto;</span></span><br><span class="line"><span class="css">    <span class="attribute">background</span>: grey;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">  <span class="selector-class">.item</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">50px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">flex-basis</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background</span>: yellow;</span></span><br><span class="line">  &#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对于子项1，flex-basis 如果设置默认是auto，子项占用的宽度使用width 的宽度，width没设置也为 auto，所以子项占用空间由内容决定。</li>
+<li>对于子项2，flex-basis 为auto，子项占用宽度使用width 的宽度，width 为70px，所以子项子项占用空间是70px。</li>
+<li>对于子项3，flex-basis 为100px，覆盖width 的宽度，所以子项占用空间是100px。</li>
+</ul>
+<h3 id="2-5-flex"><a href="#2-5-flex" class="headerlink" title="2.5 flex"></a>2.5 flex</h3><p>flex属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | auto | [ &lt;<span class="string">&#x27;flex-grow&#x27;</span>&gt; &lt;<span class="string">&#x27;flex-shrink&#x27;</span>&gt;? || &lt;<span class="string">&#x27;flex-basis&#x27;</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该属性有两个快捷值：<code>auto (1 1 auto)</code> 和 <code>none (0 0 auto)</code>。<br>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h3 id="2-6-align-self"><a href="#2-6-align-self" class="headerlink" title="2.6 align-self"></a>2.6 align-self</h3><p>设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式，可以覆盖父容器align-items的设置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以配合 margin 使用得到一些不同效果。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:42:30.805Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:44.816Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_2/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_1/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">CSS之Flex的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%88%B6%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">一、父元素属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-display"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 display</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-flex-direction"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 flex-direction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-flex-wrap"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 flex-wrap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-flex-flow"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 flex-flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-justify-content"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5 justify-content</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-align-items"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.6 align-items</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-align-content"><span class="toc-number">1.1.7.</span> <span class="toc-text">1.7. align-content</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AD%90%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">二、子元素属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-order"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1  order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-flex-grow"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 flex-grow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-flex-shrink"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 flex-shrink</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-flex-basis"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 flex-basis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-flex"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-align-self"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 align-self</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:39:06.200Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:28:56.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" class="archive-article-date">
-  	<time datetime="2021-04-28T12:28:40.303Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2021-04-26T06:47:52.601Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -421,8 +463,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

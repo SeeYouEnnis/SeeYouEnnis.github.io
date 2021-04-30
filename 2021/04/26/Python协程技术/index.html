@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Python协程技术 协程是一种微线程， 通过I&#x2F;O事件模型来调度不同的协程，达到异步并行执行效果。 线程： 执行程序的最小单元 进程： 启动程序时，系统创建进程（分配内存、创建进程控制块和加载程序），并创建线程（主线程）来执行程序">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="Python协程技术 协程是一种微线程， 通过I&#x2F;O事件模型来调度不同的协程，达到异步并行执行效果。 线程： 执行程序的最小单元 进程： 启动程序时，系统创建进程（分配内存、创建进程控制块和加载程序），并创建线程（主线程）来执行程序">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-26T06:47:52.601Z">
+<meta property="article:modified_time" content="2021-04-30T12:33:47.824Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -169,235 +173,203 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Python协程技术" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Python协程技术"><a href="#Python协程技术" class="headerlink" title="Python协程技术"></a>Python协程技术</h2><blockquote>
+<p>协程是一种微线程， 通过I/O事件模型来调度不同的协程，达到异步并行执行效果。</p>
+<p>线程： 执行程序的最小单元</p>
+<p>进程： 启动程序时，系统创建进程（分配内存、创建进程控制块和加载程序），并创建线程（主线程）来执行程序</p>
+</blockquote>
+ <span id="more"></span>
+
+<h3 id="一、生成器generator实现"><a href="#一、生成器generator实现" class="headerlink" title="一、生成器generator实现"></a>一、生成器generator实现</h3><blockquote>
+<p>主要使用的关键字是 yield / send</p>
+<p>实现的协程比较简单</p>
+</blockquote>
+<h3 id="二、coroutine模块"><a href="#二、coroutine模块" class="headerlink" title="二、coroutine模块"></a>二、coroutine模块</h3><blockquote>
+<p>从Python3.4之后引入此模块，目前大多数都使用了此方式</p>
+</blockquote>
+<p>涉及模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> asyncio <span class="keyword">import</span> coroutine</span><br><span class="line"></span><br><span class="line"><span class="meta">@coroutine</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span>(<span class="params">a, b</span>):</span></span><br><span class="line">    ct = current_thread()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;---%s---&#x27;</span> % ct.name, a, b)</span><br><span class="line">    <span class="comment"># 调度其它的协程</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(<span class="number">1</span>)  <span class="comment"># 让线程休息一秒</span></span><br><span class="line">    <span class="built_in">print</span>(ct.name, <span class="string">&#x27;%s + %s = %s&#x27;</span> % (a, b, a+b))</span><br></pre></td></tr></table></figure>
+
+<p>【重点】使用<code>@coroutine</code>和<code>yield from</code></p>
+<p>启动协程任务</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    numbers = [</span><br><span class="line">        (<span class="number">1</span>, <span class="number">2</span>),</span><br><span class="line">        (<span class="number">3</span>, <span class="number">4</span>),</span><br><span class="line">        (<span class="number">5</span>, <span class="number">6</span>),</span><br><span class="line">        (<span class="number">10</span>, <span class="number">15</span>),</span><br><span class="line">        (<span class="number">20</span>, <span class="number">30</span>)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># threads = []  # 线程列表</span></span><br><span class="line">    <span class="comment"># for a, b in numbers:</span></span><br><span class="line">    <span class="comment">#     threads.append(Thread(target=sum, args=(a, b)))</span></span><br><span class="line">    tasks = asyncio.wait([ <span class="built_in">sum</span>(a, b) <span class="keyword">for</span> a,b <span class="keyword">in</span> numbers ])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动协程</span></span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    loop.run_until_complete(tasks)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;-- all over---&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、引入async-await关键字"><a href="#三、引入async-await关键字" class="headerlink" title="三、引入async/await关键字"></a>三、引入async/await关键字</h3><p>即使用 async 关键字来替换 @coroutine  </p>
+<p>使用await 关键字来替换 <code>yield from</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">sum</span>(<span class="params">a, b</span>):</span></span><br><span class="line">    ct = current_thread()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;---%s---&#x27;</span> % ct.name, a, b)</span><br><span class="line">    <span class="comment"># 调度其它的协程</span></span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>)  <span class="comment"># 让线程休息一秒</span></span><br><span class="line">    <span class="built_in">print</span>(ct.name, <span class="string">&#x27;%s + %s = %s&#x27;</span> % (a, b, a+b))</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、I-O事件模型"><a href="#四、I-O事件模型" class="headerlink" title="四、I/O事件模型"></a>四、I/O事件模型</h3><p>常用三种（思想来源于Linux的I/O阻塞机制）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- select 轮询</span><br><span class="line">- poll 回调</span><br><span class="line">- epoll 增强回调</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:42:30.805Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:44.816Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/25/Web%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_2/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_1/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Python协程技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%94%9F%E6%88%90%E5%99%A8generator%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.</span> <span class="toc-text">一、生成器generator实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81coroutine%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.</span> <span class="toc-text">二、coroutine模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BC%95%E5%85%A5async-await%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.3.</span> <span class="toc-text">三、引入async&#x2F;await关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81I-O%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">四、I&#x2F;O事件模型</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:39:06.200Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:28:56.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" class="archive-article-date">
-  	<time datetime="2021-04-28T12:28:40.303Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2021-04-26T06:47:52.601Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -421,8 +393,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

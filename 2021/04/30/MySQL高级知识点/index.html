@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | NaN</title>
+  <title>NaN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="MySQL高级知识点一、mysql索引 mysql索引是一种数据结构，在DQL语句的where条件中使用索引字段，则先从索引中查询。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="NaN">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+<meta property="og:url" content="http://example.com/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
 <meta property="og:site_name" content="NaN">
+<meta property="og:description" content="MySQL高级知识点一、mysql索引 mysql索引是一种数据结构，在DQL语句的where条件中使用索引字段，则先从索引中查询。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-30T12:40:21.825Z">
+<meta property="article:modified_time" content="2021-04-30T12:49:44.617Z">
 <meta property="article:author" content="SeeYouEnnis">
 <meta name="twitter:card" content="summary">
   
@@ -169,235 +173,272 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL高级知识点" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MySQL高级知识点"><a href="#MySQL高级知识点" class="headerlink" title="MySQL高级知识点"></a>MySQL高级知识点</h1><h2 id="一、mysql索引"><a href="#一、mysql索引" class="headerlink" title="一、mysql索引"></a>一、mysql索引</h2><blockquote>
+<p>mysql索引是一种数据结构，在DQL语句的where条件中使用索引字段，则先从索引中查询。</p>
+</blockquote>
+ <span id="more"></span>
+
+<h3 id="1-1-语法"><a href="#1-1-语法" class="headerlink" title="1.1 语法"></a>1.1 语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create [ unique|fulltext|spatial ] index &lt;索引名&gt;</span><br><span class="line">[ using &lt;index_type&gt; ] </span><br><span class="line">on &lt;表名&gt;(&lt;字段名&gt; [ （length）] [ ASC | DESC ])</span><br></pre></td></tr></table></figure>
+
+<p>【注意】另外创建索引还存在两种方式，一种基于alter table ， 另一种基于create table。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 基于alter table</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">add</span> index <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span> <span class="operator">&lt;</span>index_type<span class="operator">&gt;</span> (<span class="operator">&lt;</span>字段名<span class="operator">&gt;</span> [(长度)] [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>] )</span><br><span class="line"><span class="keyword">drop</span> index <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 基于create table</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [if <span class="keyword">not</span> <span class="keyword">exists</span>] <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">(</span><br><span class="line">    ... [字段描述],</span><br><span class="line">    index <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span> <span class="operator">&lt;</span>index_type<span class="operator">&gt;</span> (<span class="operator">&lt;</span>字段名<span class="operator">&gt;</span> [(长度)] [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]),</span><br><span class="line">    key <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span> <span class="operator">&lt;</span>index_type<span class="operator">&gt;</span> (<span class="operator">&lt;</span>字段名<span class="operator">&gt;</span> [(长度)] [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]),</span><br><span class="line">    [fulltext<span class="operator">|</span>spatial] index <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span> <span class="operator">&lt;</span>index_type<span class="operator">&gt;</span> (<span class="operator">&lt;</span>字段名<span class="operator">&gt;</span> [(长度)] [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]),</span><br><span class="line">    [<span class="keyword">constraint</span>] <span class="keyword">unique</span> <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span> <span class="operator">&lt;</span>index_type<span class="operator">&gt;</span> (<span class="operator">&lt;</span>字段名<span class="operator">&gt;</span> [(长度)] [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>])</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-索引视图"><a href="#1-2-索引视图" class="headerlink" title="1.2 索引视图"></a>1.2 索引视图</h3><blockquote>
+<p>创建索引之后，可以通过索引视图查询已存在的索引。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- INNODB_SYS_INDEXES</span></span><br><span class="line"><span class="comment">-- innodb_sys_tables</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> a.index_id,a.name idx_name,a.type, b.name tab_name</span><br><span class="line"><span class="keyword">from</span> INNODB_SYS_INDEXES a  </span><br><span class="line"><span class="keyword">join</span> innodb_sys_tables b <span class="keyword">on</span> (a.table_id<span class="operator">=</span>b.table_id)</span><br><span class="line"><span class="keyword">where</span> b.name <span class="keyword">like</span> <span class="string">&#x27;mydb1/emp&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-创建索引"><a href="#1-3-创建索引" class="headerlink" title="1.3 创建索引"></a>1.3 创建索引</h3><h4 id="1-3-1-创建表时"><a href="#1-3-1-创建表时" class="headerlink" title="1.3.1 创建表时"></a>1.3.1 创建表时</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建 小说的分类表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> if <span class="keyword">not</span> <span class="keyword">exists</span> tb_cate(</span><br><span class="line">    id <span class="type">integer</span> <span class="keyword">primary</span> key auto_increment,</span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    ord <span class="type">int</span>,</span><br><span class="line">    <span class="keyword">constraint</span> <span class="keyword">unique</span> index name_uniq <span class="keyword">using</span> btree  (name)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-3-2-修改表时"><a href="#1-3-2-修改表时" class="headerlink" title="1.3.2 修改表时"></a>1.3.2 修改表时</h4><h3 id="1-4-删除索引"><a href="#1-4-删除索引" class="headerlink" title="1.4 删除索引"></a>1.4 删除索引</h3><h4 id="1-4-1-删除主键和唯一索引"><a href="#1-4-1-删除主键和唯一索引" class="headerlink" title="1.4.1 删除主键和唯一索引"></a>1.4.1 删除主键和唯一索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_cate</span><br><span class="line"><span class="keyword">drop</span> index name_uniq;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 如果主键是自增字段，在删除主键索引时，必须先去掉auto_increment约束。</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_cate</span><br><span class="line">modify id <span class="type">integer</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_cate</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">primary</span> key;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-4-2-删除其它索引"><a href="#1-4-2-删除其它索引" class="headerlink" title="1.4.2 删除其它索引"></a>1.4.2 删除其它索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询相关的索引</span></span><br><span class="line"><span class="keyword">select</span> a.name idx_name, b.name tb_name</span><br><span class="line"><span class="keyword">from</span> information_schema.innodb_sys_indexes a  </span><br><span class="line"><span class="keyword">join</span> information_schema.innodb_sys_tables b <span class="keyword">on</span> (a.table_id <span class="operator">=</span> b.table_id);</span><br></pre></td></tr></table></figure>
+
+<p>【字典表】information_schema.tables|views|schema_privileges|table_privileges</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">drop</span> index <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>【注意】使用索引字段作为查询条件时， select关键字选择查询的字段避免使用 <code>*</code>和发生全表查询的条件。</p>
+<p>【扩展-搜索关键字】SQL查询优化、索引无效</p>
+<h2 id="二、mysql事务"><a href="#二、mysql事务" class="headerlink" title="二、mysql事务"></a>二、mysql事务</h2><blockquote>
+<p>事务即发生某一事件，从开始到结束的整个过程。</p>
+<p>在MySQL, 事务存在四个特性，当执行DML/DDL/DCL语句（事件），确保数据的完整性、一致性等。</p>
+</blockquote>
+<h3 id="2-1-事务的四个特性"><a href="#2-1-事务的四个特性" class="headerlink" title="2.1 事务的四个特性"></a>2.1 事务的四个特性</h3><blockquote>
+<p>ACID 四个特性</p>
+</blockquote>
+<h4 id="2-1-1-原子性（Atomicity"><a href="#2-1-1-原子性（Atomicity" class="headerlink" title="2.1.1 原子性（Atomicity)"></a>2.1.1 原子性（Atomicity)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">事务中的所有操作，要么全部执行，要么都不执行</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-一致性（Consistency）"><a href="#2-1-2-一致性（Consistency）" class="headerlink" title="2.1.2 一致性（Consistency）"></a>2.1.2 一致性（Consistency）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">事务开始和结束后，数据库的完整性不会被破坏.</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-3-隔离性-Isolation"><a href="#2-1-3-隔离性-Isolation" class="headerlink" title="2.1.3 隔离性(Isolation)"></a>2.1.3 隔离性(Isolation)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">事务之间互不影响, 但不同的事务的隔离级别在不同程度上会有影响。</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-4-持久性-Durability"><a href="#2-1-4-持久性-Durability" class="headerlink" title="2.1.4 持久性(Durability)"></a>2.1.4 持久性(Durability)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">事务提交后，对数据的修改是永久性的，即使系统故障也不会丢失</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-事务的四个隔离性"><a href="#2-2-事务的四个隔离性" class="headerlink" title="2.2 事务的四个隔离性"></a>2.2 事务的四个隔离性</h3><blockquote>
+<p>mysql关于事务的相关命令：</p>
+<p>begin 开始事务</p>
+<p>rollback 回滚事务</p>
+<p>save &lt;还原点名&gt; 保存事务的还原点 </p>
+<p>rollback to &lt;还原点&gt;</p>
+<p>commit 提交</p>
+</blockquote>
+<h4 id="2-2-1-读未提交-read-uncommited"><a href="#2-2-1-读未提交-read-uncommited" class="headerlink" title="2.2.1 读未提交(read uncommited)"></a>2.2.1 读未提交(read uncommited)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">即事务对数据库数据所做的修改，在事务未提交之前，可以被其他事务看到。</span><br><span class="line">如：A事务对数据库数据做的修改，在A事务未提交时，事务B可读到A事务对数据所做的修改。</span><br></pre></td></tr></table></figure>
+
+<p>【产生问题】</p>
+<p>【脏读】【幻读】【不可重复读】</p>
+<h4 id="2-2-2-读已提交-read-commited"><a href="#2-2-2-读已提交-read-commited" class="headerlink" title="2.2.2 读已提交(read commited)"></a>2.2.2 读已提交(read commited)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A、B两个事务同时对数据库中同一条数据做修改，A事务开启，读取数据，此时，B事务也开启，读取数据，并对数据做出修改，然后提交，此时事务A继续执行，执行完后，再次读取数据，发现两次读取的结果不一样，由此产生不可重复读的问题。</span><br></pre></td></tr></table></figure>
+
+<p>【产生问题】</p>
+<p>【幻读】【不可重复读】</p>
+<h4 id="2-2-3-可重复读（默认隔离级别（repeatable-read）"><a href="#2-2-3-可重复读（默认隔离级别（repeatable-read）" class="headerlink" title="2.2.3 可重复读（默认隔离级别（repeatable read）"></a>2.2.3 可重复读（默认隔离级别（repeatable read）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A事务读取数据库数据，在处理业务的过程中事务B读取数据并修改完成后，事务A再次读取数据时，所得结果和之前读取的数据一致，并且事务A提交后，不会损害数据的一致性</span><br></pre></td></tr></table></figure>
+
+<p>【产生问题】</p>
+<p>【幻读】</p>
+<h4 id="2-2-4-串行化-serializable"><a href="#2-2-4-串行化-serializable" class="headerlink" title="2.2.4 串行化(serializable)"></a>2.2.4 串行化(serializable)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表上的一个事务开启后，在该事务提交之前，其他事务不能对表中的数据做任何修改</span><br></pre></td></tr></table></figure>
+
+<p>【注意】表会被锁定，即使是查询也要等待其它事务提交。</p>
+<h3 id="2-3-隔离级别的设置"><a href="#2-3-隔离级别的设置" class="headerlink" title="2.3 隔离级别的设置"></a>2.3 隔离级别的设置</h3><h4 id="2-3-1-查询当前隔离级别"><a href="#2-3-1-查询当前隔离级别" class="headerlink" title="2.3.1 查询当前隔离级别"></a>2.3.1 查询当前隔离级别</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;%isolation%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-1-设置级别"><a href="#2-3-1-设置级别" class="headerlink" title="2.3.1 设置级别"></a>2.3.1 设置级别</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set session transaction isolation level &lt;级别名称&gt;</span><br></pre></td></tr></table></figure>
+
+<p>级别名称与四种级别一一对应的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">read uncommitted  读未提交</span><br><span class="line">read committed    读已提交</span><br><span class="line">repeatable read  可重复读</span><br><span class="line">serializable     串行化</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、视图view"><a href="#三、视图view" class="headerlink" title="三、视图view"></a>三、视图view</h2><blockquote>
+<p>视图用于缓存复杂的sql语句， 查询的用法同表。</p>
+<p>视图本质上是一张虚拟的表。</p>
+</blockquote>
+<h3 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1 语法"></a>3.1 语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> [<span class="keyword">or</span> replace] <span class="keyword">view</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span> <span class="keyword">as</span></span><br><span class="line"><span class="operator">&lt;</span><span class="keyword">select</span> 语句<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>【注释】<code>or replace</code>可选，表示更新视图。</p>
+<p>【示例】</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> replace <span class="keyword">view</span> account_top10 <span class="keyword">as</span> </span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> account</span><br><span class="line"><span class="keyword">where</span> money <span class="operator">&gt;=</span> <span class="number">1000000</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查看百万资产的大佬</span><br><span class="line">select * <span class="keyword">from</span> account_top10;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2-查看视图字典"><a href="#3-2-查看视图字典" class="headerlink" title="3.2 查看视图字典"></a>3.2 查看视图字典</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> table_schema,table_name </span><br><span class="line"><span class="keyword">from</span> information_schema.views </span><br><span class="line"><span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;bank&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-删除视图"><a href="#3-3-删除视图" class="headerlink" title="3.3 删除视图"></a>3.3 删除视图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop view &lt;视图名&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i><i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wxp.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/%E5%AD%A6%E4%B9%A0%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:42:30.805Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Cenos7-Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:44.816Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/Docker%E7%8E%AF%E5%A2%83%E4%B8%8BMySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2021/04/30/MySQL_1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_2/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL_1/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.834Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">MySQL高级知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81mysql%E7%B4%A2%E5%BC%95"><span class="toc-number">1.1.</span> <span class="toc-text">一、mysql索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%B4%A2%E5%BC%95%E8%A7%86%E5%9B%BE"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 索引视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 创建索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%97%B6"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1 创建表时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-%E4%BF%AE%E6%94%B9%E8%A1%A8%E6%97%B6"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2 修改表时</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 删除索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-%E5%88%A0%E9%99%A4%E4%B8%BB%E9%94%AE%E5%92%8C%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1 删除主键和唯一索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-%E5%88%A0%E9%99%A4%E5%85%B6%E5%AE%83%E7%B4%A2%E5%BC%95"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">1.4.2 删除其它索引</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81mysql%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.2.</span> <span class="toc-text">二、mysql事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 事务的四个特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%88Atomicity"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 原子性（Atomicity)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%88Consistency%EF%BC%89"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.1.2 一致性（Consistency）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-%E9%9A%94%E7%A6%BB%E6%80%A7-Isolation"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">2.1.3 隔离性(Isolation)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-4-%E6%8C%81%E4%B9%85%E6%80%A7-Durability"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">2.1.4 持久性(Durability)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 事务的四个隔离性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A4-read-uncommited"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">2.2.1 读未提交(read uncommited)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E8%AF%BB%E5%B7%B2%E6%8F%90%E4%BA%A4-read-commited"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.2.2 读已提交(read commited)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%EF%BC%88%E9%BB%98%E8%AE%A4%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%EF%BC%88repeatable-read%EF%BC%89"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">2.2.3 可重复读（默认隔离级别（repeatable read）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-4-%E4%B8%B2%E8%A1%8C%E5%8C%96-serializable"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">2.2.4 串行化(serializable)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 隔离级别的设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">2.3.1 查询当前隔离级别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E8%AE%BE%E7%BD%AE%E7%BA%A7%E5%88%AB"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">2.3.1 设置级别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%A7%86%E5%9B%BEview"><span class="toc-number">1.3.</span> <span class="toc-text">三、视图view</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9F%A5%E7%9C%8B%E8%A7%86%E5%9B%BE%E5%AD%97%E5%85%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 查看视图字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 删除视图</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/MySQL%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:40:21.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/CSS%E4%B9%8BFlex%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-30T12:39:06.200Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/30/XA-Py2101-%E6%99%A8%E5%86%99%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-04-30T01:28:56.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/28/fastapi%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" class="archive-article-date">
-  	<time datetime="2021-04-28T12:28:40.303Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/26/Python%E5%8D%8F%E7%A8%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2021-04-26T06:47:52.601Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -421,8 +462,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
